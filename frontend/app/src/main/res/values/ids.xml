@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="qr_element" type="id" />
+    <item name="user_name_input" type="id" />
+    <item name="inputDni" type="id" />
+    <item name="inputName" type="id" />
+    <item name="user_dni_input" type="id" />
+    <item name="imageView12" type="id" />
+    <item name="imageView11" type="id" />
+    <item name="imageView13" type="id" />
+</resources>
