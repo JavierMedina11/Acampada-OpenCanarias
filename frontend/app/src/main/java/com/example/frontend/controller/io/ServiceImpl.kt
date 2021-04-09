@@ -24,9 +24,10 @@ class ServiceImpl: IVolleyService {
         Log.v("Path: ", path)
         val arrayRequest = JsonArrayRequest(Request.Method.GET, path, null,
                 { response ->
+                    val zoneArray : JSONArray = response
                     var zones: ArrayList<Zone> = ArrayList()
-                    for (i in 0 until response.length()) {
-                        val zone = response.getJSONObject(i)
+                    for (i in 0 until zoneArray.length()) {
+                       val zone = zoneArray.getJSONObject(i)
                         val id = zone.getInt("id")
                         val nombre = zone.getString("nombre")
                         val localizacion = zone.getString("localizacion")
@@ -37,6 +38,7 @@ class ServiceImpl: IVolleyService {
                     completionHandler(zones)
                 },
                 { error ->
+                    Log.v("Error", "Error on")
                     completionHandler(ArrayList<Zone>())
                 })
         ServiceSingleton.getInstance(context).addToRequestQueue(arrayRequest)
@@ -157,6 +159,34 @@ class ServiceImpl: IVolleyService {
                 { error ->
                     completionHandler(ArrayList<Reserva>())
                 })
+        ServiceSingleton.getInstance(context).addToRequestQueue(arrayRequest)
+    }
+
+    override fun getBookingByDate2(context: Context, date:String, completionHandler: (response: ArrayList<Reserva>?) -> Unit) {
+        val path = ServiceSingleton.getInstance(context).baseUrl + "reserva_zone_date/" + "/" + date
+        val arrayRequest = JsonArrayRequest(Request.Method.GET, path, null,
+            { response ->
+                var bookings: ArrayList<Reserva> = ArrayList()
+                for (i in 0 until response.length()) {
+                    val booking = response.getJSONObject(i)
+                    val id = booking.getInt("id")
+                    val id_persona = booking.getInt("id_persona")
+                    val dni_persona = booking.getString("dni_persona")
+                    val fecha_entrada = booking.getString("fecha_entrada")
+                    val fecha_salida = booking.getString("fecha_salida")
+                    val localizador_reserva = booking.getString("localizador_reserva")
+                    val num_personas = booking.getInt("num_personas")
+                    val num_vehiculos = booking.getInt("num_vehiculos")
+                    val checkin = booking.getString("checkin")
+                    val fecha_checkin = booking.getString("fecha_checkin")
+                    val id_zona = booking.getInt("id_zona")
+                    bookings.add(Reserva(id, id_persona, dni_persona, fecha_entrada, fecha_salida, localizador_reserva, num_personas, num_vehiculos, checkin, fecha_checkin, id_zona))
+                }
+                completionHandler(bookings)
+            },
+            { error ->
+                completionHandler(ArrayList<Reserva>())
+            })
         ServiceSingleton.getInstance(context).addToRequestQueue(arrayRequest)
     }
 

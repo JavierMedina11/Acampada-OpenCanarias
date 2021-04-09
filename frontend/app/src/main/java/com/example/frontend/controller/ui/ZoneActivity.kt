@@ -29,10 +29,13 @@ import com.google.zxing.integration.android.IntentIntegrator
 import com.example.frontend.controller.util.PreferenceHelper
 import com.example.frontend.controller.util.PreferenceHelper.set
 import com.opencanarias.pruebasync.util.AppDatabase
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.activity_list.*
 import kotlinx.android.synthetic.main.activity_zone.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.json.JSONArray
 
 class ZoneActivity : AppCompatActivity() {
 
@@ -119,6 +122,30 @@ class ZoneActivity : AppCompatActivity() {
 
         //getAllZones(tokenGE.toString())
         listeners()
+        getZones()
+    }
+
+    private fun getZones() {
+        val tokenPref = preferences.getString("tokenPref", null)
+        val bicycleServiceImpl = ServiceImpl()
+        bicycleServiceImpl.getAll(this, tokenPref.toString()) { response ->
+            run {
+                val database = AppDatabase.getDatabase(this)
+                val zoneArray : ArrayList<Zone>? = response
+                var zones: ArrayList<Zone> = ArrayList()
+                if (zoneArray != null) {
+                    for (i in 0 until zoneArray.size) {
+                        Log.v("zona", zoneArray[i].toString())
+                        CoroutineScope(Dispatchers.IO).launch{
+                            database.zonas().insert( zoneArray[i])
+                        }
+                    }
+                }
+                /*val url = "http://192.168.1.129:8000/img/"
+                val imageUrl = url + response?.url_img + ".jpg"
+                Picasso.with(this).load(imageUrl).into(bg_lists);*/
+            }
+        }
     }
 
     private fun initScanner() {

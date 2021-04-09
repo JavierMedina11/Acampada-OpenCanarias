@@ -38,30 +38,30 @@ class HomeActivity : AppCompatActivity() {
 
 
         button3.setOnClickListener {
-            val operario = Operario(0, "tete@tete.com", "123456", "Tete","12345678T", "")
-            val zone = Zone(0, "Llanos del Salado", "San Mateo", "prueba")
-            val zone2 = Zone(0, "Llanos de la Mimbre", "Agaete", "prueba")
-            val zone3 = Zone(0, "Llanos de la pez", "Tejeda", "prueba")
-            val reserva = Reserva(0, 1, "42269273b",  "2021-03-23", "2021-03-24","AB51", 1, 1, "0", "0", 1)
-            val reserva2 = Reserva(0, 2, "12345666Y", "2021-03-23", "2021-03-29","AB52", 1, 1, "0", "0", 1)
-            val reserva3 = Reserva(0, 3,"22446688R", "2021-03-23", "2021-03-28","AB53", 1, 1, "0", "0", 1)
-            val reserva4 = Reserva(0, 1,"42269273b",  "2021-03-23", "2021-03-25","AB54", 1, 1, "0", "0", 1)
-            val reserva5 = Reserva(0, 1,"42269273b", "2021-03-23", "2021-03-26","AB55", 1, 1, "0", "0", 1)
-            val reserva6 = Reserva(0, 2,"12345666Y", "2021-03-23", "2021-03-27","AB56", 1, 1, "0", "0", 1)
-            val reserva7 = Reserva(0, 3,"22446688R", "2021-03-23", "2021-03-25","AB59", 1, 1, "0", "0", 1)
-            val reserva8 = Reserva(0, 1,"42269273b", "2021-03-23", "2021-03-24","AB60", 1, 1, "0", "0", 1)
-            val reserva9 = Reserva(0, 2, "12345666Y", "2021-03-23", "2021-03-25","AB61", 1, 1, "0", "0", 1)
-            val reserva10 = Reserva(0, 1, "42269273b","2021-03-24", "2021-03-25","AB57", 1, 1, "0", "0", 1)
-            val reserva11 = Reserva(0, 2,"12345666Y", "2021-03-24", "2021-03-27","AB58", 1, 1, "0", "0", 1)
-            val reserva12 = Reserva(0, 3,"22446688R", "2021-03-24", "2021-03-29","AB58", 1, 1, "0", "0", 1)
-
-            val persona = Persona(0, "Javi", "Medina", "42269273b", "persona1")
-            val persona2 = Persona(0, "Tete", "Tetaso", "12345666Y", "persona2")
-            val persona3 = Persona(0, "Maria", "Planta", "22446688R", "persona3")
+/* val operario = Operario(0, "tete@tete.com", "123456", "Tete","12345678T", "")
+/* val zone Zone(0, "Llanos del Salado", "San Mateo", "prueba")
+ val zone2 = Zone(0, "Llanos de la Mimbre", "Agaete", "prueba")
+ val zone3 = Zone(0, "Llanos de la pez", "Tejeda", "prueba")*/
+ /*val reserva = Reserva(0, 1, "42269273b",  "2021-03-23", "2021-03-24","AB51", 1, 1, "0", "0", 1)
+ val reserva2 = Reserva(0, 2, "12345666Y", "2021-03-23", "2021-03-29","AB52", 1, 1, "0", "0", 1)
+ val reserva3 = Reserva(0, 3,"22446688R", "2021-03-23", "2021-03-28","AB53", 1, 1, "0", "0", 1)
+ val reserva4 = Reserva(0, 1,"42269273b",  "2021-03-23", "2021-03-25","AB54", 1, 1, "0", "0", 1)
+ val reserva5 = Reserva(0, 1,"42269273b", "2021-03-23", "2021-03-26","AB55", 1, 1, "0", "0", 1)
+ val reserva6 = Reserva(0, 2,"12345666Y", "2021-03-23", "2021-03-27","AB56", 1, 1, "0", "0", 1)
+ val reserva7 = Reserva(0, 3,"22446688R", "2021-03-23", "2021-03-25","AB59", 1, 1, "0", "0", 1)
+ val reserva8 = Reserva(0, 1,"42269273b", "2021-03-23", "2021-03-24","AB60", 1, 1, "0", "0", 1)
+ val reserva9 = Reserva(0, 2, "12345666Y", "2021-03-23", "2021-03-25","AB61", 1, 1, "0", "0", 1)
+ val reserva10 = Reserva(0, 1, "42269273b","2021-03-24", "2021-03-25","AB57", 1, 1, "0", "0", 1)
+ val reserva11 = Reserva(0, 2,"12345666Y", "2021-03-24", "2021-03-27","AB58", 1, 1, "0", "0", 1)
+ val reserva12 = Reserva(0, 3,"22446688R", "2021-03-24", "2021-03-29","AB58", 1, 1, "0", "0", 1)
+*/
+ val persona = Persona(0, "Javi", "Medina", "42269273b", "persona1")
+ val persona2 = Persona(0, "Tete", "Tetaso", "12345666Y", "persona2")
+ val persona3 = Persona(0, "Maria", "Planta", "22446688R", "persona3")*/
 
             val database = AppDatabase.getDatabase(this)
             CoroutineScope(Dispatchers.IO).launch {
-                database.reservas().insert(reserva)
+                /*database.reservas().insert(reserva)
                 database.reservas().insert(reserva2)
                 database.reservas().insert(reserva3)
                 database.reservas().insert(reserva4)
@@ -74,7 +74,7 @@ class HomeActivity : AppCompatActivity() {
                 database.reservas().insert(reserva11)
                 database.reservas().insert(reserva12)
 
-                /*database.zonas().insert(zone)
+                database.zonas().insert(zone)
                 database.zonas().insert(zone2)
                 database.zonas().insert(zone3)
 
@@ -88,7 +88,8 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun goToLoginActivity() {
-        val options = ActivityOptions.makeSceneTransitionAnimation(this,
+        val options = ActivityOptions.makeSceneTransitionAnimation(
+            this,
             Pair.create(textID, "tecx"),
             Pair.create(imageView, "earth"),
             Pair.create(imageView8, "tree1"),
@@ -105,7 +106,8 @@ class HomeActivity : AppCompatActivity() {
             Pair.create(imageView7, "tit"),
             Pair.create(imageView10, "email"),
             Pair.create(imageView15, "password"),
-            Pair.create(buttonToZone, "buttonZone"))
+            Pair.create(buttonToZone, "buttonZone")
+        )
 
         val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent, options.toBundle())

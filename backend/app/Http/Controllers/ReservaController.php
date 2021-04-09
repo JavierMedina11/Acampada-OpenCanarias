@@ -28,6 +28,11 @@ class ReservaController {
             ->where('fecha_entrada', $date_picker)->values();
     }
 
+    public function showReservDate($date_picker){
+        return Reserva::all()
+            ->where('fecha_entrada', $date_picker)->values();
+    }
+
     public function showReservLocalizador($localizador){
         return Reserva::all()
             ->where('localizador_reserva', $localizador)->values();

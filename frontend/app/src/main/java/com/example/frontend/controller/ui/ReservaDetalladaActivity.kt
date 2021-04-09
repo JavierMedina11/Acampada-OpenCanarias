@@ -49,7 +49,7 @@ class ReservaDetalladaActivity : AppCompatActivity() {
             getReservas = it
             val reservaId = getReservas[0].id
             val reservaIdPersona = getReservas[0].id_persona
-            val dni = getReservas[0].dni
+            val dni = getReservas[0].dni_persona
             val fecha_entrada = getReservas[0].fecha_entrada
             val fecha_salida  = getReservas[0].fecha_salida
             val personId = getReservas[0].id_persona

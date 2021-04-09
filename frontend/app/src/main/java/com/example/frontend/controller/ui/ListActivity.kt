@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.frontend.R
 import com.example.frontend.controller.models.Reserva
 import androidx.lifecycle.Observer
+import com.example.frontend.controller.io.ServiceImpl
 import com.example.frontend.controller.models.Zone
 import com.example.frontend.controller.util.PreferenceHelper
 import com.example.frontend.controller.util.PreferenceHelper.set
@@ -192,6 +193,7 @@ class ListActivity : AppCompatActivity() {
         return obtenerFechaConFormato(formato, zonaHoraria)
     }
 }
+
 /*
 private fun getBookingsDate(zoneId: Int, prueba: String) {
     val roomServiceImpl = ServiceImpl()

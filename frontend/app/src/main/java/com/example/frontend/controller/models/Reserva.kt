@@ -9,7 +9,7 @@ data class Reserva
     (@PrimaryKey(autoGenerate = true)
      val id: Int,
      val id_persona: Int,
-     val dni: String,
+     val dni_persona: String,
      val fecha_entrada: String,
      val fecha_salida: String,
      val localizador_reserva: String,

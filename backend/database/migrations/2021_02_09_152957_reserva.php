@@ -16,6 +16,7 @@ class Reserva extends Migration
         Schema::create('reservas', function (Blueprint $table) {
             $table->id('id');
             $table->unsignedBigInteger('id_persona')->nullable()->unsigned();
+            $table->string('dni_persona');
             $table->string('fecha_entrada');
             $table->string('fecha_salida');
             $table->string('localizador_reserva');
@@ -26,6 +27,7 @@ class Reserva extends Migration
             $table->unsignedBigInteger("id_zona");
             $table->foreign("id_zona")->references('id')->on('zonas');
             $table->foreign('id_persona')->references('id')->on('personas')->cascadeOnDelete();
+            $table->foreign('dni_persona')->references('dni')->on('personas')->cascadeOnDelete();
         });
     }
     /**
