@@ -38,6 +38,8 @@ class LoginActivity : AppCompatActivity() {
                 operarioList = it
                 if(input.text.toString() == operarioList[0].email && imput2.text.toString() == operarioList[0].password){
                     val intent = Intent(this, ZoneActivity::class.java)
+                    intent.putExtra("num", 1)
+                    intent.putExtra("opeId",  operarioList[0].id)
                     startActivity(intent)
                     overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
                 }else{

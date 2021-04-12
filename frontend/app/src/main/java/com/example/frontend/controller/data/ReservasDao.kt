@@ -30,6 +30,8 @@ interface ReservasDao {
     @Delete()
     fun delete( reserva: Reserva)
 
+    @Query("DELETE FROM reservas")
+    fun delete()
 }
 
 

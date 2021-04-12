@@ -2,6 +2,7 @@ package com.example.frontend.controller.ui
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
+import android.content.Context
 import android.content.Intent
 import android.icu.util.Calendar
 import android.os.Build
@@ -11,12 +12,13 @@ import android.view.View
 import android.widget.RadioGroup
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.frontend.R
-import com.example.frontend.controller.models.Reserva
-import androidx.lifecycle.Observer
 import com.example.frontend.controller.io.ServiceImpl
+import com.example.frontend.controller.io.ServiceSingleton
+import com.example.frontend.controller.models.Reserva
 import com.example.frontend.controller.models.Zone
 import com.example.frontend.controller.util.PreferenceHelper
 import com.example.frontend.controller.util.PreferenceHelper.set
@@ -24,6 +26,9 @@ import com.example.frontend.controller.util.ReservaAdapter
 import com.opencanarias.pruebasync.util.AppDatabase
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_list.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -32,6 +37,13 @@ class ListActivity : AppCompatActivity() {
     private val preferences by lazy {
         PreferenceHelper.defaultPrefs(this)
     }
+
+    private val TAG ="ListActivity"
+
+    companion object {
+        val instance = ListActivity()
+    }
+
 
     override fun onBackPressed(){
         super.onBackPressed();
@@ -46,6 +58,7 @@ class ListActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewAdapter: ReservaAdapter
     private lateinit var viewManager: RecyclerView.LayoutManager
+
 
     @RequiresApi(Build.VERSION_CODES.N)
     private val selectedCalendar: Calendar = Calendar.getInstance()
@@ -90,7 +103,7 @@ class ListActivity : AppCompatActivity() {
             preferences["dataTime"] = data;
         })
 
-        database.zonas().getById(zoneId).observe(this, Observer{
+        database.zonas().getById(zoneId).observe(this, Observer {
             listaZones = it
             val url = "https://cryptic-dawn-95434.herokuapp.com/img/"
             val imageUrl = url + listaZones[0].url_img + ".jpg"
@@ -98,40 +111,70 @@ class ListActivity : AppCompatActivity() {
         })
 
         groupRadio.clearCheck()
-        groupRadio.setOnCheckedChangeListener(RadioGroup.OnCheckedChangeListener(){ radioGroup: RadioGroup, i: Int ->
+        groupRadio.setOnCheckedChangeListener(RadioGroup.OnCheckedChangeListener() { radioGroup: RadioGroup, i: Int ->
             val dataTime = preferences.getString("dataTime", "1")
-            if (radioButton.isChecked){
+            if (radioButton.isChecked) {
                 Log.v("checked", "Checked")
                 radioButton2.isChecked = false
                 if (dataTime != null) {
-                    database.reservas().getByDateChecked(zoneId, dataTime, "1").observe(this, Observer {
-                        getReservas = it
-                        viewAdapter = ReservaAdapter(getReservas as ArrayList<Reserva>, this)
-                        recyclerView.adapter = viewAdapter
-                    })
+                    database.reservas().getByDateChecked(zoneId, dataTime, "1").observe(
+                        this,
+                        Observer {
+                            getReservas = it
+                            viewAdapter = ReservaAdapter(getReservas as ArrayList<Reserva>, this)
+                            recyclerView.adapter = viewAdapter
+                        })
                 }
-            }else if (radioButton2.isChecked){
+            } else if (radioButton2.isChecked) {
                 Log.v("checked2", "Checked2")
                 radioButton.isChecked = false
                 if (dataTime != null) {
-                    database.reservas().getByDateChecked(zoneId, dataTime, "0").observe(this, Observer {
-                        getReservas = it
-                        viewAdapter = ReservaAdapter(getReservas as ArrayList<Reserva>, this)
-                        recyclerView.adapter = viewAdapter
-                    })
+                    database.reservas().getByDateChecked(zoneId, dataTime, "0").observe(
+                        this,
+                        Observer {
+                            getReservas = it
+                            viewAdapter = ReservaAdapter(getReservas as ArrayList<Reserva>, this)
+                            recyclerView.adapter = viewAdapter
+                        })
                 }
             }
         })
 
         listeners(zoneId)
+
     }
+
+    fun getReservas(){
+        val bicycleServiceImpl = ServiceImpl()
+        bicycleServiceImpl.getAllBookings(this) { response ->
+            run {
+                val database = AppDatabase.getDatabase(this)
+                CoroutineScope(Dispatchers.IO).launch{
+                    database.reservas().delete()
+                    Log.v("reservas", "Se borro la db")
+                    val reservaArray : ArrayList<Reserva>? = response
+                    if (reservaArray != null) {
+                       for (i in 0 until reservaArray.size) {
+                            Log.v("reservas", reservaArray[i].toString())
+                            database.reservas().insert( reservaArray[i])
+                            Log.v("reservas", "Se introdujeron datos en la db")
+                       }
+                    }
+                }
+                /*val url = "http://192.168.1.129:8000/img/"
+                val imageUrl = url + response?.url_img + ".jpg"
+                Picasso.with(this).load(imageUrl).into(bg_lists);*/
+            }
+        }
+    }
+
 
     private fun listeners(zoneId: Int) {
         button2.setOnClickListener {
             var getReservas = emptyList<Reserva>()
             val localizador = localizadorReserva.text.toString()
             val database = AppDatabase.getDatabase(this)
-            database.reservas().getByLocalizador(localizador).observe(this, Observer{
+            database.reservas().getByLocalizador(localizador).observe(this, Observer {
                 getReservas = it
                 viewAdapter = ReservaAdapter(getReservas as ArrayList<Reserva>, this)
                 recyclerView.adapter = viewAdapter
@@ -160,15 +203,34 @@ class ListActivity : AppCompatActivity() {
             val opeIdPref = preferences.getInt("zoneIII", 0)
             var getReservas = emptyList<Reserva>()
             val database = AppDatabase.getDatabase(this)
-            database.reservas().getByDate(opeIdPref , resources.getString(R.string.date_format, y, (m + 1).twoDigits(), d.twoDigits())).observe(this, Observer{
+            database.reservas().getByDate(
+                opeIdPref, resources.getString(
+                    R.string.date_format,
+                    y,
+                    (m + 1).twoDigits(),
+                    d.twoDigits()
+                )
+            ).observe(this, Observer {
                 getReservas = it
                 viewAdapter = ReservaAdapter(getReservas as ArrayList<Reserva>, this)
                 recyclerView.adapter = viewAdapter
-                preferences["dataTime"] = resources.getString(R.string.date_format, y, (m + 1).twoDigits(), d.twoDigits())
+                preferences["dataTime"] = resources.getString(
+                    R.string.date_format,
+                    y,
+                    (m + 1).twoDigits(),
+                    d.twoDigits()
+                )
             })
         }
 
-        val datePickerDialog = DatePickerDialog(this, R.style.datepicker, listener, year, month, dayOfMonth)
+        val datePickerDialog = DatePickerDialog(
+            this,
+            R.style.datepicker,
+            listener,
+            year,
+            month,
+            dayOfMonth
+        )
         val datePicker = datePickerDialog.datePicker
 
         datePickerDialog.show()

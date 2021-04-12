@@ -18,4 +18,7 @@ interface ZonasDao {
 
     @Update()
     fun update(zone: Zone)
+
+    @Query("DELETE FROM zonas")
+    fun delete()
 }

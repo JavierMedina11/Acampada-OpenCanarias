@@ -1,41 +1,35 @@
 package com.example.frontend.controller.ui
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.graphics.Typeface
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.OrientationHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.example.frontend.R
 import com.example.frontend.controller.io.ServiceImpl
-import com.example.frontend.controller.models.Operario
-import com.example.frontend.controller.models.Persona
+import com.example.frontend.controller.io.ServiceSingleton
 import com.example.frontend.controller.models.Reserva
 import com.example.frontend.controller.models.Zone
-import com.example.frontend.controller.util.ZoneAdapter
-import com.example.frontend.databinding.ActivityZoneBinding
-import com.google.zxing.integration.android.IntentIntegrator
 import com.example.frontend.controller.util.PreferenceHelper
 import com.example.frontend.controller.util.PreferenceHelper.set
+import com.example.frontend.controller.util.ZoneAdapter
+import com.google.zxing.integration.android.IntentIntegrator
 import com.opencanarias.pruebasync.util.AppDatabase
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_list.*
 import kotlinx.android.synthetic.main.activity_zone.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import org.json.JSONArray
 
 class ZoneActivity : AppCompatActivity() {
 
@@ -69,10 +63,10 @@ class ZoneActivity : AppCompatActivity() {
         zones = ArrayList<Zone>()
         val database = AppDatabase.getDatabase(this)
 
-        database.zonas().getAll().observe(this,  Observer{
+        database.zonas().getAll().observe(this, Observer {
             listaZones = it as ArrayList<Zone>
 
-            val adapter =  ZoneAdapter(listaZones as ArrayList<Zone>, this)
+            val adapter = ZoneAdapter(listaZones as ArrayList<Zone>, this)
             val view_pager: ViewPager2 = findViewById(R.id.view_pager)
             viewPager = findViewById<ViewPager2>(R.id.view_pager)
             viewPager.adapter = adapter
@@ -93,7 +87,8 @@ class ZoneActivity : AppCompatActivity() {
                             scaleX = scaleFactor
                             scaleY = scaleFactor
 
-                            alpha = (MIN_ALPHA + (((scaleFactor - MIN_SCALE) / (1 - MIN_SCALE)) * (1 - MIN_ALPHA)))
+                            alpha =
+                                (MIN_ALPHA + (((scaleFactor - MIN_SCALE) / (1 - MIN_SCALE)) * (1 - MIN_ALPHA)))
                         }
                         else -> {
                             alpha = 0f
@@ -103,27 +98,35 @@ class ZoneActivity : AppCompatActivity() {
             }
         })
 
-        val num : Int = this.intent.getIntExtra("num",0)
-
+        val num : Int = this.intent.getIntExtra("num", 0)
+        Log.v("Num: ", num.toString())
         val tokenGE : String? = this.intent.getStringExtra("api_token")
-        val opeIdGE : String = this.intent.getStringExtra("opeId").toString()
-        Log.v("ZoneActi GetEx: ",opeIdGE)
-        Log.v("ZoneActi GetEx: ",tokenGE.toString())
+        val opeIdGE : String = this.intent.getIntExtra("opeId", 0).toString()
+        Log.v("ZoneActi GetEx: ", opeIdGE)
+        Log.v("ZoneActi GetEx: ", tokenGE.toString())
 
         if (num==1){
-            Log.v("Create Pref","Create Pref")
-            createSessionPreference(tokenGE.toString(), opeIdGE.toInt())
+            Log.v("Create Pref", "Create Pref")
+            createSessionPreference(/*tokenGE.toString(),*/ opeIdGE.toInt())
+            getZones()
+
+            Log.v("getRe", "Paso por aqui antesd del getReser")
+            //getReservas()
+            val listActivity = ListActivity.instance
+            listActivity.getReservas()
+
         }
 
         val opeIdPref = preferences.getInt("opeId", 0)
         val tokenPref = preferences.getString("tokenPref", null)
         Log.v("ZoneActi ID pref: ", opeIdPref.toString())
-        Log.v("ZoneActi token pref: ",tokenPref.toString())
+        Log.v("ZoneActi token pref: ", tokenPref.toString())
 
         //getAllZones(tokenGE.toString())
         listeners()
-        getZones()
+
     }
+
 
     private fun getZones() {
         val tokenPref = preferences.getString("tokenPref", null)
@@ -131,13 +134,15 @@ class ZoneActivity : AppCompatActivity() {
         bicycleServiceImpl.getAll(this, tokenPref.toString()) { response ->
             run {
                 val database = AppDatabase.getDatabase(this)
-                val zoneArray : ArrayList<Zone>? = response
-                var zones: ArrayList<Zone> = ArrayList()
-                if (zoneArray != null) {
-                    for (i in 0 until zoneArray.size) {
-                        Log.v("zona", zoneArray[i].toString())
-                        CoroutineScope(Dispatchers.IO).launch{
-                            database.zonas().insert( zoneArray[i])
+                CoroutineScope(Dispatchers.IO).launch{
+                    database.zonas().delete()
+                    //Log.v("SaveZones", "Se borro la db")
+                    val zoneArray : ArrayList<Zone>? = response
+                    if (zoneArray != null) {
+                        for (i in 0 until zoneArray.size) {
+                            //Log.v("zona", zoneArray[i].toString())
+                                database.zonas().insert(zoneArray[i])
+                                //Log.v("SaveZones", "Se introdujeron datos en la db")
                         }
                     }
                 }
@@ -147,6 +152,7 @@ class ZoneActivity : AppCompatActivity() {
             }
         }
     }
+
 
     private fun initScanner() {
         Log.v("qr", "dentro del init")
@@ -187,9 +193,9 @@ class ZoneActivity : AppCompatActivity() {
         }
     }
 
-    private fun createSessionPreference(tokenPref: String, opeId: Int) {
+    private fun createSessionPreference(/*tokenPref: String,*/ opeId: Int) {
         val preferences = PreferenceHelper.defaultPrefs(this)
-        preferences["tokenPref"] = tokenPref
+        //preferences["tokenPref"] = tokenPref
         preferences["opeId"] = opeId
     }
 
