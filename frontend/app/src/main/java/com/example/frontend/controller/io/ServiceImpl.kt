@@ -44,7 +44,7 @@ class ServiceImpl : IVolleyService {
     }
 
     override fun getAllBookings(context: Context, completionHandler: (response: ArrayList<Reserva>?) -> Unit) {
-        val path = ServiceSingleton.getInstance(context).baseUrl + "reserva"
+        val path = ServiceSingleton.getInstance(context).baseUrl + "reserva-no-check"
         val objectRequest = JsonArrayRequest(Request.Method.GET, path, null,
             { response ->
                 val reservaArray: JSONArray = response
@@ -350,6 +350,7 @@ class ServiceImpl : IVolleyService {
         val bookingJSON: JSONObject = JSONObject()
         bookingJSON.put("id", reserva.id.toString())
         bookingJSON.put("id_persona", reserva.id_persona.toString())
+        bookingJSON.put("dni_persona", reserva.dni_persona)
         bookingJSON.put("fecha_entrada", reserva.fecha_entrada)
         bookingJSON.put("fecha_salida", reserva.fecha_salida)
         bookingJSON.put("localizador_reserva", reserva.localizador_reserva)
@@ -370,6 +371,7 @@ class ServiceImpl : IVolleyService {
         val bookingJSON: JSONObject = JSONObject()
         bookingJSON.put("id", reserva.id.toString())
         bookingJSON.put("id_persona", reserva.id_persona.toString())
+        bookingJSON.put("dni_persona", reserva.dni_persona)
         bookingJSON.put("fecha_entrada", reserva.fecha_entrada)
         bookingJSON.put("fecha_salida", reserva.fecha_salida)
         bookingJSON.put("localizador_reserva", reserva.localizador_reserva)

@@ -18,8 +18,14 @@ interface ReservasDao {
     @Query("SELECT * FROM reservas  where id = :reservaId")
     fun getById(reservaId: Int): LiveData<List<Reserva>>
 
+    @Query("SELECT * FROM reservas WHERE checkin = 1")
+    fun getByCheck1(): LiveData<List<Reserva>>
+
     @Query("UPDATE reservas SET checkin = 1  where id = :reservaId")
     fun checkIn(reservaId: Int)
+
+    @Query("DELETE FROM reservas WHERE checkin = 1")
+    fun deleteByCheckID()
 
     @Insert()
     fun insert( reserva: Reserva)

@@ -125,6 +125,28 @@ class ZoneActivity : AppCompatActivity() {
         //getAllZones(tokenGE.toString())
         listeners()
 
+        var listaResevas = emptyList<Reserva>()
+        database.reservas().getByCheck1().observe(this, Observer {
+            listaResevas = it as ArrayList<Reserva>
+
+            for (i in listaResevas.indices) {
+                CoroutineScope(Dispatchers.IO).launch{
+                    updateReser(listaResevas[i])
+                }
+            }
+           /* CoroutineScope(Dispatchers.IO).launch{
+               database.reservas().deleteByCheckID()
+            }*/
+            //antes que nada , con esto cambiar el Seervice y ponerle el -no-check para que envie solo las sin check
+        })
+    }
+
+    private fun updateReser(reserva: Reserva) {
+        Log.v("Update","Entro: " + reserva)
+        val serviceImpl = ServiceImpl()
+        serviceImpl.updateReserve(this, reserva) { ->
+            run {}
+        }
     }
 
 
@@ -136,13 +158,10 @@ class ZoneActivity : AppCompatActivity() {
                 val database = AppDatabase.getDatabase(this)
                 CoroutineScope(Dispatchers.IO).launch{
                     database.zonas().delete()
-                    //Log.v("SaveZones", "Se borro la db")
                     val zoneArray : ArrayList<Zone>? = response
                     if (zoneArray != null) {
                         for (i in 0 until zoneArray.size) {
-                            //Log.v("zona", zoneArray[i].toString())
-                                database.zonas().insert(zoneArray[i])
-                                //Log.v("SaveZones", "Se introdujeron datos en la db")
+                            database.zonas().insert(zoneArray[i])
                         }
                     }
                 }

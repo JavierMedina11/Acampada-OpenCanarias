@@ -84,9 +84,9 @@ class ReservaDetalladaActivity : AppCompatActivity() {
 
             database.personas().getById(personId).observe(this, Observer{
                 listaPersons = it
-                val url = "https://cryptic-dawn-95434.herokuapp.com/img/"
+                /*val url = "https://cryptic-dawn-95434.herokuapp.com/img/"
                 val imageUrl = url + listaPersons[0].url_img + ".png"
-                Picasso.with(this).load(imageUrl).into(imagenPerfilReserva);
+                Picasso.with(this).load(imageUrl).into(imagenPerfilReserva);*/
             })
 
             logo.setOnClickListener {

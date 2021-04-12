@@ -151,13 +151,11 @@ class ListActivity : AppCompatActivity() {
                 val database = AppDatabase.getDatabase(this)
                 CoroutineScope(Dispatchers.IO).launch{
                     database.reservas().delete()
-                    Log.v("reservas", "Se borro la db")
+                    Log.v("DBBorrao", "BD Borrada, reservas vacia")
                     val reservaArray : ArrayList<Reserva>? = response
                     if (reservaArray != null) {
                        for (i in 0 until reservaArray.size) {
-                            Log.v("reservas", reservaArray[i].toString())
                             database.reservas().insert( reservaArray[i])
-                            Log.v("reservas", "Se introdujeron datos en la db")
                        }
                     }
                 }

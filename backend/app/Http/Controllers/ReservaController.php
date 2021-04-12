@@ -13,6 +13,10 @@ class ReservaController {
         return Reserva::all();
     }
 
+    public function showReserNotChecked(Request $request){
+        return Reserva::where('checkin',0)->get();
+    }
+
     //GETTER DE UN SOLO ELEMENTO
     public function show($id){
         return Reserva::findOrFail($id);
@@ -67,6 +71,13 @@ class ReservaController {
         $zona->checkin = $request->checkin;
         $zona->fecha_checkin = $request->fecha_checkin;
         $zona->id_zona = $request->id_zona;
+        $zona->save();
+        return "Post has been updated!";
+    }
+
+    public function updateCheck(Request $request){
+        $zona = Reserva::where('id', $request->id)->first();
+        $zona->checkin = $request->checkin;
         $zona->save();
         return "Post has been updated!";
     }
