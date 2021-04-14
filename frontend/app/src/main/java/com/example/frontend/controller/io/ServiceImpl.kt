@@ -19,6 +19,32 @@ import java.lang.StringBuilder
 
 class ServiceImpl : IVolleyService {
 
+    override fun getAllPerson(context: Context, completionHandler: (response: ArrayList<Persona>?) -> Unit) {
+        val path = ServiceSingleton.getInstance(context).baseUrl + "persona"
+        Log.v("Path: ", path)
+        val arrayRequest = JsonArrayRequest(Request.Method.GET, path, null,
+            { response ->
+                val zoneArray : JSONArray = response
+                var zones: ArrayList<Persona> = ArrayList()
+                for (i in 0 until zoneArray.length()) {
+                    val zone = zoneArray.getJSONObject(i)
+                    val id = zone.getInt("id")
+                    val nombre = zone.getString("nombre")
+                    val apellidos = zone.getString("apellidos")
+                    val dni = zone.getString("dni")
+                    val url_img = zone.getString("url_img")
+
+                    zones.add(Persona(id, nombre, apellidos, dni, url_img))
+                }
+                completionHandler(zones)
+            },
+            { error ->
+                Log.v("Error", "Error on")
+                completionHandler(ArrayList<Persona>())
+            })
+        ServiceSingleton.getInstance(context).addToRequestQueue(arrayRequest)
+    }
+
     override fun getAll(context: Context, token: String, completionHandler: (response: ArrayList<Zone>?) -> Unit) {
         val path = ServiceSingleton.getInstance(context).baseUrl + "zona"
         val arrayRequest = JsonArrayRequest(Request.Method.GET, path, null,

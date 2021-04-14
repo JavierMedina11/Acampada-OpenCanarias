@@ -9,6 +9,8 @@ import com.example.frontend.controller.models.Zone
 
 interface IVolleyService {
 
+    fun getAllPerson(context: Context, completionHandler: (response: ArrayList<Persona>?) -> Unit)
+
     fun getAll(context: Context,token: String, completionHandler: (response: ArrayList<Zone>?) -> Unit)
 
     fun getReporte(context: Context, completionHandler: (response: String) -> Unit)

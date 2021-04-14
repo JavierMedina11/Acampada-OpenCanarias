@@ -18,6 +18,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.frontend.R
 import com.example.frontend.controller.io.ServiceImpl
 import com.example.frontend.controller.io.ServiceSingleton
+import com.example.frontend.controller.models.Persona
 import com.example.frontend.controller.models.Reserva
 import com.example.frontend.controller.models.Zone
 import com.example.frontend.controller.util.PreferenceHelper
@@ -137,9 +138,12 @@ class ZoneActivity : AppCompatActivity() {
            /* CoroutineScope(Dispatchers.IO).launch{
                database.reservas().deleteByCheckID()
             }*/
-            //antes que nada , con esto cambiar el Seervice y ponerle el -no-check para que envie solo las sin check
         })
+
+        //syncDBServerToDBLocalPersons()
     }
+
+
 
     private fun updateReser(reserva: Reserva) {
         Log.v("Update","Entro: " + reserva)
@@ -171,7 +175,25 @@ class ZoneActivity : AppCompatActivity() {
             }
         }
     }
-
+    private fun syncDBServerToDBLocalPersons() {
+        val bicycleServiceImpl = ServiceImpl()
+        bicycleServiceImpl.getAllPerson(this) { response ->
+            run {
+                val database = AppDatabase.getDatabase(this)
+                CoroutineScope(Dispatchers.IO).launch{
+                    database.personas().delete()
+                    Log.v("DBBorrao", "BD Borrada, personas vacia")
+                    val reservaArray : ArrayList<Persona>? = response
+                    if (reservaArray != null) {
+                        for (i in 0 until reservaArray.size) {
+                            Log.v("DBInsert", "Insertadas")
+                            database.personas().insert(reservaArray[i])
+                        }
+                    }
+                }
+            }
+        }
+    }
 
     private fun initScanner() {
         Log.v("qr", "dentro del init")
