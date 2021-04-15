@@ -46,6 +46,7 @@ class ReservaController {
     public function createPost(Request $request){
         $zona = new Reserva();
         $zona->id_persona = $request->id_persona;
+        $zona->dni_persona = $request->dni_persona;
         $zona->fecha_entrada = $request->fecha_entrada;
         $zona->fecha_salida = $request->fecha_salida;
         $zona->localizador_reserva = $request->localizador_reserva;
@@ -63,6 +64,7 @@ class ReservaController {
     public function updatePost(Request $request){
         $zona = Reserva::where('id', $request->id)->first();
         $zona->id_persona = $request->id_persona;
+        $zona->dni_persona = $request->dni_persona;
         $zona->fecha_entrada = $request->fecha_entrada;
         $zona->fecha_salida = $request->fecha_salida;
         $zona->localizador_reserva = $request->localizador_reserva;
