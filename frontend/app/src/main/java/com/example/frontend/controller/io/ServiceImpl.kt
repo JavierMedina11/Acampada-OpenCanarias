@@ -70,7 +70,7 @@ class ServiceImpl : IVolleyService {
     }
 
     override fun getAllBookings(context: Context, completionHandler: (response: ArrayList<Reserva>?) -> Unit) {
-        val path = ServiceSingleton.getInstance(context).baseUrl + "reserva-no-check"
+        val path = ServiceSingleton.getInstance(context).baseUrl + "reserva"
         val objectRequest = JsonArrayRequest(Request.Method.GET, path, null,
             { response ->
                 val reservaArray: JSONArray = response

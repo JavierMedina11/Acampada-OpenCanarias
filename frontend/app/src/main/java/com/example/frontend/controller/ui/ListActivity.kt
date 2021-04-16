@@ -69,6 +69,8 @@ class ListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list)
 
+        val zoneId = this.intent.getIntExtra("zoneId", 1)
+
         reserva = ArrayList<Reserva>()
 
         viewManager = LinearLayoutManager(this)
@@ -82,15 +84,13 @@ class ListActivity : AppCompatActivity() {
         recyclerView.itemAnimator
 
         state = this.intent.getStringExtra("state").toString()
-        val zoneId = this.intent.getIntExtra("zoneId", 1)
+
         preferences["zoneIII"] = zoneId
 
         //getZone(zoneId)
         val timeZone = "GMT+1"
-        val prueba = "1";
 
         var listaZones = emptyList<Zone>()
-
         val database = AppDatabase.getDatabase(this)
 
         var getReservas = emptyList<Reserva>()
@@ -141,30 +141,25 @@ class ListActivity : AppCompatActivity() {
         })
 
         listeners(zoneId)
-
     }
 
-    fun getReservas(){
-        val bicycleServiceImpl = ServiceImpl()
-        bicycleServiceImpl.getAllBookings(this) { response ->
-            run {
-                val database = AppDatabase.getDatabase(this)
-                CoroutineScope(Dispatchers.IO).launch{
-                    database.reservas().delete()
-                    Log.v("DBBorrao", "BD Borrada, reservas vacia")
-                    val reservaArray : ArrayList<Reserva>? = response
-                    if (reservaArray != null) {
-                       for (i in 0 until reservaArray.size) {
-                            database.reservas().insert( reservaArray[i])
-                       }
-                    }
-                }
-                /*val url = "http://192.168.1.129:8000/img/"
-                val imageUrl = url + response?.url_img + ".jpg"
-                Picasso.with(this).load(imageUrl).into(bg_lists);*/
-            }
+    /*private fun showReser(){
+        val zoneId = this.intent.getIntExtra("zoneId", 1)
+        val checkin = this.intent.getIntExtra("check", 3)
+        val database = AppDatabase.getDatabase(this)
+        val dataTime = preferences.getString("dataTime", "1")
+        var getReservas = emptyList<Reserva>()
+        if (dataTime != null) {
+            Log.v("checked?", checkin.toString())
+            database.reservas().getByDateChecked(zoneId, dataTime, checkin.toString()).observe(
+                this,
+                Observer {
+                    getReservas = it
+                    viewAdapter = ReservaAdapter(getReservas as ArrayList<Reserva>, this)
+                    recyclerView.adapter = viewAdapter
+                })
         }
-    }
+    }*/
 
 
     private fun listeners(zoneId: Int) {
@@ -183,6 +178,7 @@ class ListActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     fun onClickSheduleDate(v: View?) {
 
+        Log.v("date", "Paso por aqui")
         val year = selectedCalendar.get(Calendar.YEAR)
         val month = selectedCalendar.get(Calendar.MONTH)
         val dayOfMonth = selectedCalendar.get(Calendar.DAY_OF_MONTH)

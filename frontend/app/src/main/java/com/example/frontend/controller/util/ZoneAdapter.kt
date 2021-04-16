@@ -42,7 +42,7 @@ class ZoneAdapter(var zoneLists: ArrayList<Zone>, val context: Context): Recycle
             textSubname.text = b.localizacion
 
             itemView.setOnClickListener {
-                val intent = Intent(context, ListActivity::class.java)
+                val intent = Intent(context, SelectionActivity::class.java)
                 intent.putExtra("zoneId", b.id)
                 intent.putExtra("nombre", b.nombre)
                 intent.putExtra("localizacion", b.localizacion)

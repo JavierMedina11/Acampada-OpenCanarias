@@ -113,8 +113,8 @@ class ZoneActivity : AppCompatActivity() {
 
             Log.v("getRe", "Paso por aqui antesd del getReser")
             //getReservas()
-            val listActivity = ListActivity.instance
-            listActivity.getReservas()
+
+            getReservas()
 
         }
 
@@ -144,6 +144,27 @@ class ZoneActivity : AppCompatActivity() {
     }
 
 
+    fun getReservas(){
+        val bicycleServiceImpl = ServiceImpl()
+        bicycleServiceImpl.getAllBookings(this) { response ->
+            run {
+                val database = AppDatabase.getDatabase(this)
+                CoroutineScope(Dispatchers.IO).launch{
+                    database.reservas().delete()
+                    Log.v("DBBorrao", "BD Borrada, reservas vacia")
+                    val reservaArray : ArrayList<Reserva>? = response
+                    if (reservaArray != null) {
+                        for (i in 0 until reservaArray.size) {
+                            database.reservas().insert( reservaArray[i])
+                        }
+                    }
+                }
+                /*val url = "http://192.168.1.129:8000/img/"
+                val imageUrl = url + response?.url_img + ".jpg"
+                Picasso.with(this).load(imageUrl).into(bg_lists);*/
+            }
+        }
+    }
 
     private fun updateReser(reserva: Reserva) {
         Log.v("Update","Entro: " + reserva)
