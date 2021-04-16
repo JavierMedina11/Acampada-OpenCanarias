@@ -17,4 +17,5 @@
     <color name="dark">#31456A</color>
     <color name="earth">#ACBE37</color>
     <color name="light_shadows">#818181</color>
+    <color name="color_overlay">#78ffffff</color>
 </resources>

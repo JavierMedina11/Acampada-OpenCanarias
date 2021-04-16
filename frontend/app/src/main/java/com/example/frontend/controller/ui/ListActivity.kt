@@ -2,13 +2,14 @@ package com.example.frontend.controller.ui
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
-import android.content.Context
 import android.content.Intent
 import android.icu.util.Calendar
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.RadioGroup
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -17,7 +18,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.frontend.R
 import com.example.frontend.controller.io.ServiceImpl
-import com.example.frontend.controller.io.ServiceSingleton
 import com.example.frontend.controller.models.Reserva
 import com.example.frontend.controller.models.Zone
 import com.example.frontend.controller.util.PreferenceHelper
@@ -25,9 +25,12 @@ import com.example.frontend.controller.util.PreferenceHelper.set
 import com.example.frontend.controller.util.ReservaAdapter
 import com.opencanarias.pruebasync.util.AppDatabase
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.activity_list.*
+import kotlinx.android.synthetic.main.activity_list.spinner
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
@@ -37,13 +40,6 @@ class ListActivity : AppCompatActivity() {
     private val preferences by lazy {
         PreferenceHelper.defaultPrefs(this)
     }
-
-    private val TAG ="ListActivity"
-
-    companion object {
-        val instance = ListActivity()
-    }
-
 
     override fun onBackPressed(){
         super.onBackPressed();
@@ -59,7 +55,6 @@ class ListActivity : AppCompatActivity() {
     private lateinit var viewAdapter: ReservaAdapter
     private lateinit var viewManager: RecyclerView.LayoutManager
 
-
     @RequiresApi(Build.VERSION_CODES.N)
     private val selectedCalendar: Calendar = Calendar.getInstance()
 
@@ -68,8 +63,6 @@ class ListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list)
-
-        val zoneId = this.intent.getIntExtra("zoneId", 1)
 
         reserva = ArrayList<Reserva>()
 
@@ -84,13 +77,15 @@ class ListActivity : AppCompatActivity() {
         recyclerView.itemAnimator
 
         state = this.intent.getStringExtra("state").toString()
-
+        val zoneId = this.intent.getIntExtra("zoneId", 1)
         preferences["zoneIII"] = zoneId
 
         //getZone(zoneId)
         val timeZone = "GMT+1"
+        val prueba = "1";
 
         var listaZones = emptyList<Zone>()
+
         val database = AppDatabase.getDatabase(this)
 
         var getReservas = emptyList<Reserva>()
@@ -103,82 +98,149 @@ class ListActivity : AppCompatActivity() {
             preferences["dataTime"] = data;
         })
 
-        database.zonas().getById(zoneId).observe(this, Observer {
+        /*database.zonas().getById(zoneId).observe(this, Observer {
             listaZones = it
             val url = "https://cryptic-dawn-95434.herokuapp.com/img/"
             val imageUrl = url + listaZones[0].url_img + ".jpg"
             Picasso.with(this).load(imageUrl).into(bg_lists);
-        })
+        })*/
 
         groupRadio.clearCheck()
         groupRadio.setOnCheckedChangeListener(RadioGroup.OnCheckedChangeListener() { radioGroup: RadioGroup, i: Int ->
             val dataTime = preferences.getString("dataTime", "1")
+            val dataTime2 = preferences.getString("dataTime2", "1")
+            val dataTime3 = preferences.getString("dataTime3", "1")
+            val dataTime4 = preferences.getString("dataTime4", "1")
+            val dataTime5 = preferences.getString("dataTime5", "1")
             if (radioButton.isChecked) {
                 Log.v("checked", "Checked")
                 radioButton2.isChecked = false
-                if (dataTime != null) {
-                    database.reservas().getByDateChecked(zoneId, dataTime, "1").observe(
-                        this,
-                        Observer {
+                if (dataTime != null && dataTime2 != null && dataTime3 != null && dataTime4 != null && dataTime5!=null) {
+                    if (spinnerResult2.text == "1 dia") {
+                        database.reservas().getByDateChecked(zoneId, "1", dataTime).observe(this, {
                             getReservas = it
                             viewAdapter = ReservaAdapter(getReservas as ArrayList<Reserva>, this)
                             recyclerView.adapter = viewAdapter
                         })
+                    }
+                    if (spinnerResult2.text == "3 dias") {
+                        database.reservas().getByDateCheckedPer3Days(zoneId, "1", dataTime, dataTime2, dataTime3).observe(this, {
+                            getReservas = it
+                            viewAdapter = ReservaAdapter(getReservas as ArrayList<Reserva>, this)
+                            recyclerView.adapter = viewAdapter
+                        })
+                    }
+                    if (spinnerResult2.text == "5 dias") {
+                        database.reservas().getByDateCheckedPer5Days(zoneId, "1", dataTime, dataTime2, dataTime3, dataTime4, dataTime5).observe(this, {
+                            getReservas = it
+                            viewAdapter = ReservaAdapter(getReservas as ArrayList<Reserva>, this)
+                            recyclerView.adapter = viewAdapter
+                        })
+                    }
                 }
             } else if (radioButton2.isChecked) {
                 Log.v("checked2", "Checked2")
                 radioButton.isChecked = false
                 if (dataTime != null) {
-                    database.reservas().getByDateChecked(zoneId, dataTime, "0").observe(
-                        this,
-                        Observer {
+                    if (spinnerResult2.text == "1 dia") {
+                        database.reservas().getByDateChecked(zoneId, dataTime, "0").observe(this, {
                             getReservas = it
                             viewAdapter = ReservaAdapter(getReservas as ArrayList<Reserva>, this)
                             recyclerView.adapter = viewAdapter
                         })
+                    }
+                    if (spinnerResult2.text == "3 dias") {
+                        dataTime3?.let {
+                            if (dataTime2 != null) {
+                                database.reservas().getByDateCheckedPer3Days(zoneId, dataTime, dataTime2,
+                                    dataTime3, "0").observe(this, {
+                                    getReservas = it
+                                    viewAdapter = ReservaAdapter(getReservas as ArrayList<Reserva>, this)
+                                    recyclerView.adapter = viewAdapter
+                                })
+                            }
+                        }
+                    }
+                    if (spinnerResult2.text == "5 dias") {
+                        if (dataTime2 != null && dataTime3 != null && dataTime4 != null && dataTime5!=null) {
+                            database.reservas().getByDateCheckedPer5Days(zoneId, dataTime, dataTime2, dataTime3, dataTime4, dataTime5, "0").observe(this, {
+                                getReservas = it
+                                viewAdapter = ReservaAdapter(getReservas as ArrayList<Reserva>, this)
+                                recyclerView.adapter = viewAdapter
+                            })
+                        }
+                    }
                 }
             }
         })
 
-        listeners(zoneId)
+        //listeners(zoneId)
+        //getReservas()
+
+        syncDBLocalToDBServerBookingsChecked()
+        syncDBServerToDBLocalBookingsNoChecked()
+
+        selects()
     }
 
-    /*private fun showReser(){
-        val zoneId = this.intent.getIntExtra("zoneId", 1)
-        val checkin = this.intent.getIntExtra("check", 3)
+    private fun syncDBLocalToDBServerBookingsChecked(){
+        var listaReserva = emptyList<Reserva>()
+        reserva = ArrayList<Reserva>()
         val database = AppDatabase.getDatabase(this)
-        val dataTime = preferences.getString("dataTime", "1")
-        var getReservas = emptyList<Reserva>()
-        if (dataTime != null) {
-            Log.v("checked?", checkin.toString())
-            database.reservas().getByDateChecked(zoneId, dataTime, checkin.toString()).observe(
-                this,
-                Observer {
-                    getReservas = it
-                    viewAdapter = ReservaAdapter(getReservas as ArrayList<Reserva>, this)
-                    recyclerView.adapter = viewAdapter
-                })
+        val serviceImpl = ServiceImpl()
+        database.reservas().getByCheck1().observe(this, Observer {
+            listaReserva = it as ArrayList<Reserva>
+            for (i in 0 until listaReserva.size) {
+                Log.v("Update", "Entro: " + reserva)
+                serviceImpl.updateReserve(this, listaReserva[i]) { ->
+                    run {
+                        Log.v("UPDATED", "Updated: " + listaReserva[i].id)
+                    }
+                }
+            }
+        });
+    }
+
+    private fun syncDBServerToDBLocalBookingsNoChecked() {
+        val bicycleServiceImpl = ServiceImpl()
+        bicycleServiceImpl.getAllBookingsNoChecked(this) { response ->
+            run {
+                val database = AppDatabase.getDatabase(this)
+                CoroutineScope(Dispatchers.IO).launch{
+                    database.reservas().deleteNoChecked("0")
+                    Log.v("DBBorrao", "BD Borrada, reservas vacias personas")
+                    val reservaArray : ArrayList<Reserva>? = response
+                    delay(5000)
+                    if (reservaArray != null) {
+                        for (i in 0 until reservaArray.size) {
+                            Log.v("FUNCIONA", "Insertadas")
+                            database.reservas().insert(reservaArray[i])
+                        }
+                    }
+                }
+            }
         }
-    }*/
+    }
 
+    private fun selects(){
+        val typesOfNum2 = arrayOf("1 dia", "3 dias", "5 dias")
+        val arrayAdapter2 = ArrayAdapter(this, android.R.layout.simple_spinner_item, typesOfNum2)
 
-    private fun listeners(zoneId: Int) {
-        button2.setOnClickListener {
-            var getReservas = emptyList<Reserva>()
-            val localizador = localizadorReserva.text.toString()
-            val database = AppDatabase.getDatabase(this)
-            database.reservas().getByLocalizador(localizador).observe(this, Observer {
-                getReservas = it
-                viewAdapter = ReservaAdapter(getReservas as ArrayList<Reserva>, this)
-                recyclerView.adapter = viewAdapter
-            })
+        spinner.adapter = arrayAdapter2
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                spinnerResult2.text = typesOfNum2[position]
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
         }
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun onClickSheduleDate(v: View?) {
 
-        Log.v("date", "Paso por aqui")
         val year = selectedCalendar.get(Calendar.YEAR)
         val month = selectedCalendar.get(Calendar.MONTH)
         val dayOfMonth = selectedCalendar.get(Calendar.DAY_OF_MONTH)
@@ -194,27 +256,137 @@ class ListActivity : AppCompatActivity() {
                     d.twoDigits()
                 )
             )
+
             val opeIdPref = preferences.getInt("zoneIII", 0)
             var getReservas = emptyList<Reserva>()
             val database = AppDatabase.getDatabase(this)
-            database.reservas().getByDate(
-                opeIdPref, resources.getString(
-                    R.string.date_format,
-                    y,
-                    (m + 1).twoDigits(),
-                    d.twoDigits()
-                )
-            ).observe(this, Observer {
-                getReservas = it
-                viewAdapter = ReservaAdapter(getReservas as ArrayList<Reserva>, this)
-                recyclerView.adapter = viewAdapter
-                preferences["dataTime"] = resources.getString(
-                    R.string.date_format,
-                    y,
-                    (m + 1).twoDigits(),
-                    d.twoDigits()
-                )
-            })
+
+            if (spinnerResult2.text == "1 dia") {
+                database.reservas().getByDate(
+                    opeIdPref, resources.getString(
+                        R.string.date_format,
+                        y,
+                        (m + 1).twoDigits(),
+                        d.twoDigits()
+                    )
+                ).observe(this, Observer {
+                    getReservas = it
+                    viewAdapter = ReservaAdapter(getReservas as ArrayList<Reserva>, this)
+                    recyclerView.adapter = viewAdapter
+                    preferences["dataTime"] = resources.getString(
+                        R.string.date_format,
+                        y,
+                        (m + 1).twoDigits(),
+                        d.twoDigits()
+                    )
+                })
+            }
+            else if (spinnerResult2.text == "3 dias"){
+                database.reservas().getByDatePer3Days(
+                    opeIdPref, resources.getString(
+                        R.string.date_format,
+                        y,
+                        (m + 1).twoDigits(),
+                        d.twoDigits()
+                    ), resources.getString(
+                        R.string.date_format,
+                        y,
+                        (m + 1).twoDigits(),
+                        (d - 1).twoDigits()
+                    ), resources.getString(
+                        R.string.date_format,
+                        y,
+                        (m + 1).twoDigits(),
+                        (d - 2).twoDigits()
+                    )
+                ).observe(this, Observer {
+                    getReservas = it
+                    viewAdapter = ReservaAdapter(getReservas as ArrayList<Reserva>, this)
+                    recyclerView.adapter = viewAdapter
+                    preferences["dataTime"] = resources.getString(
+                        R.string.date_format,
+                        y,
+                        (m + 1).twoDigits(),
+                        d.twoDigits()
+                    )
+                    preferences["dataTime2"] = resources.getString(
+                        R.string.date_format,
+                        y,
+                        (m + 1).twoDigits(),
+                        (d - 1).twoDigits()
+                    )
+                    preferences["dataTime3"] = resources.getString(
+                        R.string.date_format,
+                        y,
+                        (m + 1).twoDigits(),
+                        (d - 2).twoDigits()
+                    )
+                })
+            }
+            else if (spinnerResult2.text == "5 dias"){
+                database.reservas().getByDatePer5Days(
+                    opeIdPref, resources.getString(
+                        R.string.date_format,
+                        y,
+                        (m + 1).twoDigits(),
+                        d.twoDigits()
+                    ), resources.getString(
+                        R.string.date_format,
+                        y,
+                        (m + 1).twoDigits(),
+                        (d - 1).twoDigits()
+                    ), resources.getString(
+                        R.string.date_format,
+                        y,
+                        (m + 1).twoDigits(),
+                        (d - 2).twoDigits()
+                    ), resources.getString(
+                        R.string.date_format,
+                        y,
+                        (m + 1).twoDigits(),
+                        (d - 3).twoDigits()
+                    ), resources.getString(
+                        R.string.date_format,
+                        y,
+                        (m + 1).twoDigits(),
+                        (d - 4).twoDigits()
+                    )
+                ).observe(this, Observer {
+                    getReservas = it
+                    viewAdapter = ReservaAdapter(getReservas as ArrayList<Reserva>, this)
+                    recyclerView.adapter = viewAdapter
+                    preferences["dataTime"] = resources.getString(
+                        R.string.date_format,
+                        y,
+                        (m + 1).twoDigits(),
+                        d.twoDigits()
+                    )
+                    preferences["dataTime2"] = resources.getString(
+                        R.string.date_format,
+                        y,
+                        (m + 1).twoDigits(),
+                        (d - 1).twoDigits()
+                    )
+                    preferences["dataTime3"] = resources.getString(
+                        R.string.date_format,
+                        y,
+                        (m + 1).twoDigits(),
+                        (d - 2).twoDigits()
+                    )
+                    preferences["dataTime4"] = resources.getString(
+                        R.string.date_format,
+                        y,
+                        (m + 1).twoDigits(),
+                        (d - 3).twoDigits()
+                    )
+                    preferences["dataTime5"] = resources.getString(
+                        R.string.date_format,
+                        y,
+                        (m + 1).twoDigits(),
+                        (d - 4).twoDigits()
+                    )
+                })
+            }
         }
 
         val datePickerDialog = DatePickerDialog(
@@ -249,6 +421,7 @@ class ListActivity : AppCompatActivity() {
         return obtenerFechaConFormato(formato, zonaHoraria)
     }
 }
+
 
 /*
 private fun getBookingsDate(zoneId: Int, prueba: String) {

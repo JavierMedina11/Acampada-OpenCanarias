@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/root_layout"
     android:background="@color/dark_green"
     tools:context=".controller.ui.ZoneActivity">
 
@@ -182,7 +183,7 @@
         android:layout_width="200dp"
         android:layout_height="135dp"
         android:layout_marginTop="632dp"
-        android:background="@drawable/help"
+        android:background="@drawable/search"
         android:textColor="@color/black"
         android:textSize="17sp"
         android:transitionName="buttonHelp"
@@ -395,5 +396,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.087"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <eightbitlab.com.blurview.BlurView
+        android:id="@+id/blurView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0"
+        app:blurOverlayColor="@color/color_overlay"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingClass">
+
+        <!--Any child View here, TabLayout for example. This View will NOT be blurred -->
+
+    </eightbitlab.com.blurview.BlurView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

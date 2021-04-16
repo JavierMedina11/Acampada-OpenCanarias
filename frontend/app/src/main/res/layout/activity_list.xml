@@ -36,7 +36,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/locationViewPager2"
         android:layout_width="448dp"
-        android:layout_height="425dp"
+        android:layout_height="500dp"
         android:paddingStart="60dp"
         android:paddingEnd="60dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -51,11 +51,11 @@
         android:layout_width="314dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="440dp"
+        android:layout_marginBottom="524dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent">
 
         <RadioButton
@@ -86,7 +86,7 @@
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/pruebaText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="92dp"
@@ -99,78 +99,82 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="265dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="184dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.109"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/input_search" />
-
-    <EditText
-        android:id="@+id/localizadorReserva"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="24dp"
-        android:hint=""
-        android:textAlignment="center"
-        android:textColor="@color/earth"
-        android:textColorHint="@color/earth"
-        android:textSize="13sp"
-        android:translationX="10dp"
-        android:translationY="-10dp"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
-        app:layout_constraintHorizontal_bias="0.333"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
-        android:background="@color/white"
-        android:text="Search"
-        android:textColor="@color/dark_green"
+        app:cardBackgroundColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.907"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <ImageView
-        android:id="@+id/imageView25"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:translationY="-10dp"
-        android:alpha=".57"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/time" />
+        <ImageView
+            android:id="@+id/imageView25"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:alpha=".57"
+            app:srcCompat="@drawable/true_time" />
 
-    <EditText
-        android:id="@+id/reservationDate"
-        android:layout_width="315dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="16dp"
-        android:clickable="true"
-        android:focusable="false"
-        android:inputType="date"
-        android:onClick="onClickSheduleDate"
-        android:text="Select Your Date"
-        android:textAlignment="center"
-        android:textColor="@color/earth"
-        android:textColorHint="@color/earth"
-        android:textColorLink="@color/earth"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/spinnerResult2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="250dp"
+            android:layout_marginTop="25dp"
+            android:text="TextView"
+            android:gravity="center"
+            android:shadowColor="@color/light_grey"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="6"
+            android:fontFamily="@font/quicksand_bold"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.954"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="235dp"
+            android:layout_marginTop="30dp"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/spinnerResult"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/reservationDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="15dp"
+            android:clickable="true"
+            android:focusable="false"
+            android:fontFamily="@font/quicksand_bold"
+            android:inputType="date"
+            android:onClick="onClickSheduleDate"
+            android:shadowColor="@color/light_grey"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="6"
+            android:text="Select Your Date"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textColorLink="@color/white"
+            android:textSize="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.385"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.cardview.widget.CardView>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

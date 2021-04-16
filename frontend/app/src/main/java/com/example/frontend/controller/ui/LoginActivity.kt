@@ -26,11 +26,6 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        //getDataLogin()
-
-        /*buttonSingIn.setOnClickListener {
-            goToMainActivity()
-        }*/
         buttonToZone.setOnClickListener {
             var operarioList = emptyList<Operario>()
             val database = AppDatabase.getDatabase(this)
