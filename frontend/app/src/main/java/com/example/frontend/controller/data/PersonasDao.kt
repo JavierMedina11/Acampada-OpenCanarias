@@ -22,4 +22,7 @@ interface PersonasDao {
 
     @Update()
     fun update(zone: Persona)
+
+    @Query("DELETE FROM personas")
+    fun delete()
 }

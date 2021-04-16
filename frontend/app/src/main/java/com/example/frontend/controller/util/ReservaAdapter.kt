@@ -6,6 +6,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.os.Build
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,6 +19,7 @@ import com.example.frontend.R
 import com.example.frontend.controller.io.ServiceImpl
 import com.example.frontend.controller.models.Reserva
 import com.example.frontend.controller.ui.ReservaDetalladaActivity
+import com.example.frontend.controller.util.PreferenceHelper.set
 import com.squareup.picasso.Picasso
 
 class ReservaAdapter(var reservaList: ArrayList<Reserva>, val context: Context): RecyclerView.Adapter<ReservaAdapter.ViewHolder>() {
@@ -51,7 +53,6 @@ class ReservaAdapter(var reservaList: ArrayList<Reserva>, val context: Context):
         @SuppressLint("ResourceAsColor")
         fun bindView(b: Reserva, context: Context){
             val roomServiceImpl = ServiceImpl()
-
             val entrada: TextView = itemView.findViewById(R.id.textEntrada)
             val salida: TextView = itemView.findViewById(R.id.textEntrada2)
             val apellidos: TextView = itemView.findViewById(R.id.textEntrada3)
@@ -85,8 +86,10 @@ class ReservaAdapter(var reservaList: ArrayList<Reserva>, val context: Context):
 
             roomServiceImpl.getPersonById(context, b.id_persona) { response ->
                 run {
+                    Log.v("dadas", "Hola que tal ?")
                     if (response != null) {
                         val url = "https://cryptic-dawn-95434.herokuapp.com/img/"
+                        Log.v("dadas", "dddd")
                         val name: TextView = itemView.findViewById(R.id.textEntrada3)
                         val apellidos: TextView = itemView.findViewById(R.id.textEntrada4)
                         val dni: TextView = itemView.findViewById(R.id.textDni)
@@ -100,8 +103,10 @@ class ReservaAdapter(var reservaList: ArrayList<Reserva>, val context: Context):
                         Picasso.with(context).load(imageUrl).into(imagePerson);
                     }
                     itemView.setOnClickListener {
+                        //Log.v("dadas", "dddddddddddd")
+                        val preferences = PreferenceHelper.defaultPrefs(context)
                         val intent = Intent(context, ReservaDetalladaActivity::class.java)
-                        intent.putExtra("reservaId", b.id)
+                        preferences["reservaSearchId"] = b.id
                         intent.putExtra("localizador", b.localizador_reserva)
                         intent.putExtra("checkin", b.checkin)
                         intent.putExtra("zoneId", b.id_zona)
@@ -109,7 +114,6 @@ class ReservaAdapter(var reservaList: ArrayList<Reserva>, val context: Context):
                         intent.putExtra("personName", response?.name)
                         intent.putExtra("state", "Showing")
                         context.startActivity(intent)
-
                     }
                 }
             }

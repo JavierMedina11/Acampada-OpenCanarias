@@ -17,6 +17,7 @@ import com.example.frontend.controller.models.Reserva
 import androidx.lifecycle.Observer
 import com.example.frontend.controller.models.Persona
 import com.example.frontend.controller.models.Zone
+import com.example.frontend.controller.util.PreferenceHelper
 import com.opencanarias.pruebasync.util.AppDatabase
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_reserva_detallada.*
@@ -28,6 +29,10 @@ import java.util.*
 
 class ReservaDetalladaActivity : AppCompatActivity() {
 
+    private val preferences by lazy {
+        PreferenceHelper.defaultPrefs(this)
+    }
+
     private lateinit var liveData: LiveData<Zone>
 
     @RequiresApi(Build.VERSION_CODES.N)
@@ -35,7 +40,8 @@ class ReservaDetalladaActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_reserva_detallada)
         val timeZone= "GMT+1"
-        val reservaId = this.intent.getIntExtra("reservaId", 1)
+        //val reservaId = this.intent.getIntExtra("reservaId", 1)
+        val reservaId = preferences.getInt("reservaSearchId", 1)
         //getZone(zoneId)
 
         //getBooking(reservaId)
@@ -104,7 +110,7 @@ class ReservaDetalladaActivity : AppCompatActivity() {
                 CoroutineScope(Dispatchers.IO).launch {
                     database.reservas().update(reserva)
                 }
-                val intent = Intent(this, ListActivity::class.java)
+                val intent = Intent(this, ZoneActivity::class.java)
                 startActivity(intent)
                 finish()
             }

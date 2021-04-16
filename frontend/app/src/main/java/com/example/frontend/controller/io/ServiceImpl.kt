@@ -44,6 +44,32 @@ class ServiceImpl: IVolleyService {
         ServiceSingleton.getInstance(context).addToRequestQueue(arrayRequest)
     }
 
+    override fun getAllPerson(context: Context, completionHandler: (response: ArrayList<Persona>?) -> Unit) {
+        val path = ServiceSingleton.getInstance(context).baseUrl + "persona"
+        Log.v("Path: ", path)
+        val arrayRequest = JsonArrayRequest(Request.Method.GET, path, null,
+            { response ->
+                val zoneArray : JSONArray = response
+                var zones: ArrayList<Persona> = ArrayList()
+                for (i in 0 until zoneArray.length()) {
+                    val zone = zoneArray.getJSONObject(i)
+                    val id = zone.getInt("id")
+                    val name = zone.getString("nombre")
+                    val apellidos = zone.getString("apellidos")
+                    val dni = zone.getString("dni")
+                    val url_img = zone.getString("url_img")
+
+                    zones.add(Persona(id, name, apellidos, dni, url_img))
+                }
+                completionHandler(zones)
+            },
+            { error ->
+                Log.v("Error", "Error on")
+                completionHandler(ArrayList<Persona>())
+            })
+        ServiceSingleton.getInstance(context).addToRequestQueue(arrayRequest)
+    }
+
     override fun getZoneById(context: Context, zoneId: Int, completionHandler: (response: Zone?) -> Unit) {
         val path = ServiceSingleton.getInstance(context).baseUrl + "zona/" + zoneId
         val objectRequest = JsonObjectRequest(Request.Method.GET, path, null,
@@ -105,6 +131,66 @@ class ServiceImpl: IVolleyService {
                 { error ->
                     completionHandler(null)
                 })
+        ServiceSingleton.getInstance(context).addToRequestQueue(objectRequest)
+    }
+
+    override fun getAllBookings(context: Context, completionHandler: (response: ArrayList<Reserva>?) -> Unit) {
+        val path = ServiceSingleton.getInstance(context).baseUrl + "reserva"
+        val objectRequest = JsonArrayRequest(Request.Method.GET, path, null,
+            { response ->
+                val reservaArray: JSONArray = response
+                var reservas: ArrayList<Reserva> = ArrayList()
+                for (i in 0 until reservaArray.length()) {
+                    val reservaAr = reservaArray.getJSONObject(i)
+                    val id = reservaAr.getInt("id")
+                    val id_persona = reservaAr.getInt("id_persona")
+                    val dni_persona = reservaAr.getString("dni_persona")
+                    val fecha_entrada = reservaAr.getString("fecha_entrada")
+                    val fecha_salida = reservaAr.getString("fecha_salida")
+                    val localizador_reserva = reservaAr.getString("localizador_reserva")
+                    val num_personas = reservaAr.getInt("num_personas")
+                    val num_vehiculos = reservaAr.getInt("num_vehiculos")
+                    val checkin = reservaAr.getString("checkin")
+                    val fecha_checkin = reservaAr.getString("fecha_checkin")
+                    val id_zona = reservaAr.getInt("id_zona")
+
+                    reservas.add(Reserva(id,id_persona,dni_persona,fecha_entrada,fecha_salida, localizador_reserva,num_personas,num_vehiculos,checkin,fecha_checkin,id_zona))
+                }
+                completionHandler(reservas)
+            },
+            { error ->
+                completionHandler(null)
+            })
+        ServiceSingleton.getInstance(context).addToRequestQueue(objectRequest)
+    }
+
+    override fun getAllBookingsNoChecked(context: Context, completionHandler: (response: ArrayList<Reserva>?) -> Unit) {
+        val path = ServiceSingleton.getInstance(context).baseUrl + "reserva-no-check"
+        val objectRequest = JsonArrayRequest(Request.Method.GET, path, null,
+            { response ->
+                val reservaArray: JSONArray = response
+                var reservas: ArrayList<Reserva> = ArrayList()
+                for (i in 0 until reservaArray.length()) {
+                    val reservaAr = reservaArray.getJSONObject(i)
+                    val id = reservaAr.getInt("id")
+                    val id_persona = reservaAr.getInt("id_persona")
+                    val dni_persona = reservaAr.getString("dni_persona")
+                    val fecha_entrada = reservaAr.getString("fecha_entrada")
+                    val fecha_salida = reservaAr.getString("fecha_salida")
+                    val localizador_reserva = reservaAr.getString("localizador_reserva")
+                    val num_personas = reservaAr.getInt("num_personas")
+                    val num_vehiculos = reservaAr.getInt("num_vehiculos")
+                    val checkin = reservaAr.getString("checkin")
+                    val fecha_checkin = reservaAr.getString("fecha_checkin")
+                    val id_zona = reservaAr.getInt("id_zona")
+
+                    reservas.add(Reserva(id,id_persona,dni_persona,fecha_entrada,fecha_salida, localizador_reserva,num_personas,num_vehiculos,checkin,fecha_checkin,id_zona))
+                }
+                completionHandler(reservas)
+            },
+            { error ->
+                completionHandler(null)
+            })
         ServiceSingleton.getInstance(context).addToRequestQueue(objectRequest)
     }
 
@@ -222,6 +308,7 @@ class ServiceImpl: IVolleyService {
         val bookingJSON: JSONObject = JSONObject()
         bookingJSON.put("id", reserva.id.toString())
         bookingJSON.put("id_persona", reserva.id_persona.toString())
+        bookingJSON.put("dni_persona", reserva.dni_persona)
         bookingJSON.put("fecha_entrada", reserva.fecha_entrada)
         bookingJSON.put("fecha_salida", reserva.fecha_salida)
         bookingJSON.put("localizador_reserva", reserva.localizador_reserva)
@@ -242,6 +329,7 @@ class ServiceImpl: IVolleyService {
         val bookingJSON: JSONObject = JSONObject()
         bookingJSON.put("id", reserva.id.toString())
         bookingJSON.put("id_persona", reserva.id_persona.toString())
+        bookingJSON.put("dni_persona", reserva.dni_persona)
         bookingJSON.put("fecha_entrada", reserva.fecha_entrada)
         bookingJSON.put("fecha_salida", reserva.fecha_salida)
         bookingJSON.put("localizador_reserva", reserva.localizador_reserva)
@@ -349,8 +437,6 @@ class ServiceImpl: IVolleyService {
         operarioJson.put("email",operario.email)
         operarioJson.put("password",operario.password)
 
-        Log.v("createenService","Operario: "+operarioJson)
-
         val objectRequest = JsonObjectRequest(Request.Method.POST, path, operarioJson,
                 { response -> completionHandler()
                     val plus = response?.opt("res")
@@ -375,14 +461,10 @@ class ServiceImpl: IVolleyService {
         zoneJson.put("localizacion",zone.localizacion)
         zoneJson.put("url_img",zone.url_img)
 
-        Log.v("createenZoneSer","Zona: "+ zoneJson)
-
         val objectRequest = JsonObjectRequest(Request.Method.POST, path, zoneJson,
                 { response -> completionHandler()
-                    Log.v("Addzona","Creado")
                 },
                 { error -> completionHandler()
-                    Log.v("Addzona","Roto")
                 })
         ServiceSingleton.getInstance(context).addToRequestQueue(objectRequest)
     }
@@ -403,12 +485,9 @@ class ServiceImpl: IVolleyService {
         val path = ServiceSingleton.getInstance(context).baseUrl + "reserva/" + reservaId
         val objectRequest = JsonObjectRequest(Request.Method.DELETE, path, null,
                 { response ->
-                    Log.v("Hola caracola", "se borró")
                     completionHandler()
                 },
                 { error ->
-                    Log.v("Hola caracola", "dió error")
-
                     completionHandler()
                 })
         ServiceSingleton.getInstance(context).addToRequestQueue(objectRequest)

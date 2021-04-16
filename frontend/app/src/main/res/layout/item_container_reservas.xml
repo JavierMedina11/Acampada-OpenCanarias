@@ -57,8 +57,8 @@
 
         <TextView
             android:id="@+id/textEntrada"
-            android:layout_width="62dp"
-            android:layout_height="19dp"
+            android:layout_width="83dp"
+            android:layout_height="20dp"
             android:fontFamily="@font/quicksand_light"
             android:textAlignment="textEnd"
             android:textColor="@color/black"
@@ -67,15 +67,15 @@
             android:translationY="-5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.357"
+            app:layout_constraintHorizontal_bias="0.388"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.2" />
+            app:layout_constraintVertical_bias="0.25" />
 
         <TextView
             android:id="@+id/textEntrada2"
-            android:layout_width="62dp"
-            android:layout_height="19dp"
+            android:layout_width="80dp"
+            android:layout_height="20dp"
             android:fontFamily="@font/quicksand_light"
             android:textColor="@color/black"
             android:textSize="13sp"
@@ -85,7 +85,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/textSeparador"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.123" />
+            app:layout_constraintVertical_bias="0.169" />
 
         <TextView
             android:id="@+id/textDni"
@@ -120,7 +120,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/textEntrada"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.125" />
+            app:layout_constraintVertical_bias="0.171" />
 
         <ImageView
             android:id="@+id/imagePerson"

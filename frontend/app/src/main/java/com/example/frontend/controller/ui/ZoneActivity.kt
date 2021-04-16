@@ -1,41 +1,47 @@
 package com.example.frontend.controller.ui
 
 import android.annotation.SuppressLint
+import android.app.DownloadManager
+import android.content.Context
 import android.content.Intent
 import android.graphics.Typeface
+import android.graphics.drawable.Drawable
+import android.net.ConnectivityManager
+import android.net.ConnectivityManager.NetworkCallback
+import android.net.Network
+import android.net.NetworkRequest
 import android.os.Build
 import android.os.Bundle
+import android.transition.Slide
+import android.transition.TransitionManager
 import android.util.Log
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.Toast
+import android.view.Gravity
+import android.view.LayoutInflater
+import android.view.View
+import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.OrientationHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.example.frontend.R
 import com.example.frontend.controller.io.ServiceImpl
-import com.example.frontend.controller.models.Operario
 import com.example.frontend.controller.models.Persona
 import com.example.frontend.controller.models.Reserva
 import com.example.frontend.controller.models.Zone
-import com.example.frontend.controller.util.ZoneAdapter
-import com.example.frontend.databinding.ActivityZoneBinding
-import com.google.zxing.integration.android.IntentIntegrator
 import com.example.frontend.controller.util.PreferenceHelper
 import com.example.frontend.controller.util.PreferenceHelper.set
+import com.example.frontend.controller.util.ZoneAdapter
+import com.google.zxing.integration.android.IntentIntegrator
 import com.opencanarias.pruebasync.util.AppDatabase
-import com.squareup.picasso.Picasso
+import eightbitlab.com.blurview.RenderScriptBlur
 import kotlinx.android.synthetic.main.activity_list.*
 import kotlinx.android.synthetic.main.activity_zone.*
+import kotlinx.android.synthetic.main.another_view.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import org.json.JSONArray
+
 
 class ZoneActivity : AppCompatActivity() {
 
@@ -69,10 +75,10 @@ class ZoneActivity : AppCompatActivity() {
         zones = ArrayList<Zone>()
         val database = AppDatabase.getDatabase(this)
 
-        database.zonas().getAll().observe(this,  Observer{
+        database.zonas().getAll().observe(this, Observer {
             listaZones = it as ArrayList<Zone>
 
-            val adapter =  ZoneAdapter(listaZones as ArrayList<Zone>, this)
+            val adapter = ZoneAdapter(listaZones as ArrayList<Zone>, this)
             val view_pager: ViewPager2 = findViewById(R.id.view_pager)
             viewPager = findViewById<ViewPager2>(R.id.view_pager)
             viewPager.adapter = adapter
@@ -93,7 +99,8 @@ class ZoneActivity : AppCompatActivity() {
                             scaleX = scaleFactor
                             scaleY = scaleFactor
 
-                            alpha = (MIN_ALPHA + (((scaleFactor - MIN_SCALE) / (1 - MIN_SCALE)) * (1 - MIN_ALPHA)))
+                            alpha =
+                                (MIN_ALPHA + (((scaleFactor - MIN_SCALE) / (1 - MIN_SCALE)) * (1 - MIN_ALPHA)))
                         }
                         else -> {
                             alpha = 0f
@@ -103,47 +110,86 @@ class ZoneActivity : AppCompatActivity() {
             }
         })
 
-        val num : Int = this.intent.getIntExtra("num",0)
+        val num : Int = this.intent.getIntExtra("num", 0)
 
         val tokenGE : String? = this.intent.getStringExtra("api_token")
         val opeIdGE : String = this.intent.getStringExtra("opeId").toString()
-        Log.v("ZoneActi GetEx: ",opeIdGE)
-        Log.v("ZoneActi GetEx: ",tokenGE.toString())
 
         if (num==1){
-            Log.v("Create Pref","Create Pref")
             createSessionPreference(tokenGE.toString(), opeIdGE.toInt())
         }
 
-        val opeIdPref = preferences.getInt("opeId", 0)
-        val tokenPref = preferences.getString("tokenPref", null)
-        Log.v("ZoneActi ID pref: ", opeIdPref.toString())
-        Log.v("ZoneActi token pref: ",tokenPref.toString())
-
-        //getAllZones(tokenGE.toString())
         listeners()
-        getZones()
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+            checkConnection()
+        }
+        blured()
+
     }
 
-    private fun getZones() {
-        val tokenPref = preferences.getString("tokenPref", null)
+    @RequiresApi(Build.VERSION_CODES.N)
+    private fun checkConnection(){
+        var isNetworkConnected = false
+        val context: Context
+        val wifi = DownloadManager.Request.NETWORK_WIFI
+        val networkMobile = DownloadManager.Request.NETWORK_MOBILE
+
+        val connectivityManager = getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
+        val builder = NetworkRequest.Builder()
+
+        try {
+            connectivityManager.registerDefaultNetworkCallback(object : NetworkCallback() {
+                override fun onAvailable(network: Network) {
+                    isNetworkConnected = true
+                    Log.v("Wifi", wifi.toString())
+                    syncDBServerToDBLocalPersons()
+                    syncDBServerToDBLocalZones()
+                }
+
+                override fun onLost(network: Network) {
+                    isNetworkConnected = false
+                    Log.v("networkMobile", networkMobile.toString())
+                }
+            });
+            isNetworkConnected = false
+        }catch (e: Exception){
+            isNetworkConnected = false;
+        }
+    }
+
+    private fun syncDBServerToDBLocalPersons() {
         val bicycleServiceImpl = ServiceImpl()
-        bicycleServiceImpl.getAll(this, tokenPref.toString()) { response ->
+        bicycleServiceImpl.getAllPerson(this) { response ->
             run {
                 val database = AppDatabase.getDatabase(this)
-                val zoneArray : ArrayList<Zone>? = response
-                var zones: ArrayList<Zone> = ArrayList()
-                if (zoneArray != null) {
-                    for (i in 0 until zoneArray.size) {
-                        Log.v("zona", zoneArray[i].toString())
-                        CoroutineScope(Dispatchers.IO).launch{
-                            database.zonas().insert( zoneArray[i])
+                CoroutineScope(Dispatchers.IO).launch{
+                    database.personas().delete()
+                    val reservaArray : ArrayList<Persona>? = response
+                    if (reservaArray != null) {
+                        for (i in 0 until reservaArray.size) {
+                            database.personas().insert(reservaArray[i])
                         }
                     }
                 }
-                /*val url = "http://192.168.1.129:8000/img/"
-                val imageUrl = url + response?.url_img + ".jpg"
-                Picasso.with(this).load(imageUrl).into(bg_lists);*/
+            }
+        }
+    }
+
+    private fun syncDBServerToDBLocalZones() {
+        val tokenPref = preferences.getString("tokenPref", null)
+        val zoneImpl = ServiceImpl()
+        zoneImpl.getAll(this, tokenPref.toString()) { response ->
+            run {
+                val database = AppDatabase.getDatabase(this)
+                CoroutineScope(Dispatchers.IO).launch{
+                    database.zonas().delete()
+                    val zoneArray : ArrayList<Zone>? = response
+                    if (zoneArray != null) {
+                        for (i in 0 until zoneArray.size) {
+                            database.zonas().insert(zoneArray[i])
+                        }
+                    }
+                }
             }
         }
     }
@@ -157,17 +203,87 @@ class ZoneActivity : AppCompatActivity() {
     }
 
     private fun listeners() {
-        val helpBtn = findViewById<ImageButton>(R.id.buttonToHelp)
-        helpBtn.setOnClickListener {
-            val intent = Intent(this, WebView::class.java)
-            startActivity(intent)
+        buttonToHelp.setOnClickListener {
+                val inflater: LayoutInflater = getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+                val view = inflater.inflate(R.layout.another_view, null)
+                val popupWindow = PopupWindow(
+                    view,
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT
+                )
+
+                popupWindow.setFocusable(true)
+                popupWindow.update()
+                blurView.setAlpha(1f)
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    popupWindow.elevation = 10.0F
+                }
+
+                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                    val slideIn = Slide()
+                    slideIn.slideEdge = Gravity.TOP
+                    popupWindow.enterTransition = slideIn
+
+                    val slideOut = Slide()
+                    slideOut.slideEdge = Gravity.RIGHT
+                    popupWindow.exitTransition = slideOut
+                }
+
+                val tv = view.findViewById<TextView>(R.id.text_viewDniOLocalizador)
+                val buttonPopup = view.findViewById<ImageButton>(R.id.button_popup)
+                val buttonPopup2 = view.findViewById<ImageButton>(R.id.buttonClosePopUpS)
+                tv.typeface = Typeface.createFromAsset(assets, "fonts/ocra_exp.TTF")
+
+                buttonPopup.setOnClickListener{
+                    var getReservasByLocalizador = emptyList<Reserva>()
+                    val localizador = view.findViewById<TextView>(R.id.editTextPutoAmo).text.toString()
+
+                    val database = AppDatabase.getDatabase(this)
+                    val preferences = PreferenceHelper.defaultPrefs(this)
+
+                    tv.setText(localizador)
+                    database.reservas().getByLocalizador(localizador).observe(this, Observer {
+                        getReservasByLocalizador = it
+                        preferences["reservaSearchId"] = getReservasByLocalizador[0].id
+                        val intent = Intent(this, ReservaDetalladaActivity::class.java)
+                        startActivity(intent)
+                    })
+                    blurView.setAlpha(0f)
+                }
+
+                buttonPopup2.setOnClickListener{
+                    popupWindow.dismiss()
+                    Toast.makeText(applicationContext, "Popup closed", Toast.LENGTH_SHORT).show()
+                }
+
+                popupWindow.setOnDismissListener {
+                    blurView.setAlpha(0f)
+                    Toast.makeText(applicationContext, "Popup closed", Toast.LENGTH_SHORT).show()
+                }
+
+                TransitionManager.beginDelayedTransition(root_layout)
+                popupWindow.showAtLocation(root_layout, Gravity.CENTER, 0, 0)
         }
 
-        val profibleBtn = findViewById<ImageView>(R.id.avatarProfile2)
-        profibleBtn.setOnClickListener {
+        avatarProfile2.setOnClickListener {
             val intent = Intent(this, UserProfileActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    private fun blured(){
+        val radius = 21f
+
+        val decorView: View = window.decorView
+        val windowBackground: Drawable = decorView.getBackground()
+
+        blurView.setupWith(decorView.findViewById(android.R.id.content))
+            .setFrameClearDrawable(windowBackground)
+            .setBlurAlgorithm(RenderScriptBlur(this))
+            .setBlurRadius(radius)
+            .setBlurAutoUpdate(true)
+            .setHasFixedTransformationMatrix(true) // Or false if it's in a scrolling container or might be animated
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

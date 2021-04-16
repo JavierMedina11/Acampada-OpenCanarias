@@ -8,7 +8,7 @@ import com.example.frontend.controller.models.Zone
 @Dao
 interface ZonasDao {
     @Query("SELECT * FROM zonas")
-   fun getAll(): LiveData<List<Zone>>
+    fun getAll(): LiveData<List<Zone>>
 
     @Query("SELECT * FROM zonas  WHERE id = :id")
     fun getById(id: Int): LiveData<List<Zone>>
@@ -18,4 +18,7 @@ interface ZonasDao {
 
     @Update()
     fun update(zone: Zone)
+
+    @Query("DELETE FROM zonas")
+    fun delete()
 }
