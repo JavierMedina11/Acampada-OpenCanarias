@@ -82,7 +82,12 @@ class ListActivity : AppCompatActivity() {
 
         //getZone(zoneId)
         val timeZone = "GMT+1"
-        val prueba = "1";
+        val prueba = "1"
+        val dataTime = preferences.getString("dataTime", "2021-03-24")
+        val dataTime2 = preferences.getString("dataTime2", "1")
+        val dataTime3 = preferences.getString("dataTime3", "1")
+        val dataTime4 = preferences.getString("dataTime4", "1")
+        val dataTime5 = preferences.getString("dataTime5", "1")
 
         var listaZones = emptyList<Zone>()
 
@@ -152,8 +157,8 @@ class ListActivity : AppCompatActivity() {
                     if (spinnerResult2.text == "3 dias") {
                         dataTime3?.let {
                             if (dataTime2 != null) {
-                                database.reservas().getByDateCheckedPer3Days(zoneId, dataTime, dataTime2,
-                                    dataTime3, "0").observe(this, {
+                                database.reservas().getByDateCheckedPer3Days(zoneId, "0", dataTime, dataTime2,
+                                    dataTime3).observe(this, {
                                     getReservas = it
                                     viewAdapter = ReservaAdapter(getReservas as ArrayList<Reserva>, this)
                                     recyclerView.adapter = viewAdapter
@@ -163,7 +168,7 @@ class ListActivity : AppCompatActivity() {
                     }
                     if (spinnerResult2.text == "5 dias") {
                         if (dataTime2 != null && dataTime3 != null && dataTime4 != null && dataTime5!=null) {
-                            database.reservas().getByDateCheckedPer5Days(zoneId, dataTime, dataTime2, dataTime3, dataTime4, dataTime5, "0").observe(this, {
+                            database.reservas().getByDateCheckedPer5Days(zoneId, "0", dataTime, dataTime2, dataTime3, dataTime4, dataTime5).observe(this, {
                                 getReservas = it
                                 viewAdapter = ReservaAdapter(getReservas as ArrayList<Reserva>, this)
                                 recyclerView.adapter = viewAdapter
@@ -174,11 +179,12 @@ class ListActivity : AppCompatActivity() {
             }
         })
 
+
         //listeners(zoneId)
         //getReservas()
 
         syncDBLocalToDBServerBookingsChecked()
-        syncDBServerToDBLocalBookingsNoChecked()
+        //syncDBServerToDBLocalBookingsNoChecked()
 
         selects()
     }
@@ -190,6 +196,7 @@ class ListActivity : AppCompatActivity() {
         val serviceImpl = ServiceImpl()
         database.reservas().getByCheck1().observe(this, Observer {
             listaReserva = it as ArrayList<Reserva>
+
             for (i in 0 until listaReserva.size) {
                 Log.v("Update", "Entro: " + reserva)
                 serviceImpl.updateReserve(this, listaReserva[i]) { ->
@@ -199,7 +206,7 @@ class ListActivity : AppCompatActivity() {
                 }
             }
         });
-    }
+    }/*
 
     private fun syncDBServerToDBLocalBookingsNoChecked() {
         val bicycleServiceImpl = ServiceImpl()
@@ -220,7 +227,7 @@ class ListActivity : AppCompatActivity() {
                 }
             }
         }
-    }
+    }*/
 
     private fun selects(){
         val typesOfNum2 = arrayOf("1 dia", "3 dias", "5 dias")

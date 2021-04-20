@@ -245,6 +245,7 @@ class ZoneActivity : AppCompatActivity() {
                     tv.setText(localizador)
                     database.reservas().getByLocalizador(localizador).observe(this, Observer {
                         getReservasByLocalizador = it
+                        Log.v("PRUEBAAAAAAA", "Prueba: " + getReservasByLocalizador[0].id)
                         preferences["reservaSearchId"] = getReservasByLocalizador[0].id
                         val intent = Intent(this, ReservaDetalladaActivity::class.java)
                         startActivity(intent)
