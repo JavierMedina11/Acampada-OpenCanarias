@@ -178,16 +178,20 @@ class ZoneActivity : AppCompatActivity() {
     private fun syncDBServerToDBLocalZones() {
         val tokenPref = preferences.getString("tokenPref", null)
         val zoneImpl = ServiceImpl()
+        Log.v("PRUEBAAAAAAA", "Llego 1")
         zoneImpl.getAll(this, tokenPref.toString()) { response ->
             run {
                 val database = AppDatabase.getDatabase(this)
+                Log.v("PRUEBAAAAAAA", "Llego 2")
                 CoroutineScope(Dispatchers.IO).launch{
                     database.zonas().delete()
+                    Log.v("PRUEBAAAAAAA", "Llego 3")
                     val zoneArray : ArrayList<Zone>? = response
                     if (zoneArray != null) {
                         for (i in 0 until zoneArray.size) {
                             database.zonas().insert(zoneArray[i])
                         }
+                        Log.v("PRUEBAAAAAAA", "Prueba: " + zoneArray.size)
                     }
                 }
             }
@@ -246,6 +250,7 @@ class ZoneActivity : AppCompatActivity() {
                     database.reservas().getByLocalizador(localizador).observe(this, Observer {
                         getReservasByLocalizador = it
                         Log.v("PRUEBAAAAAAA", "Prueba: " + getReservasByLocalizador[0].id)
+                        popupWindow.dismiss()
                         preferences["reservaSearchId"] = getReservasByLocalizador[0].id
                         val intent = Intent(this, ReservaDetalladaActivity::class.java)
                         startActivity(intent)
