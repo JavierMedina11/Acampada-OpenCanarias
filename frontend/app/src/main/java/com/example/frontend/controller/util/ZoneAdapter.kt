@@ -1,5 +1,6 @@
 package com.example.frontend.controller.util
 
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.util.Log
@@ -8,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.frontend.R
 import com.example.frontend.controller.models.Zone
@@ -42,12 +44,31 @@ class ZoneAdapter(var zoneLists: ArrayList<Zone>, val context: Context): Recycle
             textSubname.text = b.localizacion
 
             itemView.setOnClickListener {
-                val intent = Intent(context, ListActivity::class.java)
+                val builder = AlertDialog.Builder(context)
+                builder.setTitle("Delete")
+                builder.setMessage("Are you sure to delete you account ?")
+                Log.v("dadas", "DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD")
+                builder.setPositiveButton(android.R.string.yes) { dialog, which ->
+                    Toast.makeText(
+                        context,
+                        android.R.string.yes, Toast.LENGTH_SHORT
+                    ).show()
+                    Log.v("Edit", "borrao")
+                }
+
+                builder.setNegativeButton(android.R.string.no) { dialog, which ->
+                    Toast.makeText(
+                        context,
+                        android.R.string.no, Toast.LENGTH_SHORT
+                    ).show()
+                }
+                builder.show()
+                /*val intent = Intent(context, ListActivity::class.java)
                 intent.putExtra("zoneId", b.id)
                 intent.putExtra("nombre", b.nombre)
                 intent.putExtra("localizacion", b.localizacion)
                 intent.putExtra("state", "Showing")
-                context.startActivity(intent)
+                context.startActivity(intent)*/
             }
         }
     }

@@ -24,7 +24,8 @@
         android:theme="@style/Theme.AppCompat.NoActionBar"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name=".controller.ui.PopUpWindows"></activity>
+        <activity android:name=".controller.ui.ExitListActivity"></activity>
+        <activity android:name=".controller.ui.PopUpWindows" />
         <activity android:name=".controller.ui.PDFView" />
         <activity android:name=".controller.ui.ReservaDetalladaActivity" />
         <activity android:name=".controller.ui.UserProfileActivity" />
