@@ -1,6 +1,7 @@
 package com.example.frontend.controller.util
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
@@ -13,6 +14,7 @@ import android.view.ViewGroup
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.example.frontend.R
@@ -51,7 +53,7 @@ class ReservaAdapter(var reservaList: ArrayList<Reserva>, val context: Context):
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         @RequiresApi(Build.VERSION_CODES.M)
         @SuppressLint("ResourceAsColor")
-        fun bindView(b: Reserva, context: Context){
+        fun bindView(b: Reserva, context: Context) {
             val roomServiceImpl = ServiceImpl()
             val entrada: TextView = itemView.findViewById(R.id.textEntrada)
             val salida: TextView = itemView.findViewById(R.id.textEntrada2)
@@ -65,7 +67,7 @@ class ReservaAdapter(var reservaList: ArrayList<Reserva>, val context: Context):
             entrada.text = b.fecha_entrada
             salida.text = b.fecha_salida
 
-            if(b.checkin == "1"){
+            if (b.checkin == "1") {
                 entrada.setTextColor(Color.WHITE)
                 salida.setTextColor(Color.WHITE)
                 dni.setTextColor(Color.WHITE)
@@ -74,7 +76,7 @@ class ReservaAdapter(var reservaList: ArrayList<Reserva>, val context: Context):
                 separador.setTextColor(Color.WHITE)
                 kbv.setBackgroundResource(R.drawable.check_in)
                 person.setForeground(Drawable.createFromPath("@drawable/rounded_image_view2"))
-            }else{
+            } else {
                 entrada.setTextColor(Color.BLACK)
                 salida.setTextColor(Color.BLACK)
                 dni.setTextColor(Color.BLACK)
@@ -86,7 +88,6 @@ class ReservaAdapter(var reservaList: ArrayList<Reserva>, val context: Context):
 
             roomServiceImpl.getPersonById(context, b.id_persona) { response ->
                 run {
-                    Log.v("dadas", "Hola que tal ?")
                     if (response != null) {
                         val url = "https://cryptic-dawn-95434.herokuapp.com/img/"
                         Log.v("dadas", "dddd")
@@ -102,8 +103,9 @@ class ReservaAdapter(var reservaList: ArrayList<Reserva>, val context: Context):
                         val imageUrl = url + response.url_img + ".png"
                         Picasso.with(context).load(imageUrl).into(imagePerson);
                     }
+
                     itemView.setOnClickListener {
-                        //Log.v("dadas", "dddddddddddd")
+                        Log.v("dadas", "dddddddddddd")
                         val preferences = PreferenceHelper.defaultPrefs(context)
                         val intent = Intent(context, ReservaDetalladaActivity::class.java)
                         preferences["reservaSearchId"] = b.id
@@ -119,5 +121,4 @@ class ReservaAdapter(var reservaList: ArrayList<Reserva>, val context: Context):
             }
         }
     }
-
-}
+    }
