@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linear_layout"
+    android:layout_width="300dp"
+    android:layout_height="400dp"
+    android:background="@drawable/prueba_drawable"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <TextView
+        android:id="@+id/textEscoja"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="21dp"
+        android:layout_marginEnd="20dp"
+        android:gravity="center"
+        android:text="Escoja una opcion"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:translationY="50dp" />
+
+    <ImageButton
+        android:id="@+id/button_popupr"
+        android:layout_width="300dp"
+        android:layout_height="165dp"
+        android:layout_below="@+id/textEscoja"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="38dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/fecha_entrada"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        android:transitionName="buttonHelp"
+        android:translationY="00dp" />
+
+    <ImageButton
+        android:id="@+id/button_popuprrr"
+        android:layout_width="300dp"
+        android:layout_height="165dp"
+        android:layout_below="@+id/button_popupr"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginTop="-145dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/fecha_salida"
+        android:foregroundGravity="center"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        android:transitionName="buttonHelp"
+        android:translationY="70dp" />
+
+    <ImageButton
+        android:id="@+id/buttonClosePopUpS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="55dp"
+        android:layout_marginBottom="190dp"
+        android:background="@drawable/close_popup"
+        android:foregroundGravity="center"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        android:transitionName="buttonHelp"
+        android:translationY="-60dp" />
+
+
+</RelativeLayout>
