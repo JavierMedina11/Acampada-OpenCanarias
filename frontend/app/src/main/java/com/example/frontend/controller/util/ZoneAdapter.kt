@@ -53,11 +53,11 @@ class ZoneAdapter(var zoneLists: ArrayList<Zone>, val context: Context): Recycle
                 //Toast.makeText(context, "Test Click", Toast.LENGTH_SHORT).show()
                 dialogs.show()
 
-                val button_popupr: ImageButton = dialogs.findViewById(R.id.button_popupr)
+                val ppp: ImageView = dialogs.findViewById(R.id.button_pruebaPopUp)
                 val button_popuprrr: ImageButton = dialogs.findViewById(R.id.button_popuprrr)
                 val button_popu_close: ImageButton = dialogs.findViewById(R.id.buttonClosePopUpS)
 
-                button_popupr.setOnClickListener(){
+                ppp.setOnClickListener(){
                     val intent = Intent(context, ListActivity::class.java)
                     intent.putExtra("zoneId", b.id)
                     intent.putExtra("nombre", b.nombre)
