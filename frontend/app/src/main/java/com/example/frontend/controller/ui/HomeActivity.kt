@@ -1,5 +1,6 @@
 package com.example.frontend.controller.ui
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,125 +8,170 @@ import com.example.frontend.R
 import kotlinx.android.synthetic.main.activity_home.*
 import org.java_websocket.client.WebSocketClient
 import android.app.ActivityOptions
+import android.graphics.Typeface
+import android.util.Log
 import android.util.Pair
+import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
+import android.widget.Toast
+import androidx.lifecycle.Observer
+import com.example.frontend.controller.io.ServiceImpl
 import com.example.frontend.controller.models.*
+import com.example.frontend.controller.util.PreferenceHelper
+import com.example.frontend.controller.util.PreferenceHelper.set
 import com.opencanarias.pruebasync.util.AppDatabase
+import kotlinx.android.synthetic.main.activity_home.imageView
+import kotlinx.android.synthetic.main.activity_home.imageView13
+import kotlinx.android.synthetic.main.activity_home.imageView2
+import kotlinx.android.synthetic.main.activity_zone.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class HomeActivity : AppCompatActivity() {
+class HomeActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var webSocketClient: WebSocketClient
 
+    private val preferences by lazy {
+        PreferenceHelper.defaultPrefs(this)
+    }
+
+    private var pref_manual_sync_ = 0
+
+    @SuppressLint("WrongConstant")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
-        /*val typesOfNum = arrayOf("1", "3", "5")
-        val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, typesOfNum)
-
-        spinner.adapter = arrayAdapter
-        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                spinnerResult.text = typesOfNum[position]
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                TODO("Not yet implemented")
-            }
-
-                <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="265dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="-175dp"
-        app:srcCompat="@drawable/input_search" />
-
-    <EditText
-        android:id="@+id/editTextPutoAmo"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="25dp"
-        android:hint="Localizador"
-        android:textAlignment="center"
-        android:textColor="@color/earth"
-        android:textColorHint="@color/earth"
-        android:textSize="16sp"
-        android:translationX="57.5dp"
-        android:translationY="-90dp"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView" />
-
-                <ImageButton
-        android:id="@+id/earthSearch"
-        android:layout_width="688dp"
-        android:layout_height="243dp"
-        android:layout_marginLeft="-185dp"
-        android:layout_marginTop="250dp"
-        android:background="@drawable/earth_search"
-        android:textColor="@color/black"
-        android:textSize="17sp"
-        android:transitionName="buttonHelp" />
-        }*/
+        textViewSincronizado.typeface = Typeface.createFromAsset(assets, "fonts/ocra_exp.TTF")
 
         buttonToLogin.setOnClickListener {
             goToLoginActivity()
         }
+
+        buttonToSync.setOnClickListener(this)
 
         button3.setOnClickListener {
             addDBLocalBaseData()
         }
     }
 
-    private fun addDBLocalBaseData(){
-            val operario = Operario(0, "tete@tete.com", "123456", "Tete","12345678T", "")
-            val zone = Zone(0, "Llanos del Salado", "San Mateo", "prueba")
-            val zone2 = Zone(0, "Llanos de la Mimbre", "Agaete", "prueba")
-            val zone3 = Zone(0, "Llanos de la pez", "Tejeda", "prueba")
-            val reserva = Reserva(0, 1, "42269273b",  "2021-03-23", "2021-03-24","AB51", 1, 1, "0", "0", 1)
-            val reserva2 = Reserva(0, 2, "12345666Y", "2021-03-23", "2021-03-29","AB52", 1, 1, "0", "0", 1)
-            val reserva3 = Reserva(0, 3,"22446688R", "2021-03-23", "2021-03-28","AB53", 1, 1, "0", "0", 1)
-            val reserva4 = Reserva(0, 1,"42269273b",  "2021-03-23", "2021-03-25","AB54", 1, 1, "0", "0", 1)
-            val reserva5 = Reserva(0, 1,"42269273b", "2021-03-23", "2021-03-26","AB55", 1, 1, "0", "0", 1)
-            val reserva6 = Reserva(0, 2,"12345666Y", "2021-03-23", "2021-03-27","AB56", 1, 1, "0", "0", 1)
-            val reserva7 = Reserva(0, 3,"22446688R", "2021-03-23", "2021-03-25","AB59", 1, 1, "0", "0", 1)
-            val reserva8 = Reserva(0, 1,"42269273b", "2021-03-23", "2021-03-24","AB60", 1, 1, "0", "0", 1)
-            val reserva9 = Reserva(0, 2, "12345666Y", "2021-03-23", "2021-03-25","AB61", 1, 1, "0", "0", 1)
-            val reserva10 = Reserva(0, 1, "42269273b","2021-03-24", "2021-03-25","AB57", 1, 1, "0", "0", 1)
-            val reserva11 = Reserva(0, 2,"12345666Y", "2021-03-24", "2021-03-27","AB58", 1, 1, "0", "0", 1)
-            val reserva12 = Reserva(0, 3,"22446688R", "2021-03-24", "2021-03-29","AB58", 1, 1, "0", "0", 1)
-            val persona = Persona(0, "Javi", "Medina", "42269273b", "persona1")
-            val persona2 = Persona(0, "Tete", "Tetaso", "12345666Y", "persona2")
-            val persona3 = Persona(0, "Maria", "Planta", "22446688R", "persona3")
+    @SuppressLint("WrongConstant")
+    override fun onClick(v: View?) {
+        if (pref_manual_sync_ == 0){
+            val animation: Animation = AnimationUtils.loadAnimation(this, R.anim.rotation)
+            val animation2: Animation = AnimationUtils.loadAnimation(this, R.anim.wide_add)
+            val animation3: Animation = AnimationUtils.loadAnimation(this, R.anim.text_alpha)
+            animation.setFillAfter(true)
+            animation2.setFillAfter(true)
+            animation3.setFillAfter(true)
+            buttonToSync.startAnimation(animation)
+            buttonToSync2.alpha = 1f
+            textViewSincronizado.alpha = 1f
+            buttonToSync2.startAnimation(animation2)
+            textViewSincronizado.startAnimation(animation3)
+            Toast.makeText(this, "Sincronizacion en curso", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Ya esta Sincronizado", Toast.LENGTH_SHORT).show()
+            pref_manual_sync_++
+            syncDBServerToDBLocalPersons()
+            syncDBServerToDBLocalZones()
+            syncDBLocalToDBServerBookingsChecked()
+            syncDBServerToDBLocalBookingsNoChecked()
+        }else if (pref_manual_sync_ == 1) {
+            Toast.makeText(getApplicationContext(), "Ya esta Sincronizado", Toast.LENGTH_SHORT).show()
+        }
+    }
 
-            val database = AppDatabase.getDatabase(this)
-            CoroutineScope(Dispatchers.IO).launch {
-                /*database.reservas().insert(reserva)
-                database.reservas().insert(reserva2)
-                database.reservas().insert(reserva3)
-                database.reservas().insert(reserva4)
-                database.reservas().insert(reserva5)
-                database.reservas().insert(reserva6)
-                database.reservas().insert(reserva7)
-                database.reservas().insert(reserva8)
-                database.reservas().insert(reserva9)
-                database.reservas().insert(reserva10)
-                database.reservas().insert(reserva11)
-                database.reservas().insert(reserva12)
-
-                database.zonas().insert(zone)
-                database.zonas().insert(zone2)
-                database.zonas().insert(zone3)*/
-
-                database.operarios().insert(operario)
-
-                /*database.personas().insert(persona)
-                database.personas().insert(persona2)
-                database.personas().insert(persona3)*/
+    private fun syncDBServerToDBLocalPersons() {
+        val bicycleServiceImpl = ServiceImpl()
+        bicycleServiceImpl.getAllPerson(this) { response ->
+            run {
+                val database = AppDatabase.getDatabase(this)
+                CoroutineScope(Dispatchers.IO).launch{
+                    database.personas().delete()
+                    val reservaArray : ArrayList<Persona>? = response
+                    if (reservaArray != null) {
+                        for (i in 0 until reservaArray.size) {
+                            database.personas().insert(reservaArray[i])
+                        }
+                    }
+                }
             }
+        }
+    }
+
+    private fun syncDBServerToDBLocalZones() {
+        val tokenPref = preferences.getString("tokenPref", null)
+        val zoneImpl = ServiceImpl()
+        Log.v("PRUEBAAAAAAA", "Llego 1")
+        zoneImpl.getAll(this, tokenPref.toString()) { response ->
+            run {
+                val database = AppDatabase.getDatabase(this)
+                Log.v("PRUEBAAAAAAA", "Llego 2")
+                CoroutineScope(Dispatchers.IO).launch{
+                    database.zonas().delete()
+                    Log.v("PRUEBAAAAAAA", "Llego 3")
+                    val zoneArray : ArrayList<Zone>? = response
+                    if (zoneArray != null) {
+                        for (i in 0 until zoneArray.size) {
+                            database.zonas().insert(zoneArray[i])
+                        }
+                        Log.v("PRUEBAAAAAAA", "Prueba: " + zoneArray.size)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun syncDBLocalToDBServerBookingsChecked(){
+        var listaReserva = emptyList<Reserva>()
+        val reserva = ArrayList<Reserva>()
+        val database = AppDatabase.getDatabase(this)
+        val serviceImpl = ServiceImpl()
+        database.reservas().getByCheck1().observe(this, Observer {
+            listaReserva = it as ArrayList<Reserva>
+
+            for (i in 0 until listaReserva.size) {
+                Log.v("Update", "Entro: " + reserva)
+                serviceImpl.updateReserve(this, listaReserva[i]) { ->
+                    run {
+                        Log.v("UPDATED", "Updated: " + listaReserva[i].id)
+                    }
+                }
+            }
+        });
+    }
+
+    private fun syncDBServerToDBLocalBookingsNoChecked() {
+        val bicycleServiceImpl = ServiceImpl()
+        bicycleServiceImpl.getAllBookingsNoChecked(this) { response ->
+            run {
+                val database = AppDatabase.getDatabase(this)
+                CoroutineScope(Dispatchers.IO).launch{
+                    database.reservas().deleteNoChecked("0")
+                    Log.v("DBBorrao", "BD Borrada, reservas vacias personas")
+                    val reservaArray : ArrayList<Reserva>? = response
+                    delay(5000)
+                    if (reservaArray != null) {
+                        for (i in 0 until reservaArray.size) {
+                            Log.v("FUNCIONA", "Insertadas")
+                            database.reservas().insert(reservaArray[i])
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private fun addDBLocalBaseData(){
+        val operario = Operario(0, "tete@tete.com", "123456", "Tete","12345678T", "")
+
+        val database = AppDatabase.getDatabase(this)
+        CoroutineScope(Dispatchers.IO).launch {
+            database.operarios().insert(operario)
+        }
     }
 
     private fun goToLoginActivity() {

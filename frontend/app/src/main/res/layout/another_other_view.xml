@@ -5,60 +5,46 @@
     android:id="@+id/linear_layout"
     android:layout_width="300dp"
     android:layout_height="400dp"
-    android:background="@drawable/prueba_drawable"
+    android:background="@drawable/toast_mask"
     android:orientation="vertical"
     android:padding="20dp">
 
-    <TextView
-        android:id="@+id/textEscoja"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="21dp"
-        android:layout_marginEnd="20dp"
-        android:gravity="center"
-        android:text="Escoja una opcion"
-        android:textSize="20sp"
-        android:textColor="@color/black"
-        android:translationY="50dp" />
-
     <ImageButton
-        android:id="@+id/button_popupr"
+        android:id="@+id/button_pruebaPopUp"
         android:layout_width="300dp"
         android:layout_height="165dp"
-        android:layout_below="@+id/textEscoja"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="35dp"
-        android:layout_marginTop="38dp"
         android:layout_marginEnd="20dp"
-        android:background="@drawable/fecha_entrada"
+        android:layout_marginBottom="145dp"
+        android:background="@drawable/search2"
+        android:foregroundGravity="center"
         android:textColor="@color/black"
         android:textSize="17sp"
         android:transitionName="buttonHelp"
-        android:translationY="00dp" />
+        android:translationY="-20dp" />
+
 
     <ImageButton
         android:id="@+id/button_popuprrr"
         android:layout_width="300dp"
         android:layout_height="165dp"
-        android:layout_below="@+id/button_popupr"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="35dp"
-        android:layout_marginTop="-145dp"
         android:layout_marginEnd="20dp"
-        android:background="@drawable/fecha_salida"
+        android:layout_marginBottom="145dp"
+        android:background="@drawable/search3"
         android:foregroundGravity="center"
         android:textColor="@color/black"
         android:textSize="17sp"
         android:transitionName="buttonHelp"
-        android:translationY="70dp" />
+        android:translationY="80dp" />
 
     <ImageButton
         android:id="@+id/buttonClosePopUpS"

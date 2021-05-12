@@ -26,6 +26,10 @@ import com.example.frontend.controller.util.ReservaAdapter
 import com.opencanarias.pruebasync.util.AppDatabase
 import kotlinx.android.synthetic.main.activity_list.*
 import kotlinx.android.synthetic.main.activity_list.spinner
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -78,14 +82,12 @@ class ListActivity : AppCompatActivity() {
         preferences["trueState"] = state
 
         val timeZone = "GMT+1"
-        val prueba = "1"
-        val dataTime = preferences.getString("dataTime", "2021-03-24")
-        val dataTime2 = preferences.getString("dataTime2", "1")
-        val dataTime3 = preferences.getString("dataTime3", "1")
-        val dataTime4 = preferences.getString("dataTime4", "1")
-        val dataTime5 = preferences.getString("dataTime5", "1")
-        val dataTime6 = preferences.getString("dataTime6", "1")
-        val dataTime7 = preferences.getString("dataTime7", "1")
+        val sdf2 = preferences.getString("sdf2", "1")
+        Log.v("Prueba", "sdf2: " + sdf2)
+        val sdf3 = preferences.getString("sdf3", "1")
+        Log.v("Prueba", "sdf3: " + sdf3)
+        val sdf4 = preferences.getString("sdf4", "1")
+        Log.v("Prueba", "sdf4: " + sdf4)
 
         var listaZones = emptyList<Zone>()
 
@@ -93,24 +95,29 @@ class ListActivity : AppCompatActivity() {
         val data = obtenerFechaActual(timeZone).toString()
 
         if(state == "Entradas") {
-            database.reservas().getByDate(zoneId, data).observe(this, Observer {
-                getReservas = it
-                viewAdapter = ReservaAdapter(getReservas as ArrayList<Reserva>, this)
-                recyclerView.adapter = viewAdapter
-                preferences["dataTime"] = data;
-            })
+            if (sdf2 != null && sdf3 != null && sdf4 != null) {
+                database.reservas().getByDatePer4Days(zoneId, data, sdf2, sdf3, sdf4)
+                    .observe(this, Observer {
+                        getReservas = it
+                        viewAdapter = ReservaAdapter(getReservas as ArrayList<Reserva>, this)
+                        recyclerView.adapter = viewAdapter
+                        preferences["dataTime"] = data;
+                    })
+            }
         }else if (state == "Salidas"){
-            database.reservas().getByDateSalidas(zoneId, data).observe(this, Observer {
-                getReservas = it
-                viewAdapter = ReservaAdapter(getReservas as ArrayList<Reserva>, this)
-                recyclerView.adapter = viewAdapter
-                preferences["dataTime"] = data;
-            })
+            if (sdf2 != null && sdf3 != null && sdf4 != null) {
+                database.reservas().getByDatePer4DaySalidas(zoneId, data, sdf2, sdf3, sdf4).observe(this, Observer {
+                    getReservas = it
+                    viewAdapter = ReservaAdapter(getReservas as ArrayList<Reserva>, this)
+                    recyclerView.adapter = viewAdapter
+                    preferences["dataTime"] = data;
+                })
+            }
         }
         groupRadioFun(zoneId, state)
 
         syncDBLocalToDBServerBookingsChecked()
-        //syncDBServerToDBLocalBookingsNoChecked()
+        syncDBServerToDBLocalBookingsNoChecked()
         selects()
     }
 
@@ -278,7 +285,7 @@ class ListActivity : AppCompatActivity() {
                 }
             }
         });
-    }/*
+    }
 
     private fun syncDBServerToDBLocalBookingsNoChecked() {
         val bicycleServiceImpl = ServiceImpl()
@@ -299,7 +306,7 @@ class ListActivity : AppCompatActivity() {
                 }
             }
         }
-    }*/
+    }
 
     private fun selects(){
         val typesOfNum2 = arrayOf("1 dia", "3 dias", "5 dias")
@@ -676,10 +683,39 @@ class ListActivity : AppCompatActivity() {
     @SuppressLint("SimpleDateFormat")
     fun obtenerFechaConFormato(formato: String?, zonaHoraria: String?): String? {
         val calendar = Calendar.getInstance()
+        val calendar2 = Calendar.getInstance()
+        calendar2.add(Calendar.DAY_OF_MONTH, -1)
+        val calendar3 = Calendar.getInstance()
+        calendar3.add(Calendar.DAY_OF_MONTH, -2)
+        val calendar4 = Calendar.getInstance()
+        calendar4.add(Calendar.DAY_OF_MONTH, -3)
+
         val date = calendar.time
+        val date2 = calendar2.time
+        val date3 = calendar3.time
+        val date4 = calendar4.time
+
         val sdf: SimpleDateFormat
         sdf = SimpleDateFormat(formato)
         sdf.setTimeZone(TimeZone.getTimeZone(zonaHoraria))
+
+        val sdf2: SimpleDateFormat
+        sdf2 = SimpleDateFormat(formato)
+        sdf2.setTimeZone(TimeZone.getTimeZone(zonaHoraria))
+        preferences["sdf2"] = sdf2.format(date2).toString()
+
+        val sdf3: SimpleDateFormat
+        sdf3 = SimpleDateFormat(formato)
+        sdf3.setTimeZone(TimeZone.getTimeZone(zonaHoraria))
+        preferences["sdf3"] = sdf3.format(date3).toString()
+
+        val sdf4: SimpleDateFormat
+        sdf4 = SimpleDateFormat(formato)
+        sdf4.setTimeZone(TimeZone.getTimeZone(zonaHoraria))
+        preferences["sdf4"] = sdf4.format(date4).toString()
+
+        Log.v("Prueba", "SDF2: " + sdf.format(date))
+
         return sdf.format(date)
     }
 

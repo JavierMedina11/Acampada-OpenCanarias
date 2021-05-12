@@ -277,5 +277,55 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ImageView
+        android:id="@+id/buttonToSync2"
+        android:layout_width="152dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="84dp"
+        android:background="@drawable/grrr"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        android:alpha="0"
+        android:transitionName="buttonExplore"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view"
+        app:layout_constraintVertical_bias="0.026"
+        tools:ignore="MissingConstraints" />
+
+    <ImageButton
+        android:id="@+id/buttonToSync"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="84dp"
+        android:background="@drawable/group_v2"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        android:transitionName="buttonExplore"
+        android:translationY="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.961"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view"
+        app:layout_constraintVertical_bias="0.026"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/textViewSincronizado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:alpha="0"
+        android:text="Sincronizado"
+        android:textSize="12sp"
+        android:translationY="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
