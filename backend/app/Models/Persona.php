@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Persona extends Model {
     protected $fillable = [
-        'nombre', 'apellidos', 'dni', 'url_img'
+        'nombre', 'apellido1','apellido2','tipo_documento','dni','fecha_nacimiento','mail','direccion','telefono', 'url_img'
     ];
     protected $table="personas";
 

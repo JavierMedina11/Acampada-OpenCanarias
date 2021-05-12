@@ -2,8 +2,31 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="45f2fe95-1edb-414f-9092-4ff85f28c92f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_15_04_2021_9_04_[Default_Changelist]1/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_15_04_2021_9_04__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_15_04_2021_9_04__Default_Changelist_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_15_04_2021_9_04__Default_Changelist_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_15_04_2021_9_06_[Default_Changelist]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_15_04_2021_9_06__Default_Changelist_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_15_04_2021_9_07_[Default_Changelist]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_15_04_2021_9_07__Default_Changelist_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PersonaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PersonaController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ReservaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ReservaController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Persona.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Persona.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Reserva.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Reserva.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Zona.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Zona.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_02_09_152956_persona.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_02_09_152956_persona.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_02_09_152957_reserva.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_02_09_152957_reserva.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/io/IVolleyService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/io/IVolleyService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/ui/ListActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/ui/ListActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/ui/LoginActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/ui/LoginActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/ui/ReservaDetalladaActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/ui/ReservaDetalladaActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/ui/ZoneActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/ui/ZoneActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/util/SelectionActivity.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/util/ZoneAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/util/ZoneAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/res/layout/activity_home.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/layout/activity_home.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/res/layout/activity_selection.xml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,35 +38,9 @@
     <execution />
   </component>
   <component name="Git.Settings">
-    <excluded-from-favorite>
-      <branch-storage>
-        <map>
-          <entry type="LOCAL">
-            <value>
-              <list>
-                <branch-info repo="$PROJECT_DIR$/.." source="master" />
-              </list>
-            </value>
-          </entry>
-        </map>
-      </branch-storage>
-    </excluded-from-favorite>
-    <favorite-branches>
-      <branch-storage>
-        <map>
-          <entry type="LOCAL">
-            <value>
-              <list>
-                <branch-info repo="$PROJECT_DIR$/.." source="main" />
-              </list>
-            </value>
-          </entry>
-        </map>
-      </branch-storage>
-    </favorite-branches>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="develop" />
+        <entry key="$PROJECT_DIR$/.." value="pruebaSync" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -187,7 +184,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../backend" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -238,6 +235,20 @@
       <workItem from="1618315769177" duration="23000" />
       <workItem from="1618321796714" duration="1353000" />
       <workItem from="1618386815872" duration="1226000" />
+      <workItem from="1618577171454" duration="1976000" />
+      <workItem from="1618819269138" duration="70000" />
+      <workItem from="1618911089923" duration="614000" />
+      <workItem from="1618992967535" duration="108000" />
+      <workItem from="1619012339350" duration="1233000" />
+      <workItem from="1619171645978" duration="843000" />
+      <workItem from="1619425579927" duration="801000" />
+      <workItem from="1619510788617" duration="673000" />
+      <workItem from="1620127195834" duration="2202000" />
+      <workItem from="1620289394426" duration="1247000" />
+      <workItem from="1620294834680" duration="1634000" />
+      <workItem from="1620635015788" duration="1188000" />
+      <workItem from="1620721782958" duration="9183000" />
+      <workItem from="1620807269203" duration="959000" />
     </task>
     <servers />
   </component>

@@ -16,8 +16,14 @@ class Persona extends Migration
         Schema::create('personas', function (Blueprint $table) {
             $table->id('id');
             $table->string('nombre');
-            $table->string('apellidos');
+            $table->string('apellido1');
+            $table->string('apellido2');
+            $table->string('tipo_documento');
             $table->string('dni')->unique()->notNullable();
+            $table->string('fecha_nacimiento');
+            $table->string('mail');
+            $table->string('direccion');
+            $table->string('telefono');
             $table->string('url_img');
         });
     }

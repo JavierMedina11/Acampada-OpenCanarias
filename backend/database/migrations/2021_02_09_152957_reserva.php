@@ -20,10 +20,17 @@ class Reserva extends Migration
             $table->string('fecha_entrada');
             $table->string('fecha_salida');
             $table->string('localizador_reserva');
-            $table->integer('num_personas');
+            $table->integer('num_personas'); // deberia ser una lista de personas , probar con string largo
+            $table->json('acompanantes');
             $table->integer('num_vehiculos');
+            $table->integer('num_casetas');
+            $table->integer('num_bus');
+            $table->integer('num_caravanas');
             $table->string('checkin');
             $table->string('fecha_checkin');
+            $table->string('incidencia');  //mirar bien este campo preguntar
+            $table->json('incidencias'); // otra lista , probar con string largo, o con una tabla de incidencias aparte
+            $table->string('estado');
             $table->unsignedBigInteger("id_zona");
             $table->foreign("id_zona")->references('id')->on('zonas');
             $table->foreign('id_persona')->references('id')->on('personas')->cascadeOnDelete();

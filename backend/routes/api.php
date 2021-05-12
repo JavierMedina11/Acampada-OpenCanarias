@@ -52,6 +52,7 @@ Route::put('/update-operario/{id}', [OperarioController::class, 'update']);
 //  ----- RESERVAS -----
     Route::get('/reserva', [ReservaController::class, 'index']);
     Route::get('/reserva-no-check', [ReservaController::class, 'showReserNotChecked']);
+    Route::get('/reserva-check', [ReservaController::class, 'showReserChecked']);
     Route::get('/reserva/{id}', [ReservaController::class, 'show']);
     Route::get('/reserva_local/{localizador}', [ReservaController::class, 'showReservLocalizador']);
     Route::get('/reserva_zone/{id_zona}/{date_picker}', [ReservaController::class, 'showReservZoneDate']);

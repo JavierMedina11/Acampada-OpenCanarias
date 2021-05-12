@@ -17,6 +17,10 @@ class ReservaController {
         return Reserva::where('checkin',0)->get();
     }
 
+    public function showReserChecked(Request $request){
+        return Reserva::where('checkin',1)->get();
+    }
+
     //GETTER DE UN SOLO ELEMENTO
     public function show($id){
         return Reserva::findOrFail($id);
@@ -51,9 +55,16 @@ class ReservaController {
         $zona->fecha_salida = $request->fecha_salida;
         $zona->localizador_reserva = $request->localizador_reserva;
         $zona->num_personas = $request->num_personas;
+        $zona->acompanantes = $request->acompanantes;
         $zona->num_vehiculos = $request->num_vehiculos;
+        $zona->num_casetas = $request->num_casetas;
+        $zona->num_bus = $request->num_bus;
+        $zona->num_caravanas = $request->num_caravanas;
         $zona->checkin = $request->checkin;
         $zona->fecha_checkin = $request->fecha_checkin;
+        $zona->incidencia = $request->incidencia;
+        $zona->incidencias = $request->incidencias;
+        $zona->estado = $request->estado;
         $zona->id_zona = $request->id_zona;
         $zona->save();
         return "Post has been created!";
@@ -69,9 +80,16 @@ class ReservaController {
         $zona->fecha_salida = $request->fecha_salida;
         $zona->localizador_reserva = $request->localizador_reserva;
         $zona->num_personas = $request->num_personas;
+        $zona->acompanantes = $request->acompanantes;
         $zona->num_vehiculos = $request->num_vehiculos;
+        $zona->num_casetas = $request->num_casetas;
+        $zona->num_bus = $request->num_bus;
+        $zona->num_caravanas = $request->num_caravanas;
         $zona->checkin = $request->checkin;
         $zona->fecha_checkin = $request->fecha_checkin;
+        $zona->incidencia = $request->incidencia;
+        $zona->incidencias = $request->incidencias;
+        $zona->estado = $request->estado;
         $zona->id_zona = $request->id_zona;
         $zona->save();
         return "Post has been updated!";
