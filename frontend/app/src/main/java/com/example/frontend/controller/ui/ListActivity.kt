@@ -277,12 +277,12 @@ class ListActivity : AppCompatActivity() {
             listaReserva = it as ArrayList<Reserva>
 
             for (i in 0 until listaReserva.size) {
-                Log.v("Update", "Entro: " + reserva)
                 serviceImpl.updateReserve(this, listaReserva[i]) { ->
                     run {
                         Log.v("UPDATED", "Updated: " + listaReserva[i].id)
                     }
                 }
+                Log.v("Update", "Entro: " + listaReserva.size)
             }
         });
     }

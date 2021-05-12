@@ -9,8 +9,6 @@ import com.example.frontend.controller.models.Zone
 
 interface IVolleyService {
 
-    fun getAllPerson(context: Context, completionHandler: (response: ArrayList<Persona>?) -> Unit)
-
     fun getAll(context: Context,token: String, completionHandler: (response: ArrayList<Zone>?) -> Unit)
 
     fun getAllPerson(context: Context, completionHandler: (response: ArrayList<Persona>?) -> Unit)
@@ -20,8 +18,6 @@ interface IVolleyService {
     fun getZoneById(context: Context, zoneId: Int, completionHandler: (response: Zone?) -> Unit)
 
     fun getBookingById(context: Context, zoneId: Int, completionHandler: (response: Reserva?) -> Unit)
-
-    fun getAllBookings(context: Context,  completionHandler: (response: ArrayList<Reserva>?) -> Unit)
 
     fun getPersonById(context: Context, zoneId: Int, completionHandler: (response: Persona?) -> Unit)
 

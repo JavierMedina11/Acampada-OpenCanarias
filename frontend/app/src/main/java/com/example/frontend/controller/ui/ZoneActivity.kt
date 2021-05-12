@@ -142,6 +142,7 @@ class ZoneActivity : AppCompatActivity() {
                 override fun onAvailable(network: Network) {
                     isNetworkConnected = true
                     Log.v("Wifi", wifi.toString())
+                    Log.v("syncConect", "Sincronizaco pa dentro")
                     syncDBServerToDBLocalPersons()
                     syncDBServerToDBLocalZones()
                 }
@@ -169,6 +170,7 @@ class ZoneActivity : AppCompatActivity() {
                         for (i in 0 until reservaArray.size) {
                             database.personas().insert(reservaArray[i])
                         }
+                        Log.v("PRUEBAAAAAAA", "Prueba Z: " + reservaArray.size)
                     }
                 }
             }
@@ -178,14 +180,11 @@ class ZoneActivity : AppCompatActivity() {
     private fun syncDBServerToDBLocalZones() {
         val tokenPref = preferences.getString("tokenPref", null)
         val zoneImpl = ServiceImpl()
-        Log.v("PRUEBAAAAAAA", "Llego 1")
         zoneImpl.getAll(this, tokenPref.toString()) { response ->
             run {
                 val database = AppDatabase.getDatabase(this)
-                Log.v("PRUEBAAAAAAA", "Llego 2")
                 CoroutineScope(Dispatchers.IO).launch{
                     database.zonas().delete()
-                    Log.v("PRUEBAAAAAAA", "Llego 3")
                     val zoneArray : ArrayList<Zone>? = response
                     if (zoneArray != null) {
                         for (i in 0 until zoneArray.size) {
