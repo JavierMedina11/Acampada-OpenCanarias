@@ -6,7 +6,6 @@ import android.icu.util.Calendar
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
@@ -66,6 +65,14 @@ class ReservaDetalladaActivity : AppCompatActivity() {
             val num_vehiculos = getReservas[0].num_vehiculos
             val checkin = getReservas[0].checkin
             val fechaCheckin = getReservas[0].fecha_checkin
+            val acompanantes = getReservas[0].acompanantes
+            val num_casetas = getReservas[0].num_casetas
+            val num_bus = getReservas[0].num_bus
+            val num_caravanas = getReservas[0].num_caravanas
+            val matriculas = getReservas[0].matriculas
+            val incidencia = getReservas[0].incidencia
+            val incidencias = getReservas[0].incidencias
+            val estado = getReservas[0].estado
 
             if(getReservas[0].checkin == "1"){
                 buttonCheckIn.setBackgroundResource(R.drawable.button_checked)
@@ -96,7 +103,7 @@ class ReservaDetalladaActivity : AppCompatActivity() {
             })
 
             logo.setOnClickListener {
-                val reserv = Reserva(reservaId, reservaIdPersona, dni, fecha_entrada, fecha_salida, localizador, num_personas, num_vehiculos, checkin, fechaCheckin, zonaId)
+                val reserv = Reserva(reservaId, reservaIdPersona, dni, fecha_entrada, fecha_salida, localizador, num_personas, acompanantes, num_vehiculos, num_casetas, num_bus, num_caravanas, matriculas, checkin, fechaCheckin, incidencia, incidencias, estado, zonaId)
                 CoroutineScope(Dispatchers.IO).launch{
                     database.reservas().delete(reserv)
                 }
@@ -104,7 +111,7 @@ class ReservaDetalladaActivity : AppCompatActivity() {
                 startActivity(intent)
             }
 
-            val reserva = Reserva(reservaId, personId, dni, fecha_entrada, fecha_salida, localizador, num_personas, num_vehiculos, "1", obtenerFechaActual(timeZone).toString(), zoneId)
+            val reserva = Reserva(reservaId, reservaIdPersona, dni, fecha_entrada, fecha_salida, localizador, num_personas, acompanantes, num_vehiculos, num_casetas, num_bus, num_caravanas, matriculas, "1", obtenerFechaActual(timeZone).toString(), incidencia, incidencias, estado, zoneId)
 
             buttonCheckIn.setOnClickListener {
                 CoroutineScope(Dispatchers.IO).launch {

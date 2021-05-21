@@ -7,7 +7,13 @@ import androidx.room.PrimaryKey
 class Persona (
     @PrimaryKey(autoGenerate = true)
     val id: Int,
-    val name: String,
-    val apellidos: String,
+    val nombre: String,
+    val apellido1: String,
+    val apellido2: String,
+    val tipo_documento: String,
     val dni: String,
+    val fecha_nacimiento:String,
+    val mail: String,
+    val direccion: String,
+    val telefono: String,
     val url_img: String)

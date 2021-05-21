@@ -6,16 +6,15 @@ import android.util.Log
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.JsonObjectRequest
-import com.example.frontend.controller.models.Operario
+import com.example.frontend.controller.models.*
 
-import com.example.frontend.controller.models.Zone
 import com.example.frontend.controller.ui.ZoneActivity
 import org.json.JSONObject
-import com.example.frontend.controller.models.Persona
-import com.example.frontend.controller.models.Reserva
+import com.google.gson.Gson
+import com.google.gson.JsonArray
+import com.google.gson.reflect.TypeToken
 
 import org.json.JSONArray
-import java.lang.StringBuilder
 
 class ServiceImpl: IVolleyService {
 
@@ -55,11 +54,17 @@ class ServiceImpl: IVolleyService {
                     val zone = zoneArray.getJSONObject(i)
                     val id = zone.getInt("id")
                     val name = zone.getString("nombre")
-                    val apellidos = zone.getString("apellidos")
+                    val apellido1 = zone.getString("apellido1")
+                    val apellido2 = zone.getString("apellido2")
+                    val tipo_documento = zone.getString("tipo_documento")
                     val dni = zone.getString("dni")
+                    val fecha_nacimiento = zone.getString("fecha_nacimiento")
+                    val mail = zone.getString("mail")
+                    val direccion = zone.getString("direccion")
+                    val telefono = zone.getString("telefono")
                     val url_img = zone.getString("url_img")
 
-                    zones.add(Persona(id, name, apellidos, dni, url_img))
+                    zones.add(Persona(id, name, apellido1, apellido2, tipo_documento, fecha_nacimiento, mail, direccion, telefono, dni, url_img))
                 }
                 completionHandler(zones)
             },
@@ -95,12 +100,18 @@ class ServiceImpl: IVolleyService {
                 { response ->
                     if(response == null) completionHandler(null)
                     val id = response.getInt("id")
-                    val nombre = response.getString("nombre")
-                    val apellidos = response.getString("apellidos")
+                    val name = response.getString("nombre")
+                    val apellido1 = response.getString("apellido1")
+                    val apellido2 = response.getString("apellido2")
+                    val tipo_documento = response.getString("tipo_documento")
                     val dni = response.getString("dni")
+                    val fecha_nacimiento = response.getString("fecha_nacimiento")
+                    val mail = response.getString("mail")
+                    val direccion = response.getString("direccion")
+                    val telefono = response.getString("telefono")
                     val url_img = response.getString("url_img")
 
-                    val persona = Persona(id, nombre, apellidos, dni, url_img)
+                    val persona = Persona(id, name, apellido1, apellido2, tipo_documento, fecha_nacimiento, mail, direccion, telefono, dni, url_img)
                     completionHandler(persona)
                 },
                 { error ->
@@ -116,21 +127,120 @@ class ServiceImpl: IVolleyService {
                     if(response == null) completionHandler(null)
                     val id = response.getInt("id")
                     val id_persona = response.getInt("id_persona")
+                    val dni_persona = response.getString("dni_persona")
                     val fecha_entrada = response.getString("fecha_entrada")
                     val fecha_salida = response.getString("fecha_salida")
                     val localizador_reserva = response.getString("localizador_reserva")
                     val num_personas = response.getInt("num_personas")
+                    val acompañantes = response.getString("acompanantes")
                     val num_vehiculos = response.getInt("num_vehiculos")
+                    val num_casetas = response.getInt("num_casetas")
+                    val num_bus = response.getInt("num_bus")
+                    val num_caravanas = response.getInt("num_caravanas")
+                    val matricula = response.getString("matriculas")
                     val checkin = response.getString("checkin")
                     val fecha_checkin = response.getString("fecha_checkin")
+                    val incidencia = response.getString("incidencia")
+                    val incidencias = response.getString("incidencias")
+                    val estado = response.getString("estado")
                     val id_zona = response.getInt("id_zona")
 
-                    val reserva = Reserva(id, id_persona, "", fecha_entrada, fecha_salida, localizador_reserva, num_personas, num_vehiculos, checkin, fecha_checkin, id_zona)
+                    val reserva = Reserva(id, id_persona, "", fecha_entrada, fecha_salida, localizador_reserva, num_personas, acompañantes, num_vehiculos, num_casetas, num_bus, num_caravanas, matricula, checkin, fecha_checkin, incidencia, incidencias, estado, id_zona)
                     completionHandler(reserva)
                 },
                 { error ->
                     completionHandler(null)
                 })
+        ServiceSingleton.getInstance(context).addToRequestQueue(objectRequest)
+    }
+
+
+    override fun getBookingJSONAcompañantes(context: Context, zoneId: Int, completionHandler: (response: ArrayList<Persona>?) -> Unit) {
+        val path = ServiceSingleton.getInstance(context).baseUrl + "reserva/" + zoneId
+        val objectRequest = JsonObjectRequest(Request.Method.GET, path, null,
+            { response ->
+                if(response == null) completionHandler(null)
+                val acompañantes = response.getString("acompanantes")
+                val gson = Gson()
+                //val JSONAcompañantes: Persona = gson.fromJson(acompañantes, Persona::class.java)
+
+                val JSONlist = response.getString("acompanantes")
+                val arrayPersonaType = object: TypeToken<ArrayList<Persona>>() {}.type
+                var personitas: ArrayList<Persona> = gson.fromJson(JSONlist, arrayPersonaType)
+                Log.v("PRUEBAZA", "+ "+personitas[0].dni+" +")
+                Log.v("PRUEBAZA2", "+ "+personitas[0].nombre+" +")
+
+                completionHandler(personitas)
+            },
+            { error ->
+                completionHandler(null)
+            })
+        ServiceSingleton.getInstance(context).addToRequestQueue(objectRequest)
+    }
+
+
+    override fun getBookingJSONMatriculas(context: Context, zoneId: Int, completionHandler: (response: ArrayList<Matricula>?) -> Unit) {
+        val path = ServiceSingleton.getInstance(context).baseUrl + "reserva/" + zoneId
+        val objectRequest = JsonObjectRequest(Request.Method.GET, path, null,
+            { response ->
+                if(response == null) completionHandler(null)
+                val acompañantes = response.getString("acompanantes")
+                val gson = Gson()
+
+                val JSONlist2 = response.getString("matriculas")
+                val arrayMatriculaType = object: TypeToken<ArrayList<Matricula>>() {}.type
+                var matriculas: ArrayList<Matricula> = gson.fromJson(JSONlist2, arrayMatriculaType)
+                Log.v("PRUEBAZA3", "+ "+matriculas[0].matricula+" +")
+                Log.v("PRUEBAZA4", "+ "+matriculas[0].tipo+" +")
+
+                completionHandler(matriculas)
+            },
+            { error ->
+                completionHandler(null)
+            })
+        ServiceSingleton.getInstance(context).addToRequestQueue(objectRequest)
+    }
+
+    override fun getBookingJSONIncidencias(context: Context, zoneId: Int, completionHandler: (response: Reserva?) -> Unit) {
+        val path = ServiceSingleton.getInstance(context).baseUrl + "reserva/" + zoneId
+        val objectRequest = JsonObjectRequest(Request.Method.GET, path, null,
+            { response ->
+                if(response == null) completionHandler(null)
+                val gson = Gson()
+
+                val JSONlist3 = response.getString("incidencias")
+                val mapType = object: TypeToken<Map<String, Any>>() {}.type
+                var inci: Map<String, Any> = gson.fromJson(JSONlist3, mapType)
+
+                val plazasMAP = "["+gson.toJson(inci["plazas"])+"]"
+                Log.v("PRUEBAZAESPECIAL", plazasMAP)
+                val casetasMAP = "["+gson.toJson(inci["casetas"])+"]"
+                val caravanaMAP = "["+gson.toJson(inci["caravanas"])+"]"
+                val solicitanteMAP = "["+gson.toJson(inci["solicitante"])+"]"
+                val acompañantesMAP = gson.toJson(inci["acompañantes"])
+                val observacionesMAP = gson.toJson(inci["observaciones"])
+
+                val arrayIncidencyaEspecType = object: TypeToken<ArrayList<IncidenciaEspec>>() {}.type
+
+                var inciPlazasMap: ArrayList<IncidenciaEspec> = gson.fromJson(plazasMAP, arrayIncidencyaEspecType)
+                Log.v("PRUEBAZA6", "+ "+inciPlazasMap[0].texto+" +")
+                var inciCasetasMAP: ArrayList<IncidenciaEspec> = gson.fromJson(casetasMAP, arrayIncidencyaEspecType)
+                Log.v("PRUEBAZA7", "+ "+inciCasetasMAP[0].texto+" +")
+                var inciCaravanaMAP: ArrayList<IncidenciaEspec> = gson.fromJson(caravanaMAP, arrayIncidencyaEspecType)
+                Log.v("PRUEBAZA8", "+ "+inciCaravanaMAP[0].texto+" +")
+                var inciSolicitanteMAP: ArrayList<IncidenciaEspec> = gson.fromJson(solicitanteMAP, arrayIncidencyaEspecType)
+                Log.v("PRUEBAZA9", "+ "+inciSolicitanteMAP[0].texto+" +")
+                var inciAcompañantesMAP: ArrayList<IncidenciaEspec> = gson.fromJson(acompañantesMAP, arrayIncidencyaEspecType)
+                Log.v("PRUEBAZA10", "+ "+inciAcompañantesMAP[0].texto+" +")
+                var inciObservacionesMAP: ArrayList<IncidenciaEspec> = gson.fromJson(observacionesMAP, arrayIncidencyaEspecType)
+                Log.v("PRUEBAZA11", "+ "+inciObservacionesMAP[0].texto+" +")
+
+                val reserva = Reserva(0, 0, "42269273b", "ewew", "", "", 0, "", 0, 0, 0, 0, "", "", "", "","", "", 0)
+                completionHandler(reserva)
+            },
+            { error ->
+                completionHandler(null)
+            })
         ServiceSingleton.getInstance(context).addToRequestQueue(objectRequest)
     }
 
@@ -144,17 +254,25 @@ class ServiceImpl: IVolleyService {
                     val reservaAr = reservaArray.getJSONObject(i)
                     val id = reservaAr.getInt("id")
                     val id_persona = reservaAr.getInt("id_persona")
-                    val dni_persona = reservaAr.getString("dni_persona")
+                    val dni_persona = reservaAr.getInt("id_persona")
                     val fecha_entrada = reservaAr.getString("fecha_entrada")
                     val fecha_salida = reservaAr.getString("fecha_salida")
                     val localizador_reserva = reservaAr.getString("localizador_reserva")
                     val num_personas = reservaAr.getInt("num_personas")
+                    val acompañantes = reservaAr.getString("acompanantes")
                     val num_vehiculos = reservaAr.getInt("num_vehiculos")
+                    val num_casetas = reservaAr.getInt("num_casetas")
+                    val num_bus = reservaAr.getInt("num_bus")
+                    val num_caravanas = reservaAr.getInt("num_caravanas")
+                    val matricula = reservaAr.getString("matriculas")
                     val checkin = reservaAr.getString("checkin")
                     val fecha_checkin = reservaAr.getString("fecha_checkin")
+                    val incidencia = reservaAr.getString("incidencia")
+                    val incidencias = reservaAr.getString("incidencias")
+                    val estado = reservaAr.getString("estado")
                     val id_zona = reservaAr.getInt("id_zona")
 
-                    reservas.add(Reserva(id,id_persona,dni_persona,fecha_entrada,fecha_salida, localizador_reserva,num_personas,num_vehiculos,checkin,fecha_checkin,id_zona))
+                    reservas.add(Reserva(id, id_persona, "", fecha_entrada, fecha_salida, localizador_reserva, num_personas, acompañantes, num_vehiculos, num_casetas, num_bus, num_caravanas, matricula, checkin, fecha_checkin, incidencia, incidencias, estado, id_zona))
                 }
                 completionHandler(reservas)
             },
@@ -174,17 +292,25 @@ class ServiceImpl: IVolleyService {
                     val reservaAr = reservaArray.getJSONObject(i)
                     val id = reservaAr.getInt("id")
                     val id_persona = reservaAr.getInt("id_persona")
-                    val dni_persona = reservaAr.getString("dni_persona")
+                    val dni_persona = reservaAr.getInt("id_persona")
                     val fecha_entrada = reservaAr.getString("fecha_entrada")
                     val fecha_salida = reservaAr.getString("fecha_salida")
                     val localizador_reserva = reservaAr.getString("localizador_reserva")
                     val num_personas = reservaAr.getInt("num_personas")
+                    val acompañantes = reservaAr.getString("acompanantes")
                     val num_vehiculos = reservaAr.getInt("num_vehiculos")
+                    val num_casetas = reservaAr.getInt("num_casetas")
+                    val num_bus = reservaAr.getInt("num_bus")
+                    val num_caravanas = reservaAr.getInt("num_caravanas")
+                    val matricula = reservaAr.getString("matriculas")
                     val checkin = reservaAr.getString("checkin")
                     val fecha_checkin = reservaAr.getString("fecha_checkin")
+                    val incidencia = reservaAr.getString("incidencia")
+                    val incidencias = reservaAr.getString("incidencias")
+                    val estado = reservaAr.getString("estado")
                     val id_zona = reservaAr.getInt("id_zona")
 
-                    reservas.add(Reserva(id,id_persona,dni_persona,fecha_entrada,fecha_salida, localizador_reserva,num_personas,num_vehiculos,checkin,fecha_checkin,id_zona))
+                    reservas.add(Reserva(id, id_persona, "", fecha_entrada, fecha_salida, localizador_reserva, num_personas, acompañantes, num_vehiculos, num_casetas, num_bus, num_caravanas, matricula, checkin, fecha_checkin, incidencia, incidencias, estado, id_zona))
                 }
                 completionHandler(reservas)
             },
@@ -203,15 +329,24 @@ class ServiceImpl: IVolleyService {
                         val booking = response.getJSONObject(i)
                         val id = booking.getInt("id")
                         val id_persona = booking.getInt("id_persona")
+                        val dni_persona = booking.getInt("id_persona")
                         val fecha_entrada = booking.getString("fecha_entrada")
                         val fecha_salida = booking.getString("fecha_salida")
                         val localizador_reserva = booking.getString("localizador_reserva")
                         val num_personas = booking.getInt("num_personas")
+                        val acompañantes = booking.getString("acompanantes")
                         val num_vehiculos = booking.getInt("num_vehiculos")
+                        val num_casetas = booking.getInt("num_casetas")
+                        val num_bus = booking.getInt("num_bus")
+                        val num_caravanas = booking.getInt("num_caravanas")
+                        val matricula = booking.getString("matriculas")
                         val checkin = booking.getString("checkin")
                         val fecha_checkin = booking.getString("fecha_checkin")
+                        val incidencia = booking.getString("incidencia")
+                        val incidencias = booking.getString("incidencias")
+                        val estado = booking.getString("estado")
                         val id_zona = booking.getInt("id_zona")
-                        bookings.add(Reserva(id, id_persona, "", fecha_entrada, fecha_salida, localizador_reserva, num_personas, num_vehiculos, checkin, fecha_checkin, id_zona))
+                        bookings.add(Reserva(id, id_persona, "", fecha_entrada, fecha_salida, localizador_reserva, num_personas, acompañantes, num_vehiculos, num_casetas, num_bus, num_caravanas, matricula, checkin, fecha_checkin, incidencia, incidencias, estado, id_zona))
                     }
                     completionHandler(bookings)
                 },
@@ -230,15 +365,24 @@ class ServiceImpl: IVolleyService {
                         val booking = response.getJSONObject(i)
                         val id = booking.getInt("id")
                         val id_persona = booking.getInt("id_persona")
+                        val dni_persona = booking.getInt("id_persona")
                         val fecha_entrada = booking.getString("fecha_entrada")
                         val fecha_salida = booking.getString("fecha_salida")
                         val localizador_reserva = booking.getString("localizador_reserva")
                         val num_personas = booking.getInt("num_personas")
+                        val acompañantes = booking.getString("acompanantes")
                         val num_vehiculos = booking.getInt("num_vehiculos")
+                        val num_casetas = booking.getInt("num_casetas")
+                        val num_bus = booking.getInt("num_bus")
+                        val num_caravanas = booking.getInt("num_caravanas")
+                        val matricula = booking.getString("matriculas")
                         val checkin = booking.getString("checkin")
                         val fecha_checkin = booking.getString("fecha_checkin")
+                        val incidencia = booking.getString("incidencia")
+                        val incidencias = booking.getString("incidencias")
+                        val estado = booking.getString("estado")
                         val id_zona = booking.getInt("id_zona")
-                        bookings.add(Reserva(id, id_persona, "", fecha_entrada, fecha_salida, localizador_reserva, num_personas, num_vehiculos, checkin, fecha_checkin, id_zona))
+                        bookings.add(Reserva(id, id_persona, "", fecha_entrada, fecha_salida, localizador_reserva, num_personas, acompañantes, num_vehiculos, num_casetas, num_bus, num_caravanas, matricula, checkin, fecha_checkin, incidencia, incidencias, estado, id_zona))
                     }
                     completionHandler(bookings)
                 },
@@ -257,16 +401,24 @@ class ServiceImpl: IVolleyService {
                     val booking = response.getJSONObject(i)
                     val id = booking.getInt("id")
                     val id_persona = booking.getInt("id_persona")
-                    val dni_persona = booking.getString("dni_persona")
+                    val dni_persona = booking.getInt("id_persona")
                     val fecha_entrada = booking.getString("fecha_entrada")
                     val fecha_salida = booking.getString("fecha_salida")
                     val localizador_reserva = booking.getString("localizador_reserva")
                     val num_personas = booking.getInt("num_personas")
+                    val acompañantes = booking.getString("acompanantes")
                     val num_vehiculos = booking.getInt("num_vehiculos")
+                    val num_casetas = booking.getInt("num_casetas")
+                    val num_bus = booking.getInt("num_bus")
+                    val num_caravanas = booking.getInt("num_caravanas")
+                    val matricula = booking.getString("matriculas")
                     val checkin = booking.getString("checkin")
                     val fecha_checkin = booking.getString("fecha_checkin")
+                    val incidencia = booking.getString("incidencia")
+                    val incidencias = booking.getString("incidencias")
+                    val estado = booking.getString("estado")
                     val id_zona = booking.getInt("id_zona")
-                    bookings.add(Reserva(id, id_persona, dni_persona, fecha_entrada, fecha_salida, localizador_reserva, num_personas, num_vehiculos, checkin, fecha_checkin, id_zona))
+                    bookings.add(Reserva(id, id_persona, "", fecha_entrada, fecha_salida, localizador_reserva, num_personas, acompañantes, num_vehiculos, num_casetas, num_bus, num_caravanas, matricula, checkin, fecha_checkin, incidencia, incidencias, estado, id_zona))
                 }
                 completionHandler(bookings)
             },
@@ -285,15 +437,24 @@ class ServiceImpl: IVolleyService {
                         val booking = response.getJSONObject(i)
                         val id = booking.getInt("id")
                         val id_persona = booking.getInt("id_persona")
+                        val dni_persona = booking.getInt("id_persona")
                         val fecha_entrada = booking.getString("fecha_entrada")
                         val fecha_salida = booking.getString("fecha_salida")
                         val localizador_reserva = booking.getString("localizador_reserva")
                         val num_personas = booking.getInt("num_personas")
+                        val acompañantes = booking.getString("acompanantes")
                         val num_vehiculos = booking.getInt("num_vehiculos")
+                        val num_casetas = booking.getInt("num_casetas")
+                        val num_bus = booking.getInt("num_bus")
+                        val num_caravanas = booking.getInt("num_caravanas")
+                        val matricula = booking.getString("matriculas")
                         val checkin = booking.getString("checkin")
                         val fecha_checkin = booking.getString("fecha_checkin")
+                        val incidencia = booking.getString("incidencia")
+                        val incidencias = booking.getString("incidencias")
+                        val estado = booking.getString("estado")
                         val id_zona = booking.getInt("id_zona")
-                        bookings.add(Reserva(id, id_persona, "", fecha_entrada, fecha_salida, localizador_reserva, num_personas, num_vehiculos, checkin, fecha_checkin, id_zona))
+                        bookings.add(Reserva(id, id_persona, "", fecha_entrada, fecha_salida, localizador_reserva, num_personas, acompañantes, num_vehiculos, num_casetas, num_bus, num_caravanas, matricula, checkin, fecha_checkin, incidencia, incidencias, estado, id_zona))
                     }
                     completionHandler(bookings)
                 },

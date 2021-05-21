@@ -1,32 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="45f2fe95-1edb-414f-9092-4ff85f28c92f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_15_04_2021_9_04_[Default_Changelist]1/shelved.patch" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/MatriculaController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/Matricula.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/models/Incidencia.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/models/IncidenciaEspec.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/models/IncidenciaEspec2.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/models/Matricula.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_15_04_2021_9_04__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_15_04_2021_9_04__Default_Changelist_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_15_04_2021_9_04__Default_Changelist_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_15_04_2021_9_06_[Default_Changelist]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_15_04_2021_9_06__Default_Changelist_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_15_04_2021_9_07_[Default_Changelist]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Merge_at_15_04_2021_9_07__Default_Changelist_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PersonaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PersonaController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ReservaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ReservaController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Persona.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Persona.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/Reserva.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Reserva.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Zona.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Zona.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_02_09_152956_persona.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_02_09_152956_persona.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/migrations/2021_02_09_152957_reserva.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_02_09_152957_reserva.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/io/IVolleyService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/io/IVolleyService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/io/ServiceImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/io/ServiceImpl.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/io/ServiceSingleton.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/io/ServiceSingleton.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/models/Persona.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/models/Persona.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/models/Reserva.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/models/Reserva.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/ui/HomeActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/ui/HomeActivity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/ui/ListActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/ui/ListActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/ui/LoginActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/ui/LoginActivity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/ui/ReservaDetalladaActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/ui/ReservaDetalladaActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/ui/ZoneActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/ui/ZoneActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/util/SelectionActivity.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/util/ZoneAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/util/ZoneAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/res/layout/activity_home.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/layout/activity_home.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/res/layout/activity_selection.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/util/ReservaAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/util/ReservaAdapter.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -195,11 +210,12 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Acampada-OpenCanarias\backend" />
+    <key name="MoveFile.RECENT_KEYS">
       <recent name="G:\AcampadasOC\backend-laravel\public\img" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Javi\Desktop\AcampadasOpenCanarias\backend" />
+      <recent name="D:\Acampada-OpenCanarias\backend" />
       <recent name="G:\AcampadasOC\backend-laravel\public\img" />
     </key>
   </component>
@@ -249,6 +265,13 @@
       <workItem from="1620635015788" duration="1188000" />
       <workItem from="1620721782958" duration="9183000" />
       <workItem from="1620807269203" duration="959000" />
+      <workItem from="1621251763173" duration="1261000" />
+      <workItem from="1621341189322" duration="775000" />
+      <workItem from="1621415568578" duration="5059000" />
+      <workItem from="1621503134737" duration="4306000" />
+      <workItem from="1621514141369" duration="2385000" />
+      <workItem from="1621534400933" duration="909000" />
+      <workItem from="1621587396712" duration="1202000" />
     </task>
     <servers />
   </component>
@@ -266,5 +289,15 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="497" y="295" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1621511291040">
+      <screen x="62" y="0" width="2498" height="1080" />
+    </state>
+    <state x="497" y="295" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/62.0.2498.1080@62.0.2498.1080" timestamp="1621511291040" />
+    <state x="493" y="264" key="NewPhpClassDialog" timestamp="1621511282247">
+      <screen x="62" y="0" width="2498" height="1080" />
+    </state>
+    <state x="493" y="264" key="NewPhpClassDialog/62.0.2498.1080@62.0.2498.1080" timestamp="1621511282247" />
   </component>
 </project>

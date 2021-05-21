@@ -56,6 +56,19 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
         button3.setOnClickListener {
             addDBLocalBaseData()
         }
+
+        getBooking(7)
+    }
+
+    private fun getBooking(zoneId: Int) {
+        val bicycleServiceImpl = ServiceImpl()
+        bicycleServiceImpl.getBookingJSONAcompañantes(this, zoneId) { response ->
+            run {
+                if (response != null) {
+                    Log.v("PRUEBITA_PRUEBA", "¡ "+response[0].dni+" !")
+                }
+            }
+        }
     }
 
     @SuppressLint("WrongConstant")
@@ -100,29 +113,27 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
                 }
             }
         }
+        Log.v("PRUEBA1", "Todo Bien!")
     }
 
     private fun syncDBServerToDBLocalZones() {
         val tokenPref = preferences.getString("tokenPref", null)
         val zoneImpl = ServiceImpl()
-        Log.v("PRUEBAAAAAAA", "Llego 1")
         zoneImpl.getAll(this, tokenPref.toString()) { response ->
             run {
                 val database = AppDatabase.getDatabase(this)
-                Log.v("PRUEBAAAAAAA", "Llego 2")
                 CoroutineScope(Dispatchers.IO).launch{
                     database.zonas().delete()
-                    Log.v("PRUEBAAAAAAA", "Llego 3")
                     val zoneArray : ArrayList<Zone>? = response
                     if (zoneArray != null) {
                         for (i in 0 until zoneArray.size) {
                             database.zonas().insert(zoneArray[i])
                         }
-                        Log.v("PRUEBAAAAAAA", "Prueba: " + zoneArray.size)
                     }
                 }
             }
         }
+        Log.v("PRUEBA2", "Todo Bien!")
     }
 
     private fun syncDBLocalToDBServerBookingsChecked(){
@@ -142,6 +153,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
                 }
             }
         });
+        Log.v("PRUEBA3", "Todo Bien!")
     }
 
     private fun syncDBServerToDBLocalBookingsNoChecked() {
@@ -163,6 +175,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
                 }
             }
         }
+        Log.v("PRUEBA4", "Todo Bien!")
     }
 
     private fun addDBLocalBaseData(){

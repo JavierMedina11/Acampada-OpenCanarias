@@ -4,6 +4,7 @@ use App\Http\Controllers\PersonaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ZonaController;
+use App\Http\Controllers\MatriculaController;
 use App\Http\Controllers\ReservaController;
 use App\Http\Controllers\OperarioController;
 use PHPJasper\PHPJasper;
@@ -41,6 +42,14 @@ Route::put('/update-operario/{id}', [OperarioController::class, 'update']);
     Route::delete('/delete-zona/{id}', [ZonaController::class, 'delete']);
     Route::put('/update-zona/{id}', [ZonaController::class, 'updatePost']);
     Route::post('/add-zona', [ZonaController::class, 'createPost']);
+
+    //  ----- MATRICULAS -----
+    Route::get('/matriculas', [MatriculaController::class, 'index']);
+    Route::get('/matriculas/{id}', [MatriculaController::class, 'show']);
+    Route::delete('/delete-matricula/{id}', [MatriculaController::class, 'delete']);
+    Route::put('/update-matricula/{id}', [MatriculaController::class, 'updatePost']);
+    Route::post('/add-matricula', [MatriculaController::class, 'createPost']);
+
 
 //  ----- PERSONAS -----
     Route::get('/persona', [PersonaController::class, 'index']);
