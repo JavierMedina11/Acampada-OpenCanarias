@@ -1,11 +1,7 @@
 package com.example.frontend.controller.io
 
 import android.content.Context
-import com.example.frontend.controller.models.Operario
-import com.example.frontend.controller.models.Persona
-import com.example.frontend.controller.models.Reserva
-
-import com.example.frontend.controller.models.Zone
+import com.example.frontend.controller.models.*
 
 interface IVolleyService {
 
@@ -18,6 +14,12 @@ interface IVolleyService {
     fun getZoneById(context: Context, zoneId: Int, completionHandler: (response: Zone?) -> Unit)
 
     fun getBookingById(context: Context, zoneId: Int, completionHandler: (response: Reserva?) -> Unit)
+
+    fun getBookingJSONAcompañantes(context: Context, zoneId: Int, completionHandler: (response: ArrayList<Persona>?) -> Unit)
+
+    fun getBookingJSONMatriculas(context: Context, zoneId: Int, completionHandler: (response: ArrayList<Matricula>?) -> Unit)
+
+    fun getBookingJSONIncidencias(context: Context, zoneId: Int, completionHandler: (response: Reserva?) -> Unit)
 
     fun getPersonById(context: Context, zoneId: Int, completionHandler: (response: Persona?) -> Unit)
 

@@ -96,8 +96,8 @@ class ReservaAdapter(var reservaList: ArrayList<Reserva>, val context: Context):
                         val dni: TextView = itemView.findViewById(R.id.textDni)
                         val imagePerson: ImageView = itemView.findViewById(R.id.imagePerson)
 
-                        name.setText(response?.name ?: "")
-                        apellidos.setText(response?.apellidos ?: "")
+                        name.setText(response?.nombre ?: "")
+                        apellidos.setText(response?.apellido1 ?: "")
                         dni.setText(response?.dni ?: "")
 
                         val imageUrl = url + response.url_img + ".png"
@@ -113,7 +113,7 @@ class ReservaAdapter(var reservaList: ArrayList<Reserva>, val context: Context):
                         intent.putExtra("checkin", b.checkin)
                         intent.putExtra("zoneId", b.id_zona)
                         intent.putExtra("personId", response?.id)
-                        intent.putExtra("personName", response?.name)
+                        intent.putExtra("personName", response?.nombre)
                         intent.putExtra("state", "Showing")
                         context.startActivity(intent)
                     }

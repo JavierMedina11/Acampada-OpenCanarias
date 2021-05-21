@@ -60,6 +60,7 @@ class ReservaController {
         $zona->num_casetas = $request->num_casetas;
         $zona->num_bus = $request->num_bus;
         $zona->num_caravanas = $request->num_caravanas;
+        $zona->matriculas = $request->matriculas;
         $zona->checkin = $request->checkin;
         $zona->fecha_checkin = $request->fecha_checkin;
         $zona->incidencia = $request->incidencia;
@@ -85,6 +86,7 @@ class ReservaController {
         $zona->num_casetas = $request->num_casetas;
         $zona->num_bus = $request->num_bus;
         $zona->num_caravanas = $request->num_caravanas;
+        $zona->matriculas = $request->matriculas;
         $zona->checkin = $request->checkin;
         $zona->fecha_checkin = $request->fecha_checkin;
         $zona->incidencia = $request->incidencia;

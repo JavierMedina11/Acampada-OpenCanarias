@@ -117,7 +117,7 @@ class ListActivity : AppCompatActivity() {
         groupRadioFun(zoneId, state)
 
         syncDBLocalToDBServerBookingsChecked()
-        syncDBServerToDBLocalBookingsNoChecked()
+        //syncDBServerToDBLocalBookingsNoChecked()
         selects()
     }
 

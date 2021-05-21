@@ -26,6 +26,7 @@ class Reserva extends Migration
             $table->integer('num_casetas');
             $table->integer('num_bus');
             $table->integer('num_caravanas');
+            $table->json('matriculas');
             $table->string('checkin');
             $table->string('fecha_checkin');
             $table->string('incidencia');  //mirar bien este campo preguntar
