@@ -211,6 +211,7 @@ class ServiceImpl: IVolleyService {
                 val JSONlist3 = response.getString("incidencias")
                 val mapType = object: TypeToken<Map<String, Any>>() {}.type
                 var inci: Map<String, Any> = gson.fromJson(JSONlist3, mapType)
+                Log.v("PRUEBAZAESPECIAL", inci["plazas"].toString())
 
                 val plazasMAP = "["+gson.toJson(inci["plazas"])+"]"
                 Log.v("PRUEBAZAESPECIAL", plazasMAP)
@@ -232,6 +233,7 @@ class ServiceImpl: IVolleyService {
                 Log.v("PRUEBAZA9", "+ "+inciSolicitanteMAP[0].texto+" +")
                 var inciAcompañantesMAP: ArrayList<IncidenciaEspec> = gson.fromJson(acompañantesMAP, arrayIncidencyaEspecType)
                 Log.v("PRUEBAZA10", "+ "+inciAcompañantesMAP[0].texto+" +")
+                // NO SE HA PODIDO VERIFICAR LA IDENTIDAD O NO SE HA PRESENTADO EL ACOMPAÑANTE CON DNI...
                 var inciObservacionesMAP: ArrayList<IncidenciaEspec> = gson.fromJson(observacionesMAP, arrayIncidencyaEspecType)
                 Log.v("PRUEBAZA11", "+ "+inciObservacionesMAP[0].texto+" +")
 

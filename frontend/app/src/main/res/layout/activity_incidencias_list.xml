@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".controller.ui.IncidenciasListActivity">
+
+    <ImageView
+        android:id="@+id/bg_listsOp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha=".875"
+        android:background="@color/light_blue"
+        android:scaleX="2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textIncidencia1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:fontFamily="@font/quicksand_light"
+        android:shadowColor="@color/black"
+        android:shadowDx="0"
+        android:shadowDy="3"
+        android:shadowRadius="6"
+        android:text="Gestionar Incidencias"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textIncidencia2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="68dp"
+        android:fontFamily="@font/ubuntu_bold_italic"
+        android:shadowColor="@color/black"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="6"
+        android:text="Personas"
+        android:textSize="45sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textIncidencia3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="124dp"
+        android:fontFamily="@font/quicksand_light"
+        android:shadowColor="@color/black"
+        android:shadowDx="0"
+        android:shadowDy="3"
+        android:shadowRadius="6"
+        android:text="personas"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/solicitanteBG"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="136dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/solici_no_checked" />
+
+    <TextView
+        android:id="@+id/textSolicitante"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:text="Solicitante"
+        android:textSize="13sp"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/solicitanteBG" />
+
+    <TextView
+        android:id="@+id/solicitanteName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text=""
+        android:textColor="@color/black"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/solicitanteBG" />
+
+    <TextView
+        android:id="@+id/solicitanteDNI"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="76dp"
+        android:layout_marginEnd="8dp"
+        android:text=""
+        android:textColor="@color/black"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toStartOf="@+id/eclipse1"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/solicitanteBG" />
+
+    <TextView
+        android:id="@+id/solicitanteFecha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="76dp"
+        android:text=""
+        android:textColor="@color/black"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/eclipse2"
+        app:layout_constraintTop_toTopOf="@+id/solicitanteBG" />
+
+    <TextView
+        android:id="@+id/solicitanteTlf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="76dp"
+        android:layout_marginEnd="204dp"
+        android:text=""
+        android:textColor="@color/black"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/solicitanteBG" />
+
+    <ImageView
+        android:id="@+id/eclipse1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="76dp"
+        android:layout_marginEnd="8dp"
+        android:translationY="6.25dp"
+        app:layout_constraintEnd_toStartOf="@+id/solicitanteTlf"
+        app:layout_constraintTop_toTopOf="@+id/solicitanteBG"
+        app:srcCompat="@drawable/eclipse" />
+
+    <ImageView
+        android:id="@+id/eclipse2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="76dp"
+        android:translationY="6.25dp"
+        app:layout_constraintStart_toEndOf="@+id/solicitanteTlf"
+        app:layout_constraintTop_toTopOf="@+id/solicitanteBG"
+        app:srcCompat="@drawable/eclipse" />
+
+    <ImageButton
+        android:id="@+id/buttonCheck"
+        android:layout_width="18dp"
+        android:layout_height="14dp"
+        android:alpha="1"
+        android:background="@drawable/ok_yes"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        android:transitionName="buttonZone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.158"
+        app:layout_constraintStart_toStartOf="@+id/solicitanteBG"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="200dp" />
+
+    <ImageButton
+        android:id="@+id/buttonNO"
+        android:layout_width="18dp"
+        android:layout_height="14dp"
+        android:alpha="1"
+        android:background="@drawable/cancelar"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        android:transitionName="buttonZone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.833"
+        app:layout_constraintStart_toStartOf="@+id/solicitanteBG"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="200dp" />
+
+    <TextView
+        android:id="@+id/textAcompañantes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="264dp"
+        android:text="Acompañantes"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
