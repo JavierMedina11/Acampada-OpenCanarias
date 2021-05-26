@@ -2,27 +2,33 @@ package com.example.frontend.controller.ui
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Typeface
 import android.icu.util.Calendar
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import com.example.frontend.R
 import com.example.frontend.controller.io.ServiceImpl
-import com.example.frontend.controller.models.Reserva
 import androidx.lifecycle.Observer
-import com.example.frontend.controller.models.Persona
-import com.example.frontend.controller.models.Zone
+import androidx.viewpager2.widget.ViewPager2
+import com.example.frontend.controller.models.*
 import com.example.frontend.controller.util.PreferenceHelper
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import com.opencanarias.pruebasync.util.AppDatabase
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.activity_reserva_detallada.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -34,12 +40,14 @@ class ReservaDetalladaActivity : AppCompatActivity() {
 
     private lateinit var liveData: LiveData<Zone>
 
+    @SuppressLint("SetTextI18n")
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_reserva_detallada)
         val timeZone= "GMT+1"
         //val reservaId = this.intent.getIntExtra("reservaId", 1)
+        textTextArea.typeface = Typeface.createFromAsset(assets, "fonts/ocra_exp.TTF")
         val reservaId = preferences.getInt("reservaSearchId", 1)
         //getZone(zoneId)
 
@@ -47,6 +55,7 @@ class ReservaDetalladaActivity : AppCompatActivity() {
 
         var getReservas = emptyList<Reserva>()
         var listaZones = emptyList<Zone>()
+        var listaOperarios = emptyList<Operario>()
         var listaPersons = emptyList<Persona>()
 
         val database = AppDatabase.getDatabase(this)
@@ -74,32 +83,65 @@ class ReservaDetalladaActivity : AppCompatActivity() {
             val incidencias = getReservas[0].incidencias
             val estado = getReservas[0].estado
 
+            val JSONSolicitante = getReservas[0].incidencias
+
+            val gson = Gson()
+            val mapType = object: TypeToken<Map<String, Any>>() {}.type
+            var inci: Map<String, Any> = gson.fromJson(JSONSolicitante, mapType)
+            Log.v("aaa", inci.toString())
+
+            val arrayIncidencyaEspecType = object: TypeToken<ArrayList<IncidenciaEspec>>() {}.type
+
+            val plazasMAP = "["+gson.toJson(inci["plazas"]).toString()+"]"
+            Log.v("bbb", inci["plazas"].toString())
+            Log.v("ccc", "+ "+plazasMAP+" +")
+
+            //val textArea: EditText = findViewById(R.id.textTextArea)
+
+            var inciPlazasMap: ArrayList<IncidenciaEspec> = gson.fromJson(plazasMAP, arrayIncidencyaEspecType)
+            val casetasMaP = "["+gson.toJson(inci["casetas"])+"]"
+            var inciCasetasMaP: ArrayList<IncidenciaEspec> = gson.fromJson(casetasMaP, arrayIncidencyaEspecType)
+            val caravanaMaP = "["+gson.toJson(inci["caravanas"])+"]"
+            var inciCaravanaMaP: ArrayList<IncidenciaEspec> = gson.fromJson(caravanaMaP, arrayIncidencyaEspecType)
+            val solicitanteMaP = "["+gson.toJson(inci["solicitante"])+"]"
+            var inciSolicitanteMaP: ArrayList<IncidenciaEspec> = gson.fromJson(solicitanteMaP, arrayIncidencyaEspecType)
+            val acompañantesMaP = gson.toJson(inci["acompañantes"])
+            var inciAcompañantesMaP: ArrayList<IncidenciaEspec> = gson.fromJson(acompañantesMaP, arrayIncidencyaEspecType)
+            val observacionesMaP = gson.toJson(inci["observaciones"])
+            var inciObservacionesMaP: ArrayList<IncidenciaEspec> = gson.fromJson(observacionesMaP, arrayIncidencyaEspecType)
+
+
+            if(inciCasetasMaP[0].texto != ""){
+                textTextArea.setText("\n"+inciCasetasMaP[0].texto + " - " + inciCasetasMaP[0].fechahora + " - " + inciCasetasMaP[0].idusuario)
+            }
+            if(inciCaravanaMaP[0].texto != ""){
+                textTextArea.setText("\n"+inciCaravanaMaP[0].texto + " - " + inciCaravanaMaP[0].fechahora + " - " + inciCaravanaMaP[0].idusuario + " " + textTextArea.text)
+            }
+            if(inciSolicitanteMaP[0].texto != ""){
+                textTextArea.setText("\n"+inciSolicitanteMaP[0].texto + " - " + inciSolicitanteMaP[0].fechahora + " - " + inciCasetasMaP[0].idusuario + " " + textTextArea.text)
+            }
+
+
             if(getReservas[0].checkin == "1"){
                 buttonCheckIn.setBackgroundResource(R.drawable.button_checked)
+                val ope_id = preferences.getInt("opeId", 1)
+                database.operarios().getById(ope_id).observe(this, Observer {
+                    listaOperarios = it
+                    val textCheckIn =
+                        "CHECK IN: Llevado a cabo por " + listaOperarios[0].nombre + " con DNI " + listaOperarios[0].dni + " - " + fechaCheckin
+                    textTextArea.setText("\n" + textCheckIn + textTextArea.text)
+                })
             }else{
                 buttonCheckIn.setBackgroundResource(R.drawable.button_checkin)
             }
 
             textEntrada.setText(fecha_entrada)
             textEntrada2.setText(fecha_salida)
-            numPersonsR.setText(num_personas.toString())
-            numVehiculosR.setText(num_vehiculos.toString())
-            textViewNameDude.setText(personId.toString())
 
             database.zonas().getById(zoneId).observe(this, Observer{
                 listaZones = it
-                val url = "https://cryptic-dawn-95434.herokuapp.com/img/"
                 localization.text =listaZones[0].localizacion
                 name.text = listaZones[0].nombre
-                val imageUrl = url + listaZones[0].url_img + ".jpg"
-                Picasso.with(this).load(imageUrl).into(bg);
-            })
-
-            database.personas().getById(personId).observe(this, Observer{
-                listaPersons = it
-                val url = "https://cryptic-dawn-95434.herokuapp.com/img/"
-                val imageUrl = url + listaPersons[0].url_img + ".png"
-                Picasso.with(this).load(imageUrl).into(imagenPerfilReserva);
             })
 
             logo.setOnClickListener {
@@ -111,19 +153,28 @@ class ReservaDetalladaActivity : AppCompatActivity() {
                 startActivity(intent)
             }
 
-            val reserva = Reserva(reservaId, reservaIdPersona, dni, fecha_entrada, fecha_salida, localizador, num_personas, acompanantes, num_vehiculos, num_casetas, num_bus, num_caravanas, matriculas, "1", obtenerFechaActual(timeZone).toString(), incidencia, incidencias, estado, zoneId)
+            val reserva = Reserva(reservaId, reservaIdPersona, dni, fecha_entrada, fecha_salida, localizador, num_personas, acompanantes, num_vehiculos, num_casetas, num_bus, num_caravanas, matriculas, "1", obtenerFechaActualMoreTime(timeZone).toString(), incidencia, incidencias, estado, zoneId)
 
             buttonCheckIn.setOnClickListener {
                 CoroutineScope(Dispatchers.IO).launch {
-                    database.reservas().update(reserva)
-                }
-                val intent = Intent(this, ZoneActivity::class.java)
-                startActivity(intent)
-                finish()
+                                database.reservas().update(reserva)
+                            }
+                    val intent = Intent(this, ZoneActivity::class.java)
+                    startActivity(intent)
+                    finish()
             }
         })
 
+        buttonGestion.setOnClickListener {
+            goToIncidencias()
+        }
+
         //getPerson(personId)
+    }
+
+    private fun goToIncidencias(){
+        val intent = Intent(this, IncidenciasListActivity::class.java)
+        startActivity(intent)
     }
 
 
@@ -140,68 +191,14 @@ class ReservaDetalladaActivity : AppCompatActivity() {
 
     @RequiresApi(Build.VERSION_CODES.N)
     fun obtenerFechaActual(zonaHoraria: String?): String? {
-        val formato = "yyyy-MM-dd"
+        val formato = "dd/MM/YYYY"
         return obtenerFechaConFormato(formato, zonaHoraria)
     }
 
-/*
-    private fun getZone(zoneId: Int) {
-        val bicycleServiceImpl = ServiceImpl()
-        bicycleServiceImpl.getZoneById(this, zoneId) { response ->
-            run {
-                val url = "https://cryptic-dawn-95434.herokuapp.com/img/"
-                val localizacion: TextView = findViewById(R.id.localization)
-                val name: TextView = findViewById(R.id.name)
-                val roomImg: ImageView = findViewById(R.id.bg)
-                val imageUrl = url + response?.url_img + ".jpg"
-
-                localizacion.setText(response?.localizacion ?: "")
-                name.setText(response?.nombre ?: "")
-                Picasso.with(this).load(imageUrl).into(roomImg);
-            }
-        }
+    @RequiresApi(Build.VERSION_CODES.N)
+    fun obtenerFechaActualMoreTime(zonaHoraria: String?): String? {
+        val formato = "dd/MM/YYYY hh:mm:ss"
+        return obtenerFechaConFormato(formato, zonaHoraria)
     }
-
-    private fun getBooking(zoneId: Int) {
-        val bicycleServiceImpl = ServiceImpl()
-        bicycleServiceImpl.getBookingById(this, zoneId) { response ->
-            run {
-                val fechaEntrada: TextView = findViewById(R.id.textEntrada)
-                val fechaSalida: TextView = findViewById(R.id.textEntrada2)
-                val numPerson: TextView = findViewById(R.id.numPersonsR)
-                val numVehiculos: TextView = findViewById(R.id.numVehiculosR)
-
-                if(response?.checkin == "1"){
-                    buttonCheckIn.setBackgroundResource(R.drawable.bg_button_checked)
-                    buttonCheckIn.setText("Checked")
-                }else{
-                    buttonCheckIn.setBackgroundResource(R.drawable.bg_button)
-                }
-
-                fechaEntrada.setText(response?.fecha_entrada ?: "")
-                fechaSalida.setText(response?.fecha_salida ?: "")
-                numPerson.setText(response?.num_personas.toString() ?: "")
-                numVehiculos.setText(response?.num_vehiculos.toString() ?: "")
-            }
-        }
-    }
-
-    private fun getPerson(userId: Int){
-        val serviceImpl = ServiceImpl()
-        serviceImpl.getPersonById(this, userId) { response ->
-            run {
-                val url = "http://192.168.56.1:8000/img/"
-                val imagePerson: ImageView = findViewById(R.id.imagenPerfilReserva)
-                val personNameTV: TextView= findViewById(R.id.textViewNameDude)
-                val personNamePUT = this.intent.getStringExtra("personName").toString()
-                Log.v("GetPerson", personNamePUT)
-                personNameTV.setText(personNamePUT)
-
-                val imageUrl = url + response?.url_img  + ".png"
-                Picasso.with(this).load(imageUrl).into(imagePerson);
-            }
-        }
-    }*/
-
 
 }

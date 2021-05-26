@@ -211,10 +211,9 @@ class ServiceImpl: IVolleyService {
                 val JSONlist3 = response.getString("incidencias")
                 val mapType = object: TypeToken<Map<String, Any>>() {}.type
                 var inci: Map<String, Any> = gson.fromJson(JSONlist3, mapType)
-                Log.v("PRUEBAZAESPECIAL", inci["plazas"].toString())
+                //Log.v("PRUEBAZAESPECIAL", gson.toJson(inci))
 
                 val plazasMAP = "["+gson.toJson(inci["plazas"])+"]"
-                Log.v("PRUEBAZAESPECIAL", plazasMAP)
                 val casetasMAP = "["+gson.toJson(inci["casetas"])+"]"
                 val caravanaMAP = "["+gson.toJson(inci["caravanas"])+"]"
                 val solicitanteMAP = "["+gson.toJson(inci["solicitante"])+"]"
@@ -498,8 +497,15 @@ class ServiceImpl: IVolleyService {
         bookingJSON.put("localizador_reserva", reserva.localizador_reserva)
         bookingJSON.put("num_personas", reserva.num_personas.toString())
         bookingJSON.put("num_vehiculos", reserva.num_vehiculos.toString())
+        bookingJSON.put("num_casetas", reserva.num_casetas)
+        bookingJSON.put("num_bus", reserva.num_bus)
+        bookingJSON.put("num_caravanas", reserva.num_caravanas)
+        bookingJSON.put("matriculas", reserva.matriculas)
         bookingJSON.put("checkin", reserva.checkin)
         bookingJSON.put("fecha_checkin", reserva.fecha_checkin)
+        bookingJSON.put("incidencia", reserva.incidencia)
+        bookingJSON.put("incidencias", reserva.incidencias)
+        bookingJSON.put("estado", reserva.estado)
         bookingJSON.put("id_zona", reserva.id_zona.toString())
 
         val objectRequest = JsonObjectRequest(Request.Method.PUT, path, bookingJSON,

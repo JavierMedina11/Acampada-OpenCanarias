@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linear_layout"
+    android:layout_width="300dp"
+    android:layout_height="400dp"
+    android:background="@drawable/check_bg_matricula"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/view_pagerrr2"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_alignParentRight="true"
+        android:transitionName="viewpager"
+        android:translationY="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/TTTTT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:text="Matriculas"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowColor="@color/light_grey"
+        android:shadowRadius="6"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:gravity="center"/>
+
+
+</RelativeLayout>
