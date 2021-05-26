@@ -62,10 +62,10 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun getBooking(zoneId: Int) {
         val bicycleServiceImpl = ServiceImpl()
-        bicycleServiceImpl.getBookingJSONAcompañantes(this, zoneId) { response ->
+        bicycleServiceImpl.getBookingJSONIncidencias(this, zoneId) { response ->
             run {
                 if (response != null) {
-                    Log.v("PRUEBITA_PRUEBA", "¡ "+response[0].dni+" !")
+                    //Log.v("PRUEBITA_PRUEBA", "¡ "+response[0].dni+" !")
                 }
             }
         }
