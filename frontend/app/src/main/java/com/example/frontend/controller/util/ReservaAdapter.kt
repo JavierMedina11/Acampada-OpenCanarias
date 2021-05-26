@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.frontend.R
 import com.example.frontend.controller.io.ServiceImpl
 import com.example.frontend.controller.models.Reserva
+import com.example.frontend.controller.ui.IncidenciasListActivity
 import com.example.frontend.controller.ui.ReservaDetalladaActivity
 import com.example.frontend.controller.util.PreferenceHelper.set
 import com.squareup.picasso.Picasso
@@ -107,7 +108,7 @@ class ReservaAdapter(var reservaList: ArrayList<Reserva>, val context: Context):
                     itemView.setOnClickListener {
                         Log.v("dadas", "dddddddddddd")
                         val preferences = PreferenceHelper.defaultPrefs(context)
-                        val intent = Intent(context, ReservaDetalladaActivity::class.java)
+                        val intent = Intent(context, IncidenciasListActivity::class.java)
                         preferences["reservaSearchId"] = b.id
                         intent.putExtra("localizador", b.localizador_reserva)
                         intent.putExtra("checkin", b.checkin)

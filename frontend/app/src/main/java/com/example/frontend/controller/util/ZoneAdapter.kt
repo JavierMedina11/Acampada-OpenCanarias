@@ -80,33 +80,6 @@ class ZoneAdapter(var zoneLists: ArrayList<Zone>, val context: Context): Recycle
                 button_popu_close.setOnClickListener(){
                     dialogs.dismiss()
                 }
-
-
-
-                /*val builder = AlertDialog.Builder(context)
-                builder.setTitle("Delete")
-                builder.setMessage("Are you sure to delete you account ?")
-                Log.v("dadas", "DDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD")
-                builder.setPositiveButton(android.R.string.yes) { dialog, which ->
-                    Toast.makeText(
-                        context,
-                        android.R.string.yes, Toast.LENGTH_SHORT
-                    ).show()
-                    Log.v("Edit", "borrao")
-                }
-                builder.setNegativeButton(android.R.string.no) { dialog, which ->
-                    Toast.makeText(
-                        context,
-                        android.R.string.no, Toast.LENGTH_SHORT
-                    ).show()
-                }
-                builder.show()*/
-                /*val intent = Intent(context, ListActivity::class.java)
-                intent.putExtra("zoneId", b.id)
-                intent.putExtra("nombre", b.nombre)
-                intent.putExtra("localizacion", b.localizacion)
-                intent.putExtra("state", "Showing")
-                context.startActivity(intent)*/
             }
         }
     }

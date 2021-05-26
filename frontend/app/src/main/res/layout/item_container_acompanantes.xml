@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="72.5dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="10dp"
+    app:cardElevation="5dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="84dp">
+
+        <ImageView
+            android:id="@+id/kbvLocationRRR"
+            android:layout_width="325dp"
+            android:layout_height="90dp"
+            android:background="@drawable/inci_no_checked2"
+            android:scaleType="centerCrop"
+            android:translationY="-4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/acompañanteName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/quicksand"
+            android:text="TextView"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/acompañanteDNI"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/quicksand_light"
+            android:text="TextView"
+            android:textColor="@color/black"
+            android:textSize="13sp"
+            android:translationX="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/buttonCheck2"
+            android:layout_width="18dp"
+            android:layout_height="14dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="108dp"
+            android:alpha="1"
+            android:background="@drawable/cheque"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            android:transitionName="buttonZone"
+            android:translationX="40dp"
+            android:translationY="-2.5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.158"
+            app:layout_constraintStart_toStartOf="@+id/solicitanteBG"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <ImageButton
+            android:id="@+id/buttonNoCheck2"
+            android:layout_width="18dp"
+            android:layout_height="14dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="68dp"
+            android:alpha="1"
+            android:background="@drawable/cancelar"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            android:transitionName="buttonZone"
+            android:translationX="43.5dp"
+            android:translationY="-2dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.158"
+            app:layout_constraintStart_toStartOf="@+id/solicitanteBG"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.cardview.widget.CardView>

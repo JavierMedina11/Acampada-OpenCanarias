@@ -7,10 +7,24 @@
     tools:context=".controller.ui.IncidenciasListActivity">
 
     <ImageView
+        android:id="@+id/bg_lists"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/prueba"
+        android:scaleX="2"
+        android:scaleY="2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
         android:id="@+id/bg_listsOp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:alpha=".875"
+        android:alpha="1"
         android:background="@color/light_blue"
         android:scaleX="2"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -21,52 +35,19 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/textIncidencia1"
+        android:id="@+id/numPersonas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
-        android:fontFamily="@font/quicksand_light"
-        android:shadowColor="@color/black"
-        android:shadowDx="0"
-        android:shadowDy="3"
-        android:shadowRadius="6"
-        android:text="Gestionar Incidencias"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textIncidencia2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
-        android:fontFamily="@font/ubuntu_bold_italic"
-        android:shadowColor="@color/black"
-        android:shadowDx="1"
-        android:shadowDy="1"
-        android:shadowRadius="6"
-        android:text="Personas"
-        android:textSize="45sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textIncidencia3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="124dp"
-        android:fontFamily="@font/quicksand_light"
-        android:shadowColor="@color/black"
+        android:layout_marginTop="108dp"
+        android:fontFamily="@font/quicksand"
+        android:shadowColor="@color/light_shadows"
         android:shadowDx="0"
         android:shadowDy="3"
         android:shadowRadius="6"
         android:text="personas"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -74,12 +55,12 @@
         android:id="@+id/solicitanteBG"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="136dp"
+        android:layout_marginTop="112dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/solici_no_checked" />
+        android:background="@drawable/solici_no_checked"/>
 
     <TextView
         android:id="@+id/textSolicitante"
@@ -100,7 +81,8 @@
         android:layout_marginTop="60dp"
         android:text=""
         android:textColor="@color/black"
-        android:textSize="13sp"
+        android:fontFamily="@font/quicksand"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/solicitanteBG" />
@@ -113,7 +95,8 @@
         android:layout_marginEnd="8dp"
         android:text=""
         android:textColor="@color/black"
-        android:textSize="13sp"
+        android:fontFamily="@font/quicksand_light"
+        android:textSize="12sp"
         app:layout_constraintEnd_toStartOf="@+id/eclipse1"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -127,7 +110,8 @@
         android:layout_marginTop="76dp"
         android:text=""
         android:textColor="@color/black"
-        android:textSize="13sp"
+        android:fontFamily="@font/quicksand_light"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/eclipse2"
@@ -138,10 +122,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="76dp"
-        android:layout_marginEnd="204dp"
+        android:layout_marginEnd="192dp"
+        android:fontFamily="@font/quicksand_light"
         android:text=""
         android:textColor="@color/black"
-        android:textSize="13sp"
+        android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/solicitanteBG" />
 
@@ -171,6 +156,7 @@
         android:id="@+id/buttonCheck"
         android:layout_width="18dp"
         android:layout_height="14dp"
+        android:layout_marginTop="175dp"
         android:alpha="1"
         android:background="@drawable/ok_yes"
         android:textColor="@color/black"
@@ -179,35 +165,191 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.158"
         app:layout_constraintStart_toStartOf="@+id/solicitanteBG"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="200dp" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
 
     <ImageButton
         android:id="@+id/buttonNO"
         android:layout_width="18dp"
         android:layout_height="14dp"
+        android:layout_marginTop="175dp"
+android:translationX="0dp"
         android:alpha="1"
         android:background="@drawable/cancelar"
         android:textColor="@color/black"
         android:textSize="17sp"
         android:transitionName="buttonZone"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.833"
+        app:layout_constraintHorizontal_bias="0.841"
         app:layout_constraintStart_toStartOf="@+id/solicitanteBG"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="200dp" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textAcompañantes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="264dp"
+        android:layout_marginTop="232dp"
         android:text="Acompañantes"
-        android:textSize="18sp"
         android:textColor="@color/black"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/locationRecyclerPerson"
+        android:layout_width="448dp"
+        android:layout_height="220dp"
+        android:paddingStart="60dp"
+        android:paddingEnd="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.513"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></androidx.recyclerview.widget.RecyclerView>
+
+    <ImageView
+        android:id="@+id/imageView26"
+        android:layout_width="350dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/changed" />
+
+    <ImageButton
+        android:id="@+id/buttonCheckIn"
+        android:layout_width="300dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="604dp"
+        android:background="@drawable/button_checkin"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <ImageButton
+        android:id="@+id/buttonMatri"
+        android:layout_width="300dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="408dp"
+        android:background="@drawable/matri_button"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.369"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <ImageButton
+        android:id="@+id/buttonGuardar"
+        android:layout_width="200dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="592dp"
+        android:background="@drawable/guardar_incidencias"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <ImageButton
+        android:id="@+id/buttonObservaciones"
+        android:layout_width="200dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="592dp"
+        android:background="@drawable/ventana_observaciones"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.09"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <ImageButton
+        android:id="@+id/imageButton4"
+        android:layout_width="129dp"
+        android:layout_height="38dp"
+        android:layout_marginBottom="152dp"
+        android:background="@drawable/bg_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.226"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:srcCompat="@color/earth" />
+
+    <ImageButton
+        android:id="@+id/imageButton5"
+        android:layout_width="129dp"
+        android:layout_height="38dp"
+        android:layout_marginBottom="152dp"
+        android:background="@drawable/bg_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.776"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:srcCompat="@color/earth" />
+
+    <ImageView
+        android:id="@+id/imageView25"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="4.5dp"
+        app:layout_constraintStart_toStartOf="@+id/imageButton4"
+        app:layout_constraintTop_toTopOf="@+id/imageButton4"
+        app:srcCompat="@drawable/cccc" />
+
+    <ImageView
+        android:id="@+id/imageView27"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="4.5dp"
+        app:layout_constraintStart_toStartOf="@+id/imageButton5"
+        app:layout_constraintTop_toTopOf="@+id/imageButton5"
+        app:srcCompat="@drawable/tienda" />
+
+
+
+
+
+    <TextView
+        android:id="@+id/caravanaText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/quicksand"
+        android:text="TextView"
+        android:textColor="@color/white"
+        android:textSize="13sp"
+        android:translationX="-5dp"
+        android:translationY="-15dp"
+        app:layout_constraintStart_toStartOf="@+id/imageButton4"
+        app:layout_constraintTop_toTopOf="@+id/imageButton4"  />
+
+    <TextView
+        android:id="@+id/campañaText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="14dp"
+        android:fontFamily="@font/quicksand"
+        android:text="TextView"
+        android:textColor="@color/white"
+        android:textSize="13sp"
+        android:translationY="-5dp"
+        app:layout_constraintStart_toStartOf="@+id/imageButton5"
+        app:layout_constraintTop_toTopOf="@+id/imageButton5"  />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

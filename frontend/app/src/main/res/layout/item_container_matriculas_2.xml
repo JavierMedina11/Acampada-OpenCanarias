@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardBackgroundColor="@android:color/transparent"
+    app:cardElevation="5dp"
+    app:cardCornerRadius="12dp">
+
+        <ImageView
+            android:id="@+id/kbvLocation_op"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/check_matricula"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <ImageButton
+            android:id="@+id/buttonCheck3"
+            android:layout_width="20dp"
+            android:layout_height="15dp"
+            android:layout_marginTop="136dp"
+            android:alpha="1"
+            android:background="@drawable/cheque2"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            android:transitionName="buttonZone"
+            android:translationX="8dp"
+            android:translationY="27.5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <ImageButton
+            android:id="@+id/buttonCheck34"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginTop="136dp"
+            android:alpha="1"
+            android:background="@drawable/cancelar"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            android:transitionName="buttonZone"
+            android:translationX="-7dp"
+            android:translationY="27.5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.745"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints" />
+
+        <TextView
+            android:id="@+id/textMatricula"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="56dp"
+            android:fontFamily="@font/quicksand"
+            android:text="TextView"
+            android:textSize="26sp"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
