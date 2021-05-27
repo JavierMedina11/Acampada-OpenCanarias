@@ -17,10 +17,6 @@ class Operario extends Model implements AuthenticatableContract, AuthorizableCon
     protected $table= 'operarios';
 
     protected $fillable = [
-        'dni','nombre', 'apellidos', 'email','password'
-    ];
-
-    protected $hidden = [
-        'password'
+        'dni','nombre', 'apellidos','password', 'email','password'
     ];
 }

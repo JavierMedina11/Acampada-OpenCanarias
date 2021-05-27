@@ -30,6 +30,7 @@ Route::post('/login', [OperarioController::class, 'logIn']);
 Route::post('/logout', [OperarioController::class, 'logOut']);
 
 //  ----- OPERARIOS -----
+Route::get('/operarios', [OperarioController::class, 'index']);
 Route::get('/operario-id/{id}', [OperarioController::class, 'getById']);
 Route::delete('/delete-operario/{id}', [OperarioController::class, 'delete']);
 Route::put('/update-operario/{id}', [OperarioController::class, 'update']);

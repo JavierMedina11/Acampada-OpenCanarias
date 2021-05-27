@@ -43,6 +43,33 @@ class ServiceImpl: IVolleyService {
         ServiceSingleton.getInstance(context).addToRequestQueue(arrayRequest)
     }
 
+    override fun getAllOperarios(context: Context, completionHandler: (response: ArrayList<Operario>?) -> Unit) {
+        val path = ServiceSingleton.getInstance(context).baseUrl + "operarios"
+        Log.v("Path: ", path)
+        val arrayRequest = JsonArrayRequest(Request.Method.GET, path, null,
+            { response ->
+                val zoneArray : JSONArray = response
+                var zones: ArrayList<Operario> = ArrayList()
+                for (i in 0 until zoneArray.length()) {
+                    val zone = zoneArray.getJSONObject(i)
+                    val id = zone.getInt("id")
+                    val email = zone.getString("email")
+                    val password = zone.getString("password")
+                    val nombre = zone.getString("nombre")
+                    val dni = zone.getString("dni")
+                    val api_token = zone.getString("api_token")
+
+                    zones.add(Operario(id, email, password, nombre, dni, api_token))
+                }
+                completionHandler(zones)
+            },
+            { error ->
+                Log.v("Error", "Error on")
+                completionHandler(ArrayList<Operario>())
+            })
+        ServiceSingleton.getInstance(context).addToRequestQueue(arrayRequest)
+    }
+
     override fun getAllPerson(context: Context, completionHandler: (response: ArrayList<Persona>?) -> Unit) {
         val path = ServiceSingleton.getInstance(context).baseUrl + "persona"
         Log.v("Path: ", path)
@@ -63,8 +90,11 @@ class ServiceImpl: IVolleyService {
                     val direccion = zone.getString("direccion")
                     val telefono = zone.getString("telefono")
                     val url_img = zone.getString("url_img")
+                    val localizador = zone.getInt("localizador")
+                    val estado = zone.getString("estado")
 
-                    zones.add(Persona(id, name, apellido1, apellido2, tipo_documento, fecha_nacimiento, mail, direccion, telefono, dni, url_img))
+
+                    zones.add(Persona(id, name, apellido1, apellido2, tipo_documento, fecha_nacimiento, mail, direccion, telefono, dni, url_img, localizador ,estado))
                 }
                 completionHandler(zones)
             },
@@ -110,8 +140,10 @@ class ServiceImpl: IVolleyService {
                     val direccion = response.getString("direccion")
                     val telefono = response.getString("telefono")
                     val url_img = response.getString("url_img")
+                    val localizador = response.getInt("localizador")
+                    val estado = response.getString("estado")
 
-                    val persona = Persona(id, name, apellido1, apellido2, tipo_documento, fecha_nacimiento, mail, direccion, telefono, dni, url_img)
+                    val persona = Persona(id, name, apellido1, apellido2, tipo_documento, fecha_nacimiento, mail, direccion, telefono, dni, url_img, localizador, estado)
                     completionHandler(persona)
                 },
                 { error ->
@@ -509,8 +541,8 @@ class ServiceImpl: IVolleyService {
         bookingJSON.put("id_zona", reserva.id_zona.toString())
 
         val objectRequest = JsonObjectRequest(Request.Method.PUT, path, bookingJSON,
-                { response -> completionHandler() },
-                { error -> completionHandler() })
+            { response -> completionHandler() },
+            { error -> completionHandler() })
         ServiceSingleton.getInstance(context).addToRequestQueue(objectRequest)
     }
 

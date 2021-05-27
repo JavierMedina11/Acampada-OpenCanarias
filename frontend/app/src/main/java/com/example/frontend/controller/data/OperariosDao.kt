@@ -22,4 +22,7 @@ interface OperariosDao {
 
     @Update()
     fun update(operario: Operario)
+
+    @Query("DELETE FROM operarios")
+    fun delete()
 }

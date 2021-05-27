@@ -223,7 +223,7 @@ android:translationX="0dp"
         app:srcCompat="@drawable/changed" />
 
     <ImageButton
-        android:id="@+id/buttonCheckIn"
+        android:id="@+id/buttonCheckIn2"
         android:layout_width="300dp"
         android:layout_height="150dp"
         android:layout_marginTop="604dp"
@@ -231,19 +231,6 @@ android:translationX="0dp"
         android:textSize="17sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
-
-    <ImageButton
-        android:id="@+id/buttonMatri"
-        android:layout_width="300dp"
-        android:layout_height="120dp"
-        android:layout_marginTop="408dp"
-        android:background="@drawable/matri_button"
-        android:textSize="17sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.369"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
@@ -276,7 +263,7 @@ android:translationX="0dp"
 
     <ImageButton
         android:id="@+id/imageButton4"
-        android:layout_width="129dp"
+        android:layout_width="145dp"
         android:layout_height="38dp"
         android:layout_marginBottom="152dp"
         android:background="@drawable/bg_button"
@@ -350,6 +337,93 @@ android:translationX="0dp"
         android:translationY="-5dp"
         app:layout_constraintStart_toStartOf="@+id/imageButton5"
         app:layout_constraintTop_toTopOf="@+id/imageButton5"  />
+
+    <ImageButton
+        android:id="@+id/goToMatriculas"
+        android:layout_width="43dp"
+        android:layout_height="43dp"
+        android:translationX="5dp"
+        android:translationY="2.5dp"
+        android:background="@drawable/go_to_matriculas"
+        app:layout_constraintBottom_toBottomOf="@+id/imageButton4"
+        app:layout_constraintEnd_toEndOf="@+id/imageButton4"
+        app:layout_constraintHorizontal_bias="0.931"
+        app:layout_constraintStart_toStartOf="@+id/imageButton4"
+        app:layout_constraintTop_toTopOf="@+id/imageButton4" />
+
+    <ImageButton
+        android:id="@+id/imageButton50"
+        android:layout_width="145dp"
+        android:layout_height="38dp"
+        android:layout_marginBottom="204dp"
+        android:background="@drawable/bg_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.225"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:srcCompat="@color/earth" />
+
+    <ImageView
+        android:id="@+id/imageView35"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="4.5dp"
+        app:layout_constraintStart_toStartOf="@+id/imageButton50"
+        app:layout_constraintTop_toTopOf="@+id/imageButton50"
+        app:srcCompat="@drawable/coche" />
+
+    <TextView
+        android:id="@+id/vehiculoText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/quicksand"
+        android:text="TextView"
+        android:textColor="@color/white"
+        android:textSize="13sp"
+        android:translationX="-5dp"
+        android:translationY="-15dp"
+        app:layout_constraintStart_toStartOf="@+id/imageButton50"
+        app:layout_constraintTop_toTopOf="@+id/imageButton50"  />
+
+    <ImageButton
+        android:id="@+id/imageButton60"
+        android:layout_width="121dp"
+        android:layout_height="34dp"
+        android:layout_marginBottom="204dp"
+        android:background="@drawable/bg_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.776"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:srcCompat="@color/earth" />
+
+    <TextView
+        android:id="@+id/busText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/quicksand"
+        android:text="TextView"
+        android:textColor="@color/white"
+        android:textSize="13sp"
+        android:translationX="-5dp"
+        android:translationY="-15dp"
+        app:layout_constraintStart_toStartOf="@+id/imageButton60"
+        app:layout_constraintTop_toTopOf="@+id/imageButton60"  />
+
+    <ImageView
+        android:id="@+id/imageView85"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="4.5dp"
+        app:layout_constraintStart_toStartOf="@+id/imageButton60"
+        app:layout_constraintTop_toTopOf="@+id/imageButton60"
+        app:srcCompat="@drawable/guagua" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

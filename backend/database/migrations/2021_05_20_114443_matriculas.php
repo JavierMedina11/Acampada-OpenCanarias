@@ -17,6 +17,8 @@ class Matriculas extends Migration
             $table->id('id');
             $table->string('matricula');
             $table->string('tipo');
+            $table->integer('localizador');
+            $table->string('estado');
         });
     }
 

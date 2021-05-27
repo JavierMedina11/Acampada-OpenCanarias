@@ -8,4 +8,6 @@ class Matricula
     (@PrimaryKey(autoGenerate = true)
     val id: Int,
     val matricula: String,
-    val tipo: String)
+    val tipo: String,
+     val localizador: Int,
+    val estado: String)

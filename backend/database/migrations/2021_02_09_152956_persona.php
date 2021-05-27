@@ -25,6 +25,8 @@ class Persona extends Migration
             $table->string('direccion');
             $table->string('telefono');
             $table->string('url_img');
+            $table->integer('localizador');
+            $table->string('estado');
         });
     }
 

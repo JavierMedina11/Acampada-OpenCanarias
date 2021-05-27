@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Matricula extends Model {
     protected $fillable = [
-        'matricula', 'tipo'
+        'matricula', 'tipo', 'localizador', 'estado'
     ];
     protected $table="matriculas";
 

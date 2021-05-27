@@ -90,6 +90,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
             pref_manual_sync_++
             syncDBServerToDBLocalPersons()
             syncDBServerToDBLocalZones()
+            syncDBServerToDBLocalOperarios()
             syncDBLocalToDBServerBookingsChecked()
             syncDBServerToDBLocalBookingsNoChecked()
         }else if (pref_manual_sync_ == 1) {
@@ -128,6 +129,26 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
                     if (zoneArray != null) {
                         for (i in 0 until zoneArray.size) {
                             database.zonas().insert(zoneArray[i])
+                        }
+                    }
+                }
+            }
+        }
+        Log.v("PRUEBA2", "Todo Bien!")
+    }
+
+    private fun syncDBServerToDBLocalOperarios() {
+        val tokenPref = preferences.getString("tokenPref", null)
+        val zoneImpl = ServiceImpl()
+        zoneImpl.getAllOperarios(this,) { response ->
+            run {
+                val database = AppDatabase.getDatabase(this)
+                CoroutineScope(Dispatchers.IO).launch{
+                    database.operarios().delete()
+                    val zoneArray : ArrayList<Operario>? = response
+                    if (zoneArray != null) {
+                        for (i in 0 until zoneArray.size) {
+                            database.operarios().insert(zoneArray[i])
                         }
                     }
                 }

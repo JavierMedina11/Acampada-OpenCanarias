@@ -18,7 +18,7 @@ import com.example.frontend.controller.ui.IncidenciasListActivity
 import com.example.frontend.controller.util.PreferenceHelper.set
 
 
-class IncidenciasAcompañantesAdapter(var acompañantesList: ArrayList<Persona>, val context: Context): RecyclerView.Adapter<IncidenciasAcompañantesAdapter.ViewHolder>() {
+class IncidenciasAcompañantesAdapter(var acompañantesList: ArrayList<Persona>, val context: Context, val listener: RowClickListener): RecyclerView.Adapter<IncidenciasAcompañantesAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(
@@ -31,6 +31,14 @@ class IncidenciasAcompañantesAdapter(var acompañantesList: ArrayList<Persona>,
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onBindViewHolder(holder: IncidenciasAcompañantesAdapter.ViewHolder, position: Int) {
+        val salida2: ImageButton = holder.itemView.findViewById(R.id.buttonNoCheck2)
+        val salida3: ImageView = holder.itemView.findViewById(R.id.kbvLocationRRR)
+        salida2.setOnClickListener {
+            listener.onItemClickListener(acompañantesList[position])
+        }
+        salida3.setOnClickListener {
+            listener.onItemClickListener3(acompañantesList[position])
+        }
         holder.bindView(acompañantesList[position], context)
     }
 
@@ -46,8 +54,8 @@ class IncidenciasAcompañantesAdapter(var acompañantesList: ArrayList<Persona>,
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         @RequiresApi(Build.VERSION_CODES.N)
         fun bindView(persona: Persona, context: Context) {
-            val entrada: TextView = itemView.findViewById(R.id.acompañanteName)
-            val salida: TextView = itemView.findViewById(R.id.acompañanteDNI)
+            val entrada: TextView = itemView.findViewById(R.id.acompananteName)
+            val salida: TextView = itemView.findViewById(R.id.acompananteDNI)
             val entrada2: ImageButton = itemView.findViewById(R.id.buttonCheck2)
             val salida2: ImageButton = itemView.findViewById(R.id.buttonNoCheck2)
             val salida3: ImageView = itemView.findViewById(R.id.kbvLocationRRR)
@@ -55,29 +63,13 @@ class IncidenciasAcompañantesAdapter(var acompañantesList: ArrayList<Persona>,
 
             entrada.text = name
             salida.text = persona.dni
-
-            salida2.setOnClickListener{
-                entrada.setTextColor(Color.WHITE)
-                salida.setTextColor(Color.WHITE)
-                entrada2.setBackgroundResource(R.drawable.cheque2)
-                salida3.setBackgroundResource(R.drawable.incidencia)
-
-                val preferences = PreferenceHelper.defaultPrefs(context)
-                preferences["acompañante_selected_nombre"] = persona.nombre
-                preferences["acompañante_selected_apellido1"] = persona.apellido1
-                preferences["acompañante_selected_apellido2"] = persona.apellido2
-
-                IncidenciasListActivity().modalListener(preferences, context)
-            }
-
-            itemView.setOnClickListener {
-                Log.v("dadas", "dddddddddddd")
-                Log.v("dadas", persona.dni)
-            }
-
         }
-
     }
+}
+
+interface RowClickListener{
+    fun onItemClickListener(acompañanteEntity: Persona)
+    fun onItemClickListener3(acompañanteEntity: Persona)
 }
 
 
