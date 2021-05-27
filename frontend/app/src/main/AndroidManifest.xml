@@ -25,11 +25,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
         <activity android:name=".controller.ui.IncidenciasListActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".controller.ui.ExitListActivity" />
         <activity android:name=".controller.ui.PopUpWindows" />
@@ -44,7 +40,11 @@
             tools:replace="screenOrientation" />
         <activity android:name=".controller.ui.WebView" />
         <activity android:name=".controller.ui.HomeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".controller.ui.ListActivity" />
         <activity android:name=".controller.ui.LoginActivity" />

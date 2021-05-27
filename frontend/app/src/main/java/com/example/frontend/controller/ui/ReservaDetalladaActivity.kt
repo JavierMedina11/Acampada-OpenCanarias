@@ -43,6 +43,7 @@ class ReservaDetalladaActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_reserva_detallada)
+        textViewObservaciones.typeface = Typeface.createFromAsset(assets, "fonts/ocra_exp.TTF")
         textTextArea.typeface = Typeface.createFromAsset(assets, "fonts/ocra_exp.TTF")
         val reservaId = preferences.getInt("reservaSearchId", 1)
 
