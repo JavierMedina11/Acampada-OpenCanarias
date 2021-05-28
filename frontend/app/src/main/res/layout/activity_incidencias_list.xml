@@ -236,27 +236,14 @@ android:translationX="0dp"
         tools:ignore="MissingConstraints" />
 
     <ImageButton
-        android:id="@+id/buttonGuardar"
-        android:layout_width="200dp"
-        android:layout_height="49dp"
-        android:layout_marginTop="592dp"
-        android:background="@drawable/guardar_incidencias"
-        android:textSize="17sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
-
-    <ImageButton
         android:id="@+id/buttonObservaciones"
-        android:layout_width="200dp"
-        android:layout_height="49dp"
-        android:layout_marginTop="592dp"
+        android:layout_width="300dp"
+        android:layout_height="109dp"
+        android:layout_marginTop="560dp"
         android:background="@drawable/ventana_observaciones"
         android:textSize="17sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.09"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
