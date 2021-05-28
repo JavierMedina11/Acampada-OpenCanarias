@@ -20,30 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="45f2fe95-1edb-414f-9092-4ff85f28c92f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/drawable/add.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/drawable/anadir_incidencia.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/drawable/go_to_matriculas.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/drawable/input_plus.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/layout/add_observation.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/layout-sw480dp/activity_home.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OperarioController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OperarioController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Matricula.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Matricula.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Operario.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Operario.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/Persona.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Persona.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_02_09_152956_persona.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_02_09_152956_persona.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2021_05_20_114443_matriculas.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_05_20_114443_matriculas.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/io/ServiceImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/io/ServiceImpl.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/models/Matricula.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/models/Matricula.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/models/Persona.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/models/Persona.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/ui/IncidenciasListActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/ui/IncidenciasListActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/ui/ReservaDetalladaActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/ui/ReservaDetalladaActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/util/IncidenciaMatriculaAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/util/IncidenciaMatriculaAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/util/IncidenciasAcompañantesAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/util/IncidenciasAcompañantesAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/res/layout/activity_incidencias_list.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/layout/activity_incidencias_list.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/res/layout/activity_reserva_detallada.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/layout/activity_reserva_detallada.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/res/layout/item_container_acompanantes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/layout/item_container_acompanantes.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/res/layout/activity_home.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/layout/activity_home.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -278,6 +257,7 @@
       <workItem from="1621946154774" duration="1230000" />
       <workItem from="1622013965476" duration="1832000" />
       <workItem from="1622102470488" duration="4939000" />
+      <workItem from="1622194096543" duration="792000" />
     </task>
     <servers />
   </component>

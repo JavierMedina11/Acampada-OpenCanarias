@@ -68,6 +68,10 @@ class ReservaDetalladaActivity : AppCompatActivity() {
             var inciPlazasMap: ArrayList<IncidenciaEspec> = gson.fromJson(plazasMAP, arrayIncidencyaEspecType)
             val casetasMaP = "["+gson.toJson(inci["casetas"])+"]"
             var inciCasetasMaP: ArrayList<IncidenciaEspec> = gson.fromJson(casetasMaP, arrayIncidencyaEspecType)
+            val vehiculosMaP = "["+gson.toJson(inci["vehiculos"])+"]"
+            var inciVehiculosMaP: ArrayList<IncidenciaEspec> = gson.fromJson(vehiculosMaP, arrayIncidencyaEspecType)
+            val busMaP = "["+gson.toJson(inci["bus"])+"]"
+            var inciBusMaP: ArrayList<IncidenciaEspec> = gson.fromJson(busMaP, arrayIncidencyaEspecType)
             val caravanaMaP = "["+gson.toJson(inci["caravanas"])+"]"
             var inciCaravanaMaP: ArrayList<IncidenciaEspec> = gson.fromJson(caravanaMaP, arrayIncidencyaEspecType)
             val solicitanteMaP = "["+gson.toJson(inci["solicitante"])+"]"
@@ -82,22 +86,28 @@ class ReservaDetalladaActivity : AppCompatActivity() {
 
 
             if(inciCasetasMaP[0].texto != ""){
-                textTextArea.setText("\n"+inciCasetasMaP[0].texto + " - " + inciCasetasMaP[0].fechahora + " - " + inciCasetasMaP[0].idusuario)
+                textTextArea.setText("\n"+inciCasetasMaP[0].texto + " - " + inciCasetasMaP[0].fechahora + " - " + inciCasetasMaP[0].idusuario+"\n"+textTextArea.text.toString())
+            }
+            if(inciVehiculosMaP[0].texto != ""){
+                textTextArea.setText("\n"+inciVehiculosMaP[0].texto + " - " + inciVehiculosMaP[0].fechahora + " - " + inciVehiculosMaP[0].idusuario+"\n"+textTextArea.text.toString())
+            }
+            if(inciBusMaP[0].texto != ""){
+                textTextArea.setText("\n"+inciBusMaP[0].texto + " - " + inciBusMaP[0].fechahora + " - " + inciBusMaP[0].idusuario+"\n"+textTextArea.text.toString())
             }
             if(inciCaravanaMaP[0].texto != ""){
-                textTextArea.setText("\n"+inciCaravanaMaP[0].texto + " - " + inciCaravanaMaP[0].fechahora + " - " + inciCaravanaMaP[0].idusuario)
+                textTextArea.setText("\n"+inciCaravanaMaP[0].texto + " - " + inciCaravanaMaP[0].fechahora + " - " + inciCaravanaMaP[0].idusuario+"\n"+textTextArea.text.toString())
             }
             if(inciSolicitanteMaP[0].texto != ""){
-                textTextArea.setText("\n"+inciSolicitanteMaP[0].texto + " - " + inciSolicitanteMaP[0].fechahora + " - " + inciCasetasMaP[0].idusuario)
+                textTextArea.setText("\n"+inciSolicitanteMaP[0].texto + " - " + inciSolicitanteMaP[0].fechahora + " - " + inciSolicitanteMaP[0].idusuario+"\n"+textTextArea.text.toString())
             }
             if(inciObservacionesMaP[0].texto != ""){
-            textTextArea.setText("\n"+inciObservacionesMaP[0].texto + " - " + inciObservacionesMaP[0].fechahora + " - " + inciObservacionesMaP[0].idusuario)
+            textTextArea.setText("\n"+inciObservacionesMaP[0].texto + " - " + inciObservacionesMaP[0].fechahora + " - " + inciObservacionesMaP[0].idusuario+"\n"+textTextArea.text.toString())
             }
             if(inciAcompañantesMaP[0].texto != ""){
-                textTextArea.setText("\n"+inciAcompañantesMaP[0].texto + " - " + inciAcompañantesMaP[0].fechahora + " - " + inciAcompañantesMaP[0].idusuario)
+                textTextArea.setText("\n"+inciAcompañantesMaP[0].texto + " - " + inciAcompañantesMaP[0].fechahora + " - " + inciAcompañantesMaP[0].idusuario+"\n"+textTextArea.text.toString())
             }
             if(inciMatriculasMaP[0].texto != ""){
-                textTextArea.setText("\n"+inciMatriculasMaP[0].texto + " - " + inciMatriculasMaP[0].fechahora + " - " + inciMatriculasMaP[0].idusuario)
+                textTextArea.setText("\n"+inciMatriculasMaP[0].texto + " - " + inciMatriculasMaP[0].fechahora + " - " + inciMatriculasMaP[0].idusuario+"\n"+textTextArea.text.toString())
             }
 
             if(getReservas[0].checkin == "1"){
