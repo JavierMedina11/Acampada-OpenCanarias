@@ -52,7 +52,6 @@ class ListActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewAdapter: ReservaAdapter
     private lateinit var viewManager: RecyclerView.LayoutManager
-    val database = AppDatabase.getDatabase(this)
     var getReservas = emptyList<Reserva>()
 
     @RequiresApi(Build.VERSION_CODES.N)
@@ -75,6 +74,7 @@ class ListActivity : AppCompatActivity() {
         recyclerView.adapter = viewAdapter
 
         recyclerView.itemAnimator
+        val database = AppDatabase.getDatabase(this)
 
         state = this.intent.getStringExtra("state").toString()
         val zoneId = this.intent.getIntExtra("zoneId", 1)
@@ -122,6 +122,7 @@ class ListActivity : AppCompatActivity() {
     }
 
     private fun groupRadioFun(zoneId: Int, state: String){
+        val database = AppDatabase.getDatabase(this)
         if(state == "Entradas") {
             groupRadio.clearCheck()
             groupRadio.setOnCheckedChangeListener(RadioGroup.OnCheckedChangeListener() { radioGroup: RadioGroup, i: Int ->

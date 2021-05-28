@@ -20,64 +20,30 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="45f2fe95-1edb-414f-9092-4ff85f28c92f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/util/AddLifecycleCallbackListener.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/util/IncidenciaMatriculaAdapter.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/util/IncidenciasAcompañantesAdapter.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/drawable/bg_button2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/drawable/campana_ele.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/drawable/campana_tele.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/drawable/caravana_ele.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/drawable/caravana_tele.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/drawable/ccc.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/drawable/cccc.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/drawable/changed.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/drawable/check_bg_matricula.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/drawable/check_bg_matriculas.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/drawable/check_matricula.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/drawable/check_matricula_bg.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/drawable/checks.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/drawable/checks2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/drawable/checkssss.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/drawable/cheque.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/drawable/cheque2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/drawable/clouds3rd.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/drawable/coche.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/drawable/coche_ele.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/drawable/coche_tele.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/drawable/elements.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/drawable/elements2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/drawable/frente.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/drawable/gestionar_incidencia.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/drawable/guagua.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/drawable/guagua_ele.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/drawable/guardar_incidencias.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/drawable/incdencia_ultimate.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/drawable/incencia_matricula_i.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/drawable/inci.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/drawable/inci_no_checked2.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/drawable/incidencia.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/drawable/matri_button.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/drawable/matricula_checked.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/drawable/solici_solicit.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/drawable/solici_ultimate.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/drawable/text_area_incidencias.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/drawable/tienda.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/drawable/tienda_ele.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/layout/another_other_matricula_view.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/layout/item_container_acompanantes.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/layout/item_container_matriculas_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/drawable/add.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/drawable/anadir_incidencia.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/drawable/go_to_matriculas.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/drawable/input_plus.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/layout/add_observation.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/prueba.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/drawable/prueba.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OperarioController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OperarioController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Matricula.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Matricula.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Operario.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Operario.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Persona.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Persona.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_02_09_152956_persona.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_02_09_152956_persona.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_05_20_114443_matriculas.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_05_20_114443_matriculas.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/io/ServiceImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/io/ServiceImpl.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/models/Matricula.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/models/Matricula.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/models/Persona.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/models/Persona.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/ui/IncidenciasListActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/ui/IncidenciasListActivity.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/ui/ReservaDetalladaActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/ui/ReservaDetalladaActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/util/ZoneAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/util/ZoneAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/res/drawable/bg_button.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/drawable/bg_button.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/util/IncidenciaMatriculaAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/util/IncidenciaMatriculaAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/util/IncidenciasAcompañantesAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/util/IncidenciasAcompañantesAdapter.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/res/layout/activity_incidencias_list.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/layout/activity_incidencias_list.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/res/layout/activity_reserva_detallada.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/layout/activity_reserva_detallada.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/values/colors.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/res/layout/item_container_acompanantes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/layout/item_container_acompanantes.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -310,6 +276,8 @@
       <workItem from="1621587396712" duration="1804000" />
       <workItem from="1621851465794" duration="1733000" />
       <workItem from="1621946154774" duration="1230000" />
+      <workItem from="1622013965476" duration="1832000" />
+      <workItem from="1622102470488" duration="4939000" />
     </task>
     <servers />
   </component>
@@ -329,10 +297,10 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="497" y="295" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1621511291040">
+    <state x="497" y="295" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1622136583068">
       <screen x="62" y="0" width="2498" height="1080" />
     </state>
-    <state x="497" y="295" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/62.0.2498.1080@62.0.2498.1080" timestamp="1621511291040" />
+    <state x="497" y="295" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/62.0.2498.1080@62.0.2498.1080" timestamp="1622136583068" />
     <state x="493" y="264" key="NewPhpClassDialog" timestamp="1621511282247">
       <screen x="62" y="0" width="2498" height="1080" />
     </state>

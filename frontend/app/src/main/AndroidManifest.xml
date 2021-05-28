@@ -30,7 +30,9 @@
         <activity android:name=".controller.ui.ExitListActivity" />
         <activity android:name=".controller.ui.PopUpWindows" />
         <activity android:name=".controller.ui.PDFView" />
-        <activity android:name=".controller.ui.ReservaDetalladaActivity" />
+        <activity android:name=".controller.ui.ReservaDetalladaActivity" >
+
+        </activity>
         <activity android:name=".controller.ui.UserProfileActivity" />
         <activity
             android:name="com.journeyapps.barcodescanner.CaptureActivity"

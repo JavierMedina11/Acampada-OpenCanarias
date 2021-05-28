@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Operario;
+use App\Models\Reserva;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -68,6 +69,9 @@ class OperarioController extends Controller
         ]);
     }
 
+    public function index(Request $request){
+        return Operario::all();
+    }
 
     public function getById($id){
         return Operario::where('id',$id)->get();

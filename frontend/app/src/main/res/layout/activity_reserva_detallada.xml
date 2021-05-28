@@ -118,24 +118,11 @@
         app:layout_constraintVertical_bias="0.528" />
 
     <ImageButton
-        android:id="@+id/buttonCheckIn"
-        android:layout_width="300dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="604dp"
-        android:background="@drawable/button_checkin"
-        android:textSize="17sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints" />
-
-    <ImageButton
         android:id="@+id/buttonGestion"
         android:layout_width="260dp"
         android:layout_height="120dp"
-        android:layout_marginTop="536dp"
-        android:background="@drawable/gestionar_incidencia"
+        android:layout_marginTop="640dp"
+        android:background="@drawable/anadir_incidencia"
         android:textSize="17sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
@@ -146,11 +133,11 @@
     <ImageView
         android:id="@+id/textArea"
         android:layout_width="358dp"
-        android:layout_height="176dp"
-        android:layout_marginTop="416dp"
+        android:layout_height="226dp"
+        android:layout_marginTop="440dp"
         android:background="@drawable/text_area_incidencias"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
@@ -169,17 +156,29 @@
     <EditText
         android:id="@+id/textTextArea"
         android:layout_width="338dp"
-        android:layout_height="176dp"
+        android:layout_height="226dp"
+        android:layout_marginTop="4dp"
         android:gravity="top"
-        android:text="No hay Observaciones"
         android:padding="15dp"
+        android:text="No hay Observaciones"
         android:textColor="@color/black"
         android:textColorHint="@color/black"
         android:textSize="11sp"
         app:layout_constraintEnd_toEndOf="@+id/textArea"
-        app:layout_constraintHorizontal_bias="0.48"
         app:layout_constraintStart_toStartOf="@+id/textArea"
         app:layout_constraintTop_toTopOf="@+id/textArea" />
+
+    <TextView
+        android:id="@+id/textViewObservaciones"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:text="Observaciones"
+        android:textSize="15sp"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/textArea"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
