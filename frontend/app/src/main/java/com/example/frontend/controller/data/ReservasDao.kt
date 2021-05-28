@@ -46,7 +46,7 @@ interface ReservasDao {
 
     // SON ESTAS DE AQUI ARRIBA
 
-    @Query("SELECT * FROM reservas  where localizador_reserva = :localizador")
+    @Query("SELECT * FROM reservas  where localizador_reserva = :localizador OR dni_persona = :localizador")
     fun getByLocalizador(localizador: String): LiveData<List<Reserva>>
 
     @Query("SELECT * FROM reservas  where id = :reservaId")

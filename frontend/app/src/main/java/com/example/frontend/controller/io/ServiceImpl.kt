@@ -519,9 +519,9 @@ class ServiceImpl: IVolleyService {
     }
 
     override fun updateReserve(context: Context, reserva: Reserva, completionHandler: () -> Unit) {
-        val path = ServiceSingleton.getInstance(context).baseUrl + "reservaUpdate/" + reserva.id
+        val path = ServiceSingleton.getInstance(context).baseUrl + "reservaUpdate-checkin/" + reserva.id
         val bookingJSON: JSONObject = JSONObject()
-        bookingJSON.put("id", reserva.id.toString())
+        bookingJSON.put("id", reserva.id)
         bookingJSON.put("id_persona", reserva.id_persona.toString())
         bookingJSON.put("dni_persona", reserva.dni_persona)
         bookingJSON.put("fecha_entrada", reserva.fecha_entrada)

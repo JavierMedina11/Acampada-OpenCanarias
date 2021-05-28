@@ -1,26 +1,24 @@
 package com.example.frontend.controller.ui
 
 import android.annotation.SuppressLint
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import com.example.frontend.R
-import kotlinx.android.synthetic.main.activity_home.*
-import org.java_websocket.client.WebSocketClient
 import android.app.ActivityOptions
+import android.content.Intent
 import android.graphics.Typeface
+import android.os.Bundle
 import android.util.Log
 import android.util.Pair
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import com.example.frontend.R
 import com.example.frontend.controller.io.ServiceImpl
 import com.example.frontend.controller.models.*
 import com.example.frontend.controller.util.PreferenceHelper
-import com.example.frontend.controller.util.PreferenceHelper.set
 import com.opencanarias.pruebasync.util.AppDatabase
+import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.activity_home.imageView
 import kotlinx.android.synthetic.main.activity_home.imageView13
 import kotlinx.android.synthetic.main.activity_home.imageView2
@@ -29,6 +27,9 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import org.java_websocket.client.WebSocketClient
+import android.os.Handler
+import android.os.Looper
 
 class HomeActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -39,6 +40,8 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private var pref_manual_sync_ = 0
+
+
 
     @SuppressLint("WrongConstant")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,7 +57,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
         buttonToSync.setOnClickListener(this)
 
         button3.setOnClickListener {
-            addDBLocalBaseData()
+            //addDBLocalBaseData()
         }
 
         //getBooking(7)
@@ -90,10 +93,10 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
             pref_manual_sync_++
             syncDBServerToDBLocalPersons()
             syncDBServerToDBLocalZones()
-            //syncDBServerToDBLocalOperarios()
+            syncDBServerToDBLocalOperarios()
             syncDBLocalToDBServerBookingsChecked()
-            syncDBServerToDBLocalBookingsNoChecked()
-            addDBLocalBaseData()
+            //syncDBServerToDBLocalBookingsNoChecked()
+            //addDBLocalBaseData()
         }else if (pref_manual_sync_ == 1) {
             Toast.makeText(getApplicationContext(), "Ya esta Sincronizado", Toast.LENGTH_SHORT).show()
         }
@@ -167,7 +170,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
             listaReserva = it as ArrayList<Reserva>
 
             for (i in 0 until listaReserva.size) {
-                Log.v("Update", "Entro: " + reserva)
+                Log.v("UpdateSynLoc to Remo", "Entro: " + listaReserva[i].id)
                 serviceImpl.updateReserve(this, listaReserva[i]) { ->
                     run {
                         Log.v("UPDATED", "Updated: " + listaReserva[i].id)
@@ -176,6 +179,13 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
             }
         });
         Log.v("PRUEBA3", "Todo Bien!")
+
+        val handler = Handler(Looper.getMainLooper())
+        handler.postDelayed({
+            syncDBServerToDBLocalBookingsNoChecked()
+        }, 3000)
+
+
     }
 
     private fun syncDBServerToDBLocalBookingsNoChecked() {
@@ -185,9 +195,9 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
                 val database = AppDatabase.getDatabase(this)
                 CoroutineScope(Dispatchers.IO).launch{
                     database.reservas().deleteNoChecked("0")
-                    Log.v("DBBorrao", "BD Borrada, reservas vacias personas")
+                    Log.v("DBBorrao", "BD Borrada, reservas vacias")
                     val reservaArray : ArrayList<Reserva>? = response
-                    delay(5000)
+                    //delay(5000)
                     if (reservaArray != null) {
                         for (i in 0 until reservaArray.size) {
                             Log.v("FUNCIONA", "Insertadas")
@@ -198,15 +208,6 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
             }
         }
         Log.v("PRUEBA4", "Todo Bien!")
-    }
-
-    private fun addDBLocalBaseData(){
-        val operario = Operario(0, "tete@tete.com", "123456", "Tete","12345678T", "")
-
-        val database = AppDatabase.getDatabase(this)
-        CoroutineScope(Dispatchers.IO).launch {
-            database.operarios().insert(operario)
-        }
     }
 
     private fun goToLoginActivity() {

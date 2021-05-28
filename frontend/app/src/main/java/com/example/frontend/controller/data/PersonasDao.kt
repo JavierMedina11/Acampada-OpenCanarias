@@ -17,6 +17,9 @@ interface PersonasDao {
     @Query("SELECT * FROM personas  WHERE id = :id")
     fun getById(id: Int): LiveData<List<Persona>>
 
+    @Query("SELECT * FROM personas  WHERE dni = :dni")
+    fun getByDni(dni: String): LiveData<List<Persona>>
+
     @Insert
     fun insert(vararg persona: Persona)
 

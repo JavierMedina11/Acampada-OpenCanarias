@@ -8,4 +8,16 @@
     <item name="imageView12" type="id" />
     <item name="imageView11" type="id" />
     <item name="imageView13" type="id" />
+    <item name="imagePerson" type="id" />
+    <item name="textEntrada4" type="id" />
+    <item name="textEntrada3" type="id" />
+    <item name="textDni" type="id" />
+    <item name="imageView23" type="id" />
+    <item name="imageView26" type="id" />
+    <item name="imageView28" type="id" />
+    <item name="imageView29" type="id" />
+    <item name="textViewNTent" type="id" />
+    <item name="textViewNCar" type="id" />
+    <item name="textViewNVan" type="id" />
+    <item name="textViewNBus" type="id" />
 </resources>

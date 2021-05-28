@@ -20,9 +20,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="45f2fe95-1edb-414f-9092-4ff85f28c92f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/layout-sw480dp/activity_home.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_15_04_2021_9_04__Default_Changelist_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_15_04_2021_9_04__Default_Changelist_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PersonaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PersonaController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/data/PersonasDao.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/data/PersonasDao.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/data/ReservasDao.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/data/ReservasDao.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/io/ServiceImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/io/ServiceImpl.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/ui/HomeActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/ui/HomeActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/ui/IncidenciasActivity.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/ui/LoginActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/ui/LoginActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/ui/ZoneActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/ui/ZoneActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/util/ReservaAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/src/main/java/com/example/frontend/controller/util/ReservaAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/res/drawable/search2.png" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/drawable/search2.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/res/layout/activity_home.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/layout/activity_home.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/res/layout/activity_incidencias.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/res/layout/another_other_view.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/layout/another_other_view.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/res/layout/item_container_acompanantes.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/layout/item_container_acompanantes.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/res/layout/item_container_reservas.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/layout/item_container_reservas.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/res/values/ids.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/values/ids.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/build.gradle" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -257,7 +275,6 @@
       <workItem from="1621946154774" duration="1230000" />
       <workItem from="1622013965476" duration="1832000" />
       <workItem from="1622102470488" duration="4939000" />
-      <workItem from="1622194096543" duration="792000" />
     </task>
     <servers />
   </component>

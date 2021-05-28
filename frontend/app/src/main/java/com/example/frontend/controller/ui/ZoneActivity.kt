@@ -32,6 +32,7 @@ import com.example.frontend.controller.models.Zone
 import com.example.frontend.controller.util.PreferenceHelper
 import com.example.frontend.controller.util.PreferenceHelper.set
 import com.example.frontend.controller.util.ZoneAdapter
+import com.example.frontend.databinding.ActivityZoneBinding
 import com.google.zxing.integration.android.IntentIntegrator
 import com.opencanarias.pruebasync.util.AppDatabase
 import eightbitlab.com.blurview.RenderScriptBlur
@@ -54,7 +55,7 @@ class ZoneActivity : AppCompatActivity() {
     private lateinit var viewPager: ViewPager2
     private lateinit var viewAdapter: ZoneAdapter
     private lateinit var viewManager: RecyclerView.LayoutManager
-    //private lateinit var binding: ActivityZoneBinding
+    private lateinit var binding: ActivityZoneBinding
     val MIN_SCALE = 0.85f
     val MIN_ALPHA = 0.5f
 
@@ -62,10 +63,10 @@ class ZoneActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //binding = ActivityZoneBinding.inflate(layoutInflater)
+        binding = ActivityZoneBinding.inflate(layoutInflater)
         setContentView(R.layout.activity_zone)
-        //setContentView(binding.root)
-        //binding.buttonToQr.setOnClickListener { initScanner() }
+        setContentView(binding.root)
+        binding.buttonToQr.setOnClickListener { initScanner() }
 
         listText.typeface = Typeface.createFromAsset(assets, "fonts/ocra_exp.TTF")
         zones = ArrayList<Zone>()
@@ -302,6 +303,14 @@ class ZoneActivity : AppCompatActivity() {
                     "el valor escaneado es: ${result.contents}",
                     Toast.LENGTH_SHORT
                 ).show()
+                var getReservasByLocalizador = emptyList<Reserva>()
+                val database = AppDatabase.getDatabase(this)
+                database.reservas().getByLocalizador(result.contents).observe(this, Observer {
+                    getReservasByLocalizador = it
+                    preferences["reservaSearchId"] = getReservasByLocalizador[0].id
+                    val intent = Intent(this, IncidenciasListActivity::class.java)
+                    startActivity(intent)
+                })
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data)

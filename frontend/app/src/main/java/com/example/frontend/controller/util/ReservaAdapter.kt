@@ -19,13 +19,14 @@ import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.example.frontend.R
 import com.example.frontend.controller.io.ServiceImpl
+import com.example.frontend.controller.models.Persona
 import com.example.frontend.controller.models.Reserva
 import com.example.frontend.controller.ui.IncidenciasListActivity
 import com.example.frontend.controller.ui.ReservaDetalladaActivity
 import com.example.frontend.controller.util.PreferenceHelper.set
 import com.squareup.picasso.Picasso
 
-class ReservaAdapter(var reservaList: ArrayList<Reserva>, val context: Context): RecyclerView.Adapter<ReservaAdapter.ViewHolder>() {
+class ReservaAdapter(var reservaList: ArrayList<Reserva>,val context: Context): RecyclerView.Adapter<ReservaAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(
@@ -65,8 +66,19 @@ class ReservaAdapter(var reservaList: ArrayList<Reserva>, val context: Context):
             val kbv: ImageView = itemView.findViewById(R.id.kbvLocation)
             val person: ImageView = itemView.findViewById(R.id.imagePerson)
 
+            val nTents: TextView = itemView.findViewById(R.id.textViewNTent)
+            val nCar: TextView = itemView.findViewById(R.id.textViewNCar)
+            val nVan: TextView = itemView.findViewById(R.id.textViewNVan)
+            val nBus: TextView = itemView.findViewById(R.id.textViewNBus)
+
             entrada.text = b.fecha_entrada
             salida.text = b.fecha_salida
+            dni.text = b.dni_persona
+
+            nTents.text = b.num_casetas.toString()
+            nCar.text = b.num_vehiculos.toString()
+            nVan.text = b.num_caravanas.toString()
+            nBus.text = b.num_bus.toString()
 
             if (b.checkin == "1") {
                 entrada.setTextColor(Color.WHITE)

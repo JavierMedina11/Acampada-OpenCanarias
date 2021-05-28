@@ -31,6 +31,8 @@ class PersonaController extends Controller{
         $persona->direccion = $request->direccion;
         $persona->telefono = $request->telefono;
         $persona->url_img = $request->url_img;
+        $persona->localizador = $request->localizador;
+        $persona->estado = $request->estado;
         $persona->save();
         return "Post has been created!";
     }
@@ -49,6 +51,8 @@ class PersonaController extends Controller{
         $persona->direccion = $request->direccion;
         $persona->telefono = $request->telefono;
         $persona->url_img = $request->url_img;
+        $persona->localizador = $request->localizador;
+        $persona->estado = $request->estado;
         $persona->save();
         return "Post has been updated!";
     }

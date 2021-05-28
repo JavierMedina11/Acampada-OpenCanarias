@@ -53,7 +53,7 @@
         android:layout_marginLeft="35dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="145dp"
-        android:background="@drawable/search2"
+        android:background="@drawable/search2old"
         android:foregroundGravity="center"
         android:textColor="@color/black"
         android:textSize="17sp"

@@ -67,7 +67,7 @@
             android:translationY="-5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.388"
+            app:layout_constraintHorizontal_bias="0.3"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.25" />
@@ -100,7 +100,7 @@
             android:translationY="-12.5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.357"
+            app:layout_constraintHorizontal_bias="0.325"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.83" />
@@ -132,6 +132,109 @@
             app:layout_constraintHorizontal_bias="0.047"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Aqui abajo la info de los iconos -->
+
+        <ImageView
+            android:id="@+id/imageView23"
+            android:layout_width="14dp"
+            android:layout_height="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.92"
+            app:layout_constraintStart_toStartOf="@+id/kbvLocation"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.1"
+            app:srcCompat="@drawable/tent" />
+
+        <ImageView
+            android:id="@+id/imageView26"
+            android:layout_width="14dp"
+            android:layout_height="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.92"
+            app:layout_constraintStart_toStartOf="@+id/kbvLocation"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.3"
+            app:srcCompat="@drawable/car" />
+
+        <ImageView
+            android:id="@+id/imageView28"
+            android:layout_width="20dp"
+            android:layout_height="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.93"
+            app:layout_constraintStart_toStartOf="@+id/kbvLocation"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.55"
+            app:srcCompat="@drawable/van" />
+
+        <ImageView
+            android:id="@+id/imageView29"
+            android:layout_width="10dp"
+            android:layout_height="13dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.92"
+            app:layout_constraintStart_toStartOf="@+id/kbvLocation"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.75"
+            app:srcCompat="@drawable/bus" />
+
+        <TextView
+            android:id="@+id/textViewNTent"
+            android:layout_width="8dp"
+            android:layout_height="16dp"
+            android:text=""
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/kbvLocation"
+            app:layout_constraintHorizontal_bias="0.068"
+            app:layout_constraintStart_toEndOf="@+id/imageView23"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.073" />
+
+        <TextView
+            android:id="@+id/textViewNCar"
+            android:layout_width="8dp"
+            android:layout_height="16dp"
+            android:text=""
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/kbvLocation"
+            app:layout_constraintHorizontal_bias="0.068"
+            app:layout_constraintStart_toEndOf="@+id/imageView26"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.294" />
+
+        <TextView
+            android:id="@+id/textViewNVan"
+            android:layout_width="8dp"
+            android:layout_height="16dp"
+            android:text=""
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/kbvLocation"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/imageView28"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewNBus"
+            android:layout_width="8dp"
+            android:layout_height="16dp"
+            android:text=""
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/kbvLocation"
+            app:layout_constraintHorizontal_bias="0.068"
+            app:layout_constraintStart_toEndOf="@+id/imageView29"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.735" />
+
+        <!-- Aqui abajo la info de los iconos -->
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
