@@ -57,9 +57,9 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
             addDBLocalBaseData()
         }
 
-        getBooking(7)
+        //getBooking(7)
     }
-
+/*
     private fun getBooking(zoneId: Int) {
         val bicycleServiceImpl = ServiceImpl()
         bicycleServiceImpl.getBookingJSONIncidencias(this, zoneId) { response ->
@@ -69,7 +69,7 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
                 }
             }
         }
-    }
+    }*/
 
     @SuppressLint("WrongConstant")
     override fun onClick(v: View?) {
@@ -90,9 +90,10 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
             pref_manual_sync_++
             syncDBServerToDBLocalPersons()
             syncDBServerToDBLocalZones()
-            syncDBServerToDBLocalOperarios()
+            //syncDBServerToDBLocalOperarios()
             syncDBLocalToDBServerBookingsChecked()
             syncDBServerToDBLocalBookingsNoChecked()
+            addDBLocalBaseData()
         }else if (pref_manual_sync_ == 1) {
             Toast.makeText(getApplicationContext(), "Ya esta Sincronizado", Toast.LENGTH_SHORT).show()
         }

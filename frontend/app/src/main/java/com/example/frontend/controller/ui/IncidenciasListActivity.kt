@@ -490,46 +490,22 @@ class IncidenciasListActivity : AppCompatActivity(), RowClickListener, RowClickL
                         object : TypeToken<java.util.ArrayList<IncidenciaEspec>>() {}.type
 
                     val plazasMAP = "[" + gson.toJson(inci["plazas"]).toString() + "]"
-                    var inciPlazasMap: java.util.ArrayList<IncidenciaEspec> = gson.fromJson(
-                        plazasMAP,
-                        arrayIncidencyaEspecType
-                    )
+                    //var inciPlazasMap: java.util.ArrayList<IncidenciaEspec> = gson.fromJson(plazasMAP, arrayIncidencyaEspecType)
                     val casetasMaP = "[" + gson.toJson(inci["casetas"]) + "]"
-                    var inciCasetasMaP: java.util.ArrayList<IncidenciaEspec> = gson.fromJson(
-                        casetasMaP,
-                        arrayIncidencyaEspecType
-                    )
+                    var inciCasetasMaP: java.util.ArrayList<IncidenciaEspec> = gson.fromJson(casetasMaP, arrayIncidencyaEspecType)
                     val caravanaMaP = "[" + gson.toJson(inci["caravanas"]) + "]"
-                    var inciCaravanaMaP: java.util.ArrayList<IncidenciaEspec> = gson.fromJson(
-                        caravanaMaP,
-                        arrayIncidencyaEspecType
-                    )
+                    var inciCaravanaMaP: java.util.ArrayList<IncidenciaEspec> = gson.fromJson(caravanaMaP, arrayIncidencyaEspecType)
                     val vehiculosMaP = "[" + gson.toJson(inci["vehiculos"]) + "]"
-                    var inciVehiculosMaP: java.util.ArrayList<IncidenciaEspec> = gson.fromJson(
-                        vehiculosMaP,
-                        arrayIncidencyaEspecType
-                    )
+                    var inciVehiculosMaP: java.util.ArrayList<IncidenciaEspec> = gson.fromJson(vehiculosMaP, arrayIncidencyaEspecType)
                     val busaMaP = "[" + gson.toJson(inci["bus"]) + "]"
-                    var inciBusMaP: java.util.ArrayList<IncidenciaEspec> = gson.fromJson(
-                        busaMaP,
-                        arrayIncidencyaEspecType
-                    )
+                    var inciBusMaP: java.util.ArrayList<IncidenciaEspec> = gson.fromJson(busaMaP, arrayIncidencyaEspecType)
                     val solicitanteMaP = "[" + gson.toJson(inci["solicitante"]) + "]"
-                    var inciSolicitanteMaP: java.util.ArrayList<IncidenciaEspec> = gson.fromJson(
-                        solicitanteMaP,
-                        arrayIncidencyaEspecType
-                    )
+                    var inciSolicitanteMaP: java.util.ArrayList<IncidenciaEspec> = gson.fromJson(solicitanteMaP, arrayIncidencyaEspecType)
                     val acompananteMaP = gson.toJson(inci["acompañantes"])
-                    var inciAcompananteMaP: java.util.ArrayList<IncidenciaEspec> = gson.fromJson(
-                        solicitanteMaP,
-                        arrayIncidencyaEspecType
-                    )
+                    var inciAcompananteMaP: java.util.ArrayList<IncidenciaEspec> = gson.fromJson(solicitanteMaP, arrayIncidencyaEspecType)
                     val matriculasMaP = gson.toJson(inci["matriculas"])
                     //Log.v("SDADADASDADDS", matriculasMaP)
-                    var inciMatriculasMaP: java.util.ArrayList<IncidenciaEspec> = gson.fromJson(
-                        solicitanteMaP,
-                        arrayIncidencyaEspecType
-                    )
+                    var inciMatriculasMaP: java.util.ArrayList<IncidenciaEspec> = gson.fromJson(solicitanteMaP, arrayIncidencyaEspecType)
 
                     caravanaText.text = getReservas[0].num_caravanas.toString()
                     campañaText.text = getReservas[0].num_casetas.toString()
@@ -591,27 +567,7 @@ class IncidenciasListActivity : AppCompatActivity(), RowClickListener, RowClickL
                             jObject.getJSONObject("solicitante").put("fechahora", data);
                             jObject.getJSONObject("solicitante").put("idusuario", 1);
 
-                            val reserva: Reserva = Reserva(
-                                getReservas[0].id,
-                                getReservas[0].id_persona,
-                                getReservas[0].dni_persona,
-                                getReservas[0].fecha_entrada,
-                                getReservas[0].fecha_salida,
-                                getReservas[0].localizador_reserva,
-                                getReservas[0].num_personas,
-                                getReservas[0].acompanantes,
-                                getReservas[0].num_vehiculos,
-                                getReservas[0].num_casetas,
-                                getReservas[0].num_bus,
-                                getReservas[0].num_caravanas,
-                                getReservas[0].matriculas,
-                                getReservas[0].checkin,
-                                getReservas[0].fecha_checkin,
-                                "true",
-                                jObject.toString(),
-                                getReservas[0].estado,
-                                getReservas[0].id_zona
-                            )
+                            val reserva: Reserva = Reserva(getReservas[0].id, getReservas[0].id_persona, getReservas[0].dni_persona, getReservas[0].fecha_entrada, getReservas[0].fecha_salida, getReservas[0].localizador_reserva, getReservas[0].num_personas, getReservas[0].acompanantes, getReservas[0].num_vehiculos, getReservas[0].num_casetas, getReservas[0].num_bus, getReservas[0].num_caravanas, getReservas[0].matriculas, getReservas[0].checkin, getReservas[0].fecha_checkin, "true", jObject.toString(), getReservas[0].estado, getReservas[0].id_zona)
                             CoroutineScope(Dispatchers.IO).launch {
                                 database.reservas().update(reserva)
                                 Log.v("FUNCIONA", "Insertadas")
@@ -688,27 +644,7 @@ class IncidenciasListActivity : AppCompatActivity(), RowClickListener, RowClickL
                             jObject.getJSONObject("caravanas").put("fechahora", "");
                             jObject.getJSONObject("caravanas").put("idusuario", "");
                             Log.v("PRUEBA PRUEBITA PRUEBA", jObject.toString())
-                            val reserva: Reserva = Reserva(
-                                getReservas[0].id,
-                                getReservas[0].id_persona,
-                                getReservas[0].dni_persona,
-                                getReservas[0].fecha_entrada,
-                                getReservas[0].fecha_salida,
-                                getReservas[0].localizador_reserva,
-                                getReservas[0].num_personas,
-                                getReservas[0].acompanantes,
-                                getReservas[0].num_vehiculos,
-                                getReservas[0].num_casetas,
-                                getReservas[0].num_bus,
-                                getReservas[0].num_caravanas,
-                                getReservas[0].matriculas,
-                                getReservas[0].checkin,
-                                getReservas[0].fecha_checkin,
-                                "true",
-                                jObject.toString(),
-                                getReservas[0].estado,
-                                getReservas[0].id_zona
-                            )
+                            val reserva: Reserva = Reserva(getReservas[0].id, getReservas[0].id_persona, getReservas[0].dni_persona, getReservas[0].fecha_entrada, getReservas[0].fecha_salida, getReservas[0].localizador_reserva, getReservas[0].num_personas, getReservas[0].acompanantes, getReservas[0].num_vehiculos, getReservas[0].num_casetas, getReservas[0].num_bus, getReservas[0].num_caravanas, getReservas[0].matriculas, getReservas[0].checkin, getReservas[0].fecha_checkin, "true", jObject.toString(), getReservas[0].estado, getReservas[0].id_zona)
                             CoroutineScope(Dispatchers.IO).launch {
                                 database.reservas().update(reserva)
                                 Log.v("FUNCIONA4", "Insertadas")
@@ -747,27 +683,7 @@ class IncidenciasListActivity : AppCompatActivity(), RowClickListener, RowClickL
                             jObject.getJSONObject("vehiculos").put("fechahora", "");
                             jObject.getJSONObject("vehiculos").put("idusuario", "");
 
-                            val reserva: Reserva = Reserva(
-                                getReservas[0].id,
-                                getReservas[0].id_persona,
-                                getReservas[0].dni_persona,
-                                getReservas[0].fecha_entrada,
-                                getReservas[0].fecha_salida,
-                                getReservas[0].localizador_reserva,
-                                getReservas[0].num_personas,
-                                getReservas[0].acompanantes,
-                                getReservas[0].num_vehiculos,
-                                getReservas[0].num_casetas,
-                                getReservas[0].num_bus,
-                                getReservas[0].num_caravanas,
-                                getReservas[0].matriculas,
-                                getReservas[0].checkin,
-                                getReservas[0].fecha_checkin,
-                                "true",
-                                jObject.toString(),
-                                getReservas[0].estado,
-                                getReservas[0].id_zona
-                            )
+                            val reserva: Reserva = Reserva(getReservas[0].id, getReservas[0].id_persona, getReservas[0].dni_persona, getReservas[0].fecha_entrada, getReservas[0].fecha_salida, getReservas[0].localizador_reserva, getReservas[0].num_personas, getReservas[0].acompanantes, getReservas[0].num_vehiculos, getReservas[0].num_casetas, getReservas[0].num_bus, getReservas[0].num_caravanas, getReservas[0].matriculas, getReservas[0].checkin, getReservas[0].fecha_checkin, "true", jObject.toString(), getReservas[0].estado, getReservas[0].id_zona)
                             CoroutineScope(Dispatchers.IO).launch {
                                 database.reservas().update(reserva)
                                 Log.v("FUNCIONA", "Insertadas")
@@ -785,27 +701,7 @@ class IncidenciasListActivity : AppCompatActivity(), RowClickListener, RowClickL
                             jObject.getJSONObject("vehiculos").put("fechahora", data);
                             jObject.getJSONObject("vehiculos").put("idusuario", 1);
 
-                            val reserva: Reserva = Reserva(
-                                getReservas[0].id,
-                                getReservas[0].id_persona,
-                                getReservas[0].dni_persona,
-                                getReservas[0].fecha_entrada,
-                                getReservas[0].fecha_salida,
-                                getReservas[0].localizador_reserva,
-                                getReservas[0].num_personas,
-                                getReservas[0].acompanantes,
-                                getReservas[0].num_vehiculos,
-                                getReservas[0].num_casetas,
-                                getReservas[0].num_bus,
-                                getReservas[0].num_caravanas,
-                                getReservas[0].matriculas,
-                                getReservas[0].checkin,
-                                getReservas[0].fecha_checkin,
-                                "true",
-                                jObject.toString(),
-                                getReservas[0].estado,
-                                getReservas[0].id_zona
-                            )
+                            val reserva: Reserva = Reserva(getReservas[0].id, getReservas[0].id_persona, getReservas[0].dni_persona, getReservas[0].fecha_entrada, getReservas[0].fecha_salida, getReservas[0].localizador_reserva, getReservas[0].num_personas, getReservas[0].acompanantes, getReservas[0].num_vehiculos, getReservas[0].num_casetas, getReservas[0].num_bus, getReservas[0].num_caravanas, getReservas[0].matriculas, getReservas[0].checkin, getReservas[0].fecha_checkin, "true", jObject.toString(), getReservas[0].estado, getReservas[0].id_zona)
                             CoroutineScope(Dispatchers.IO).launch {
                                 database.reservas().update(reserva)
                                 Log.v("FUNCIONA", "Insertadas")
@@ -826,27 +722,7 @@ class IncidenciasListActivity : AppCompatActivity(), RowClickListener, RowClickL
                             jObject.getJSONObject("bus").put("fechahora", "");
                             jObject.getJSONObject("bus").put("idusuario", "");
 
-                            val reserva: Reserva = Reserva(
-                                getReservas[0].id,
-                                getReservas[0].id_persona,
-                                getReservas[0].dni_persona,
-                                getReservas[0].fecha_entrada,
-                                getReservas[0].fecha_salida,
-                                getReservas[0].localizador_reserva,
-                                getReservas[0].num_personas,
-                                getReservas[0].acompanantes,
-                                getReservas[0].num_vehiculos,
-                                getReservas[0].num_casetas,
-                                getReservas[0].num_bus,
-                                getReservas[0].num_caravanas,
-                                getReservas[0].matriculas,
-                                getReservas[0].checkin,
-                                getReservas[0].fecha_checkin,
-                                "true",
-                                jObject.toString(),
-                                getReservas[0].estado,
-                                getReservas[0].id_zona
-                            )
+                            val reserva: Reserva = Reserva(getReservas[0].id, getReservas[0].id_persona, getReservas[0].dni_persona, getReservas[0].fecha_entrada, getReservas[0].fecha_salida, getReservas[0].localizador_reserva, getReservas[0].num_personas, getReservas[0].acompanantes, getReservas[0].num_vehiculos, getReservas[0].num_casetas, getReservas[0].num_bus, getReservas[0].num_caravanas, getReservas[0].matriculas, getReservas[0].checkin, getReservas[0].fecha_checkin, "true", jObject.toString(), getReservas[0].estado, getReservas[0].id_zona)
                             CoroutineScope(Dispatchers.IO).launch {
                                 database.reservas().update(reserva)
                                 Log.v("FUNCIONA", "Insertadas")
@@ -864,27 +740,7 @@ class IncidenciasListActivity : AppCompatActivity(), RowClickListener, RowClickL
                                 jObject.getJSONObject("bus").put("fechahora", data);
                                 jObject.getJSONObject("bus").put("idusuario", 1);
 
-                                val reserva: Reserva = Reserva(
-                                    getReservas[0].id,
-                                    getReservas[0].id_persona,
-                                    getReservas[0].dni_persona,
-                                    getReservas[0].fecha_entrada,
-                                    getReservas[0].fecha_salida,
-                                    getReservas[0].localizador_reserva,
-                                    getReservas[0].num_personas,
-                                    getReservas[0].acompanantes,
-                                    getReservas[0].num_vehiculos,
-                                    getReservas[0].num_casetas,
-                                    getReservas[0].num_bus,
-                                    getReservas[0].num_caravanas,
-                                    getReservas[0].matriculas,
-                                    getReservas[0].checkin,
-                                    getReservas[0].fecha_checkin,
-                                    "true",
-                                    jObject.toString(),
-                                    getReservas[0].estado,
-                                    getReservas[0].id_zona
-                                )
+                                val reserva: Reserva = Reserva(getReservas[0].id, getReservas[0].id_persona, getReservas[0].dni_persona, getReservas[0].fecha_entrada, getReservas[0].fecha_salida, getReservas[0].localizador_reserva, getReservas[0].num_personas, getReservas[0].acompanantes, getReservas[0].num_vehiculos, getReservas[0].num_casetas, getReservas[0].num_bus, getReservas[0].num_caravanas, getReservas[0].matriculas, getReservas[0].checkin, getReservas[0].fecha_checkin, "true", jObject.toString(), getReservas[0].estado, getReservas[0].id_zona)
                                 CoroutineScope(Dispatchers.IO).launch {
                                     database.reservas().update(reserva)
                                     Log.v("FUNCIONA", "Insertadas")
